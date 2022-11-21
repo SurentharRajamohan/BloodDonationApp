@@ -2,9 +2,9 @@
 Mobile App Development Assignment
 
 Done:
-1) Firebase connection
+1) Firebase connection.
 
 
 TODO:
-1) Design every page
-2) Other firebase features connection
+1) Design every page.
+2) Other firebase features connection.
