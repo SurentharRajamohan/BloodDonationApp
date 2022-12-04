@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">StartActivity</string>
+    <string name="emailAddressHint">Enter email address</string>
+    <string name="usernameHint">Enter username</string>
+    <string name="passwordHint">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
