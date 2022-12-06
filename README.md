@@ -3,6 +3,7 @@ Mobile App Development Assignment
 
 Done:
 1) Firebase connection
+2) Login and registration
 
 
 TODO:
