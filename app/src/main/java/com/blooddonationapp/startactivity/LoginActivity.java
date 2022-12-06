@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, PersonalDetailsActivity.class));
                                 }
 
                                 else{
