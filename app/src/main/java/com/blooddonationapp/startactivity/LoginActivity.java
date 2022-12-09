@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, PersonalDetailsActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 }
 
                                 else{
@@ -81,7 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Wrong username", Toast.LENGTH_SHORT).show();
                             }
 
+
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
