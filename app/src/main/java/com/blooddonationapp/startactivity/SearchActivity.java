@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.blooddonationapp.startactivity.Fragment.HomeFragment;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.MyAdapter;
+import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     RecyclerView recyclerView;
     ArrayList<bloodBank> list;
@@ -32,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     SearchView searchView;
     MyAdapter adapter;
     Toolbar toolbar;
-    ArrayList<bloodBank> bloodBankArrayList;
+
 
 
 
@@ -46,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("blood banks");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter(this,list);
+        adapter = new MyAdapter(this,list,this);
         recyclerView.setAdapter(adapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -122,6 +123,11 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(SearchActivity.this, DisplayBloodBank.class);
+        intent.putExtra("Blood Bank", list.get(position));
+        startActivity(intent);
 
-
+    }
 }
