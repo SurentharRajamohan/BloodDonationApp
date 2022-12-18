@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/adminHomepage_BTN_RequestDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="1dp"
@@ -15,6 +16,7 @@
         android:layout_gravity="center_horizontal"/>
 
     <EditText
+        android:id="@+id/adminHomepage_edtxt_SelectBloodBank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -28,6 +30,7 @@
         android:paddingLeft="50dp"/>
 
     <EditText
+        android:id="@+id/adminHomepage_edtxt_PhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -41,6 +44,7 @@
         android:paddingLeft="50dp"/>
 
     <EditText
+        android:id="@+id/adminHomepage_edtxt_NumberOfBags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -61,6 +65,7 @@
         android:layout_gravity="center_horizontal">
 
         <EditText
+            android:id="@+id/adminHomepage_edtxt_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
@@ -75,6 +80,7 @@
 
 
     <EditText
+        android:id="@+id/adminHomepage_edtxt_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_shape"
@@ -91,6 +97,7 @@
 
 
     <EditText
+        android:id="@+id/adminHomepage_edtxt_BloodGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -110,10 +117,12 @@
         android:orientation="horizontal">
 
     <CheckBox
+        android:id="@+id/adminHomepage_BTN_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:id="@+id/adminHomepage_txt_SetEmergencyRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set as Emergency Request"/>
@@ -121,6 +130,7 @@
     </LinearLayout>
 
         <Button
+            android:id="@+id/adminHomepage_BTN_Continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
