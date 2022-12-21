@@ -6,17 +6,22 @@ import android.os.Parcelable;
 public class bloodBank implements Parcelable {
 
     private String name, address;
+    private String longitude, latitude;
 
     public bloodBank(){}
 
-    public bloodBank(String name, String address) {
+    public bloodBank(String name, String address, String longitude, String latitude) {
         this.name = name;
         this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected bloodBank(Parcel in) {
         name = in.readString();
         address = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
     }
 
     public static final Creator<bloodBank> CREATOR = new Creator<bloodBank>() {
@@ -47,6 +52,17 @@ public class bloodBank implements Parcelable {
         this.address = address;
     }
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -56,5 +72,8 @@ public class bloodBank implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(address);
+        parcel.writeString(longitude);
+        parcel.writeString(latitude);
+
     }
 }
