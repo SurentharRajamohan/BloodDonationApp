@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
@@ -45,6 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DatabaseReference databaseReference;
     private UserAdapter adapter;
     private ArrayList<User> list;
+    private Button B;
+    private Button A;
+    private Button O;
 
 
     @Override
@@ -92,6 +99,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 header_Arrow_Image.setRotation(slideOffset * 180);
             }
         });
+
+        filterBloodType();
     }
 
     /**
@@ -124,9 +133,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    //Izzah buat pop up (donor details) kat sini
     @Override
     public void onItemClick(int position) {
-
+        //Izzah buat pop up (donor details) kat sini
     }
 
     private void getNearbyMarkers() {
@@ -167,5 +177,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+
+
+    }
+
+    private void filterBloodType(){
+         B= findViewById(R.id.BtypeButton);
+        A= findViewById(R.id.ATypeButton);
+        O= findViewById(R.id.OTypeButton);
+
+        B.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               filter("B");
+            }
+        });
+        A.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("A");
+
+            }
+        });
+        O.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("O");
+
+            }
+        });
+
+
+
+    }
+
+    private void filter(String text) {
+        // creating a new array list to filter our data.
+        ArrayList<User> filteredlist = new ArrayList<User>();
+
+        // running a for loop to compare elements.
+        for (User item : list) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.getBloodType().toLowerCase().contains(text.toLowerCase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            adapter.filterList(filteredlist);
+        }
     }
 }

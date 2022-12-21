@@ -45,6 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User user = list.get(position);
         holder.name.setText(user.getName());
+        holder.bloodtype.setText(user.getBloodType());
 //        holder.address.setText(bloodBank.getAddress());
     }
 
@@ -55,11 +56,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
 
     public static class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView name;
+        TextView name,bloodtype;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             name = itemView.findViewById(R.id.TVUsername);
+            bloodtype = itemView.findViewById(R.id.TVBloodType);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
