@@ -13,6 +13,8 @@ import com.blooddonationapp.startactivity.UserData.bloodBank;
 public class DisplayBloodBank extends AppCompatActivity  {
 
     Button search;
+    String latitude;
+    String longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +25,8 @@ public class DisplayBloodBank extends AppCompatActivity  {
         bloodBank bloodBank = intent.getParcelableExtra("Blood Bank");
         String name = bloodBank.getName();
         String address = bloodBank.getAddress();
-        String latitude = bloodBank.getLatitude();
-        String longitude = bloodBank.getLongitude();
+        latitude = bloodBank.getLatitude();
+        longitude = bloodBank.getLongitude();
 
         TextView nameView = findViewById(R.id.DisplayBloodBank_TV_NameTitle);
         TextView addressView = findViewById(R.id.DisplayBloodBank_TV_LocationTitle);
@@ -36,11 +38,11 @@ public class DisplayBloodBank extends AppCompatActivity  {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMap();
+                sendData(latitude,longitude);
             }
         });
 
-        sendData(latitude,longitude);
+
 
 
     }
