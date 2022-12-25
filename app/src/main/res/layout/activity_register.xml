@@ -123,7 +123,7 @@ android:background="#DD2B2B"
 
         <androidx.appcompat.widget.AppCompatButton
 
-            android:id="@+id/RegisterPage_BTN_register"
+            android:id="@+id/PersonalDetails_BTN_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

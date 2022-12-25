@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText usernameInput = findViewById(R.id.RegisterPage_ET_username);
         final EditText passwordInput = findViewById(R.id.RegisterPage_ET_password);
         final EditText confirmPasswordInput = findViewById(R.id.RegisterPage_ET_confirmPassword);
-        final Button registerButton = findViewById(R.id.RegisterPage_BTN_register);
+        final Button registerButton = findViewById(R.id.PersonalDetails_BTN_register);
         final TextView loginNow = findViewById(R.id.RegisterPage_TV_loginNow);
 
         //firebase variables (database)
@@ -88,9 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                     });
-
-
-
 
                 }
 
