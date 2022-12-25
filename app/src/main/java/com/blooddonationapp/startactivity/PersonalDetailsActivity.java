@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         EditText dateOfBirth = findViewById(R.id.PersonalDetailsPage_ET_dateOfBirth);
         Spinner gender = findViewById(R.id.PersonalDetailsPage_Spinner_gender);
         Spinner bloodGroup = findViewById(R.id.PersonalDetailsPage_Spinner_bloodGroup);
+        ImageView uploadPhoto = findViewById(R.id.PersonalDetailsPage_IV_profilePhoto);
 
         //setting up spinners
 
@@ -98,16 +100,17 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     }, year, month, day);
                     datePickerDialog.show();
 
-
-
-
-
-
                 }
             });
 
 
+        //2) Upload Photo
+            uploadPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                }
+            });
 
 
 
