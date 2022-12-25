@@ -192,7 +192,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         else if (firstName.isEmpty())
             Toast.makeText(PersonalDetailsActivity.this, "Please enter your first name", Toast.LENGTH_SHORT).show();
         else if (username.isEmpty())
-            Toast.makeText(PersonalDetailsActivity.this, "Username Illeda", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PersonalDetailsActivity.this, "No username", Toast.LENGTH_SHORT).show();
         else if (lastName.isEmpty())
             Toast.makeText(PersonalDetailsActivity.this, "Please enter your last name", Toast.LENGTH_SHORT).show();
         else if (dateOfBirth.isEmpty())
@@ -276,6 +276,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                                                         "Image Uploaded!!",
                                                         Toast.LENGTH_SHORT)
                                                 .show();
+                                        startActivity(new Intent(PersonalDetailsActivity.this, MainActivity.class));
                                     }
                                 })
 
