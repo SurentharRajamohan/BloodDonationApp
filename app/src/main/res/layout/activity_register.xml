@@ -1,137 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="100"
 
+android:background="#DD2B2B"
     android:layout_marginTop="0dp"
     tools:context=".RegisterActivity">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:background="@color/white"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/register_page_asset" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+
+        android:background="@drawable/registration_page_grey_curve"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_weight="70"
-        android:layout_marginBottom="0dp"
-        android:paddingEnd="0dp"
-        android:paddingStart="0dp"
-        android:padding="0dp"
-        android:background="#C22B36"
+        android:layout_height="wrap_content"
+        android:background="@drawable/registration_page_background"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.826">
 
-        <ImageView
-            android:id="@+id/imageView3"
+
+        <EditText
+            android:id="@+id/RegisterPage_ET_emailAddress"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="140"
-            android:paddingBottom="0dp"
-            android:layout_marginBottom="0dp"
-            app:srcCompat="@drawable/register_page_asset" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/emailAddressHint"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp" />
+
+        <EditText
+            android:id="@+id/RegisterPage_ET_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/usernameHint"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp" />
+
+        <EditText
+            android:id="@+id/RegisterPage_ET_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/passwordHint"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp" />
+
+        <EditText
+            android:id="@+id/RegisterPage_ET_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/RegisterPage_BTN_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_shape"
+            android:text="@string/register"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/RegisterPage_TV_haveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?" />
+
+            <TextView
+
+                android:id="@+id/RegisterPage_TV_loginNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Login here"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-    <EditText
-        android:id="@+id/RegisterPage_ET_emailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/emailAddressHint"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp" />
-
-    <EditText
-        android:id="@+id/RegisterPage_ET_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="@string/usernameHint"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/edit_text_shape"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp" />
-
-    <EditText
-        android:id="@+id/RegisterPage_ET_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="@string/passwordHint"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/edit_text_shape"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp" />
-
-    <EditText
-        android:id="@+id/RegisterPage_ET_confirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        android:layout_marginTop="15dp"
-        android:maxLines="1"
-        android:background="@drawable/edit_text_shape"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-
-        android:id="@+id/RegisterPage_BTN_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/button_shape"
-        android:text="@string/register"
-        android:textColor="#FFFFFF"
-        />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/RegisterPage_TV_haveAccount"
-            android:layout_height="wrap_content"
-            android:text="Already have an account?"/>
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:id="@+id/RegisterPage_TV_loginNow"
-            android:text="Login here"
-            android:textStyle="bold"
-            />
-
-    </LinearLayout>
+        android:text="Create New Account"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.025" />
 
 
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
