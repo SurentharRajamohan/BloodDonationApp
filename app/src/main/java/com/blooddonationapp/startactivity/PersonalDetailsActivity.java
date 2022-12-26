@@ -229,7 +229,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("country").setValue(country);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
-//                    finish();
+
 
 
                 }
@@ -256,7 +256,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                         = storageReference
                         .child(
                                 "images/"
-                                        + UUID.randomUUID().toString());
+                                        + username);
 
                 // adding listeners on upload
                 // or failure of image
@@ -276,7 +276,9 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                                                         "Image Uploaded!!",
                                                         Toast.LENGTH_SHORT)
                                                 .show();
-                                        startActivity(new Intent(PersonalDetailsActivity.this, MainActivity.class));
+                                        Intent questionnaire_page = new Intent(PersonalDetailsActivity.this, Questionnaires.class);
+                                        questionnaire_page.putExtra("username", username);
+                                        startActivity(questionnaire_page);
                                     }
                                 })
 
