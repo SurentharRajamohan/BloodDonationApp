@@ -51,9 +51,6 @@ public class Questionnaires extends AppCompatActivity {
             }
         });
 
-
-
-
         BTNbecomeADonor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,18 +86,12 @@ public class Questionnaires extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                //check for duplicate email address
-
                                 databaseReference.child("users").child(username).child("diabetes").setValue(diabetes);
                                 databaseReference.child("users").child(username).child("heartOrLungProblem").setValue(heartOrLungProblem);
                                 databaseReference.child("users").child(username).child("covid19").setValue(covid19);
                                 databaseReference.child("users").child(username).child("AIDS").setValue(AIDS);
                                 databaseReference.child("users").child(username).child("cancer").setValue(cancer);
                                 databaseReference.child("users").child(username).child("vaccine").setValue(vaccine);
-
-
-
-
                             }
 
                             @Override
@@ -114,13 +105,5 @@ public class Questionnaires extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 }
-
-//RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-//int selectedId = radioGroup.getCheckedRadioButtonId();
-//RadioButton radioButton = (RadioButton) findViewById(selectedId);
-//String value = radioButton.getText().toString();
