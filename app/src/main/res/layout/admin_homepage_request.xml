@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="2dp"
+        android:paddingBottom="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/adminHomePageRequest_ImageView_Arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            >
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/adminHomePageRequest_BTN_RequestDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request Details"
+            android:textSize="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="15dp"
+            />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/adminHomePageRequest_edtxt_SelectBloodBank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="800dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Select Blood bank/Hospital"
+        android:drawableRight="@drawable/location_pin"
+        android:paddingLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/adminHomePageRequest_edtxt_PhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="800dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Phone Number"
+        android:paddingLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/adminHomepage_edtxt_NumberOfBags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="800dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Number of bags"
+        android:paddingLeft="50dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/adminHomePageRequest_edtxt_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_shape"
+            android:hint="DD/MM/YY"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:minHeight="30dp"
+            android:minWidth="180dp"
+            android:drawableRight="@drawable/calendar_icon"/>
+
+
+        <EditText
+            android:id="@+id/adminHomePageRequest_edtxt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_shape"
+            android:hint="HH:MM:SS"
+            android:drawableRight="@drawable/ic_clock"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:minHeight="30dp"
+            android:minWidth="200dp"/>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/adminHomePageRequest_edtxt_BloodGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="800dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Blood Group"
+        android:drawableRight="@drawable/blood_A"
+        android:paddingLeft="50dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/adminHomePageRequest_CheckBox_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/adminHomePageRequest_TextView_SetEmergencyRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set as Emergency Request"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/adminHomePageRequest_BTN_Continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="280dp"
+        android:minWidth="220dp"
+        android:text="Continue"/>
+
+
+</LinearLayout>

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/adminHomepage_edtxt_SelectBloodbank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="800dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Select Blood bank"
+        android:drawableRight="@drawable/location_pin"
+        android:paddingLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/adminHomepage_edtxt_SelectBloodGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:minHeight="30dp"
+        android:minWidth="700dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Select Blood Group"
+        android:drawableRight="@drawable/blood"
+        android:paddingLeft="50dp"/>
+
+    <Button
+        android:id="@+id/adminHomepage_BTN_Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:minWidth="350dp"
+        android:text="Search"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/adminHomepage_TextView_BloodNeeded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Needed"
+            android:layout_marginLeft="29dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/adminHomepage_TextView_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shah Alam"
+            android:layout_marginLeft="120dp"
+            android:textSize="18dp"
+            android:textColor="#DD2B2B"
+            android:drawableLeft="@drawable/locationPin_red"
+            android:paddingLeft="5dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_with_black"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_A_Positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_A_Positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A+"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_B_Positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_B_Positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B+"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_AB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_AB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AB"
+                android:textSize="18dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_A_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_A_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A-"
+                android:textSize="18dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_O_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_O_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="O-"
+                android:textSize="18dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood_B_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bloodProgress"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_B_Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B-"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/adminHomepage_TextView_EmergencyDonor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emergency Donors"
+            android:textSize="20dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/adminHomepage_TextView_ViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All >"
+            android:textSize="15dp"
+            android:textColor="#DD2B2B"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="100dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/border_with_black"
+        android:layout_marginStart="30dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:src="@drawable/emergencyDonors_BloodSymbol">
+
+            </ImageView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_HospitalName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hospital Name"
+                android:layout_marginLeft="20dp"
+                android:paddingTop="0dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="10dp"
+                    android:paddingLeft="60dp">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualDate1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07/04/2022"
+                    android:textSize="10dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3:00pm"
+                    android:textSize="10dp"
+                    android:paddingLeft="27dp">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_DonateBlood1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="80dp"
+                android:paddingTop="65dp"
+                android:src="@drawable/donateBlood_Btn">
+
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/border_with_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:src="@drawable/emergencyDonors_BloodSymbol">
+
+            </ImageView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_HospitalName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hospital Name"
+                android:layout_marginLeft="20dp"
+                android:paddingTop="0dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="10dp"
+                    android:paddingLeft="60dp">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualDate2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07/04/2022"
+                    android:textSize="10dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualTime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3:00pm"
+                    android:textSize="10dp"
+                    android:paddingLeft="27dp">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_DonateBlood2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="80dp"
+                android:paddingTop="65dp"
+                android:src="@drawable/donateBlood_Btn">
+
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/border_with_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_Blood3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:src="@drawable/emergencyDonors_BloodSymbol">
+
+            </ImageView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adminHomepage_TextView_HospitalName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hospital Name"
+                android:layout_marginLeft="20dp"
+                android:paddingTop="0dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_Time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="10dp"
+                    android:paddingLeft="60dp">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualDate3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07/04/2022"
+                    android:textSize="10dp"
+                    android:paddingLeft="20dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adminHomepage_TextView_ActualTime3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3:00pm"
+                    android:textSize="10dp"
+                    android:paddingLeft="27dp">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adminHomepage_ImageView_DonateBlood3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="80dp"
+                android:paddingTop="65dp"
+                android:src="@drawable/donateBlood_Btn"
+                >
+
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

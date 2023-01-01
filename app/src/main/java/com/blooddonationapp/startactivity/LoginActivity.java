@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
-
-
         //onClickListeners
 
         //1) Login Button
@@ -69,7 +67,17 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    if(snapshot.child(username).hasChild("address")){
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else{
+                                        Intent intent = new Intent(LoginActivity.this, PersonalDetailsActivity.class);
+                                        intent.putExtra("Username", username);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }
 
                                 else{
