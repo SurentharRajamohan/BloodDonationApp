@@ -14,7 +14,7 @@
         >
 
         <ImageView
-            android:id="@+id/adminHomePageRequest_ImageView_Arrow"
+            android:id="@+id/admin_home_page_request_imageView_Arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
@@ -131,7 +131,7 @@
         android:minWidth="800dp"
         android:background="@drawable/edit_text_shape"
         android:hint="Blood Group"
-        android:drawableRight="@drawable/blood_A"
+        android:drawableRight="@drawable/blood_type_a"
         android:paddingLeft="50dp"/>
 
 

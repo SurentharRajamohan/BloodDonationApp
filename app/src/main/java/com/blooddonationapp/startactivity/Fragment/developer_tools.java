@@ -1,5 +1,7 @@
 package com.blooddonationapp.startactivity.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +11,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +23,11 @@ import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
 
+import java.sql.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,6 +94,7 @@ public class developer_tools extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // TODO: CLEAN UP CODE IN onCreateView!
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_developer_tools, container, false);
 
@@ -118,6 +126,18 @@ public class developer_tools extends Fragment {
         // CREATE DAO OBJECT TO ACCESS CRUD OPERATIONS
         DAOBloodBank dao = new DAOBloodBank();
 
+        // Initialize the blood type spinner
+        Spinner bloodTypeSpinner = (Spinner) view.findViewById(R.id.fragmentDeveloperTools_spinner_bloodType);
+        ArrayAdapter<CharSequence> adapterBloodTypeSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.bloodGroup, android.R.layout.simple_spinner_dropdown_item);
+        adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
+
+        // Initialize the state spinner
+        Spinner malaysianStateSpinner = (Spinner) view.findViewById(R.id.fragmentDeveloperTools_spinner_state);
+        ArrayAdapter<CharSequence> adapterMalaysianStateSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.states, android.R.layout.simple_spinner_item);
+        adapterMalaysianStateSpinner.setDropDownViewResource(R.layout.home_fragment_custom_spinner_item);
+        malaysianStateSpinner.setAdapter(adapterMalaysianStateSpinner);
+
         // SUBMIT DATA TO FIREBASE
         submitDataBtn = (Button) view.findViewById(R.id.fragmentDeveloperTools_button_submitData);
         submitDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -129,8 +149,10 @@ public class developer_tools extends Fragment {
                 String bloodBankLatitude = ETBloodBankLatitude.getText().toString();
                 String currentTime = TCCurrentTime.getText().toString();
                 String currentDate = date;
+                String wantedBlood = bloodTypeSpinner.getSelectedItem().toString();
+                String state = malaysianStateSpinner.getSelectedItem().toString();
                 bloodBank bloodBankObject = new bloodBank(bloodBankName, bloodBankAddress, bloodBankLongitude,
-                        bloodBankLatitude, currentDate, currentTime);
+                        bloodBankLatitude, currentDate, currentTime, wantedBlood, state);
                 dao.add(bloodBankObject).addOnSuccessListener(suc -> {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
                 });

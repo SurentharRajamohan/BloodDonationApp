@@ -7,21 +7,23 @@ import java.time.LocalDateTime;
 
 public class bloodBank implements Parcelable {
 
-    private String name, address;
+    private String name, address, bloodRequested;
     private String longitude, latitude;
 
     // added by Faris for homepage
-    private String date, time;
+    private String date, time, state;
 
     public bloodBank(){}
 
-    public bloodBank(String name, String address, String longitude, String latitude, String date, String time) {
+    public bloodBank(String name, String address, String longitude, String latitude, String date, String time, String bloodRequested, String state) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.date = date;
         this.time = time;
+        this.bloodRequested = bloodRequested;
+        this.state = state;
     }
 
     protected bloodBank(Parcel in) {
@@ -29,6 +31,14 @@ public class bloodBank implements Parcelable {
         address = in.readString();
         latitude = in.readString();
         longitude = in.readString();
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public static final Creator<bloodBank> CREATOR = new Creator<bloodBank>() {
@@ -42,6 +52,14 @@ public class bloodBank implements Parcelable {
             return new bloodBank[size];
         }
     };
+
+    public String getBloodRequested() {
+        return bloodRequested;
+    }
+
+    public void setBloodRequested(String bloodRequested) {
+        this.bloodRequested = bloodRequested;
+    }
 
     public String getName() {
         return name;

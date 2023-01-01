@@ -44,7 +44,7 @@
             android:id="@+id/requestpageCompleted_ImageView_Pending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pending_Btn_noLight"
+            android:src="@drawable/pending_btn_no_light"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             >
@@ -55,7 +55,7 @@
             android:id="@+id/requestpageCompleted_ImageView_Completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/completed_Btn_withLight"
+            android:src="@drawable/completed_btn_withlight"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             >
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donationSuccessful_Btn">
+                android:src="@drawable/donation_successful_btn">
 
             </ImageView>
 
@@ -209,8 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
-
+                android:src="@drawable/emergency_donors_blood_symbol">
             </ImageView>
 
         </LinearLayout>
@@ -295,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donationSuccessful_Btn">
+                android:src="@drawable/donation_successful_btn">
 
             </ImageView>
 
@@ -328,7 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -414,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donationSuccessful_Btn">
+                android:src="@drawable/donation_successful_btn">
 
             </ImageView>
 
@@ -447,7 +446,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -533,7 +532,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donationSuccessful_Btn">
+                android:src="@drawable/donation_successful_btn">
 
             </ImageView>
 
@@ -566,7 +565,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -652,7 +651,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donationSuccessful_Btn">
+                android:src="@drawable/donation_successful_btn">
 
             </ImageView>
 
