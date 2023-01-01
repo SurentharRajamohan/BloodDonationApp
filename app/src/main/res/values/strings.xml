@@ -30,9 +30,29 @@
         <item>AB+</item>
         <item>AB-</item>
     </array>
+
+    <array name="states">
+        <item>W.P. Kuala Lumpur</item>
+        <item>W.P. Labuan</item>
+        <item>W.P. Putrajaya</item>
+        <item>Johor</item>
+        <item>Kedah</item>
+        <item>Kelantan</item>
+        <item>Melaka</item>
+        <item>Negeri Sembilan</item>
+        <item>Pahang</item>
+        <item>Perak</item>
+        <item>Perlis</item>
+        <item>Penang</item>
+        <item>Sabah</item>
+        <item>Sarawak</item>
+        <item>Selangor</item>
+        <item>Terengganu</item>
+    </array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyABE96EPy668Uj4SL6eGrarNB4tJ3RVEuM</string>
+    <string name="emergency_donors">Emergency Donors</string>
 
 </resources>

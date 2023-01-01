@@ -1,24 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <SearchView
         android:id="@+id/HomePage_SV_searchBloodBank"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="49dp"
-        android:queryHint="Search blood bank"
+        android:layout_width="371dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edit_text_shape"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_spinner_bloodType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnview" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <Spinner
+        android:id="@+id/fragmentHome_spinner_bloodType"
+        android:layout_width="371dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp"
+        android:autofillHints="Blood Type"
+        android:background="@drawable/edit_text_shape"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_button_searchBloodBanks"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fragmentHome_button_searchBloodBanks"
+        android:layout_width="371dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_shape"
+        android:hint="Search"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_bloodNeeded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fragmentHome_textView_bloodNeeded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Blood Needed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/fragmentHome_spinner_state"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toEndOf="@+id/fragmentHome_textView_bloodNeeded" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="374dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/homepage_custom_border"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_abMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_abminus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_aMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_aminus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_aplusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_aplus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_bMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_bminus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_bPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_bplus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_oMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_full_ominus" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragmentHome_textView_emergencyDonorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/emergency_donors"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <LinearLayout
+        android:layout_width="376dp"
+        android:layout_height="228dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/homepage_custom_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentHome_textView_emergencyDonorText"
+        app:layout_constraintVertical_bias="0.025">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/fragmentHome_refresh_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragmentHome_recyclerView_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragmentHome_button_developerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="252dp"
+        android:background="@drawable/button_shape"
+        android:text="Developer Options"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentHome_textView_emergencyDonorText"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
