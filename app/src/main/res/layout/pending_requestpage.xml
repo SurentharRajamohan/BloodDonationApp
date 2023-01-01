@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/pending_Btn_withLight">
+            android:src="@drawable/pending_btn_with_light">
 
         </ImageView>
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/completed_Btn_noLight">
+            android:src="@drawable/completed_button_nolight">
 
         </ImageView>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/onTheWay_Btn">
+                android:src="@drawable/on_the_way_btn">
 
             </ImageView>
 
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -291,7 +291,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/requestAccepted_Btn">
+                android:src="@drawable/request_accepted_btn">
 
             </ImageView>
 
@@ -324,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -410,7 +410,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/requestAccepted_Btn">
+                android:src="@drawable/request_accepted_btn">
 
             </ImageView>
 
@@ -443,7 +443,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -529,7 +529,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/onTheWay_Btn">
+                android:src="@drawable/on_the_way_btn">
 
             </ImageView>
 
@@ -562,7 +562,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -648,7 +648,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/requestAccepted_Btn">
+                android:src="@drawable/request_accepted_btn">
 
             </ImageView>
 

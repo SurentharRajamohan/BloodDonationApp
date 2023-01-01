@@ -67,7 +67,7 @@
             android:layout_marginLeft="120dp"
             android:textSize="18dp"
             android:textColor="#DD2B2B"
-            android:drawableLeft="@drawable/locationPin_red"
+            android:drawableLeft="@drawable/location_pin_red"
             android:paddingLeft="5dp"/>
 
     </LinearLayout>
@@ -94,7 +94,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_A_Positive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress"
+                android:src="@drawable/blood_progress"
                 >
             </ImageView>
 
@@ -121,7 +121,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_B_Positive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress"
+                android:src="@drawable/blood_progress"
                 >
             </ImageView>
 
@@ -148,7 +148,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_AB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress"
+                android:src="@drawable/blood_progress"
                 >
             </ImageView>
 
@@ -175,7 +175,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_A_Negative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress"
+                android:src="@drawable/blood_progress"
                 >
             </ImageView>
 
@@ -202,7 +202,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_O_Negative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress">
+                android:src="@drawable/blood_progress">
 
             </ImageView>
 
@@ -229,7 +229,7 @@
                 android:id="@+id/adminHomepage_ImageView_Blood_B_Negative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bloodProgress"
+                android:src="@drawable/blood_progress"
                 >
             </ImageView>
 
@@ -303,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -389,7 +389,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donateBlood_Btn">
+                android:src="@drawable/donate_blood_btn">
 
             </ImageView>
 
@@ -422,7 +422,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -508,7 +508,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donateBlood_Btn">
+                android:src="@drawable/donate_blood_btn">
 
             </ImageView>
 
@@ -540,7 +540,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
-                android:src="@drawable/emergencyDonors_BloodSymbol">
+                android:src="@drawable/emergency_donors_blood_symbol">
 
             </ImageView>
 
@@ -626,9 +626,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="80dp"
                 android:paddingTop="65dp"
-                android:src="@drawable/donateBlood_Btn"
+                android:src="@drawable/donate_blood_btn"
                 >
-
             </ImageView>
 
         </LinearLayout>
