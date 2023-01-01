@@ -34,9 +34,6 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
     MyAdapter adapter;
     Toolbar toolbar;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
