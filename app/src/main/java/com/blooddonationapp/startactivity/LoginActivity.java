@@ -64,20 +64,24 @@ public class LoginActivity extends AppCompatActivity {
                                 //username present
                                 //check if password is right
                                 final String databasePassword = snapshot.child(username).child("Password").getValue(String.class);
-
+                                final boolean isAdmin = (boolean) snapshot.child(username).child("isAdmin").getValue();
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                     if(snapshot.child(username).hasChild("address")){
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("username",username);
+                                        intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);
                                         finish();
                                     }
-                                    else{
-                                        Intent intent = new Intent(LoginActivity.this, PersonalDetailsActivity.class);
-                                        intent.putExtra("Username", username);
+                                    else if(isAdmin){
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("username",username);
+                                        intent.putExtra("isAdmin", true);
                                         startActivity(intent);
                                         finish();
                                     }
+
                                 }
 
                                 else{
