@@ -47,12 +47,6 @@ public class DisplayBloodBank extends AppCompatActivity  {
 
     }
 
-    private void showMap() {
-
-        Intent intent = new Intent(DisplayBloodBank.this, MapsActivity.class);
-        startActivity(intent);
-    }
-
     private void sendData(String latitude, String longitude){
         Intent i = new Intent(this, MapsActivity.class);
         Bundle bundle = new Bundle();
@@ -64,20 +58,5 @@ public class DisplayBloodBank extends AppCompatActivity  {
 
     }
 
-//    public String getLatitude() {
-//        Intent intent = getIntent();
-//        bloodBank bloodBank = intent.getParcelableExtra("Blood Bank");
-//
-//        String latitude = bloodBank.getLatitude();
-//        return latitude;
-//
-//    }
-//    public String getLongitude() {
-//        Intent intent = getIntent();
-//        bloodBank bloodBank = intent.getParcelableExtra("Blood Bank");
-//
-//        String longitude = bloodBank.getLongitude();
-//        return longitude;
-//
-//    }
+
 }
