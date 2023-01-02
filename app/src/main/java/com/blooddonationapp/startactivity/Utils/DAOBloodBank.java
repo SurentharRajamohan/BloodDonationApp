@@ -24,4 +24,9 @@ public class DAOBloodBank {
     public Query get(){
         return databaseReference.orderByKey();
     }
+
+    public Query getSpecificData(String childData){
+        return databaseReference
+                .orderByChild(childData);
+    }
 }
