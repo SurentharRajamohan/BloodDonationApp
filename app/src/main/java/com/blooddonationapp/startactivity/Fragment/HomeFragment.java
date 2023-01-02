@@ -26,6 +26,8 @@ import com.blooddonationapp.startactivity.SearchActivity;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.CardView_RVAdapter;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +54,7 @@ public class HomeFragment extends Fragment {
 
     private Spinner bloodTypeSpinner, malaysianStateSpinner;
     private Button searchButton, developerButton;
+    private FloatingActionButton floatingActionButton;
 
     DatabaseReference databaseReference;
     SearchView searchView;
@@ -110,6 +113,19 @@ public class HomeFragment extends Fragment {
                 replaceFragment(new developer_tools());
             }
         });
+
+        //Admin add request (USING DEVELOPER TOOLS)
+        //Please add if else statement for admin
+        floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Add donor request", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                replaceFragment(new developer_tools());
+            }
+        });
+
 
         // Code for the card list view
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragmentHome_refresh_swipe);
