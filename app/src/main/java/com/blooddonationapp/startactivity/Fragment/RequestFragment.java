@@ -2,13 +2,24 @@ package com.blooddonationapp.startactivity.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
+import com.blooddonationapp.startactivity.Utils.MyViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +36,11 @@ public class RequestFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager2;
+    private MyViewPagerAdapter myViewPagerAdapter;
+    private DatabaseReference databaseReference;
 
     public RequestFragment() {
         // Required empty public constructor
@@ -51,10 +67,8 @@ public class RequestFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
@@ -62,5 +76,42 @@ public class RequestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_request, container, false);
+
+
+    }
+
+
+
+    @Override
+    public void onViewCreated( View view, @Nullable Bundle savedInstanceState) {
+        tabLayout = view.findViewById(R.id.RequestFragment_TL_tabLayout);
+        viewPager2 = view.findViewById(R.id.RequestFragment_VP_viewPager);
+        myViewPagerAdapter = new MyViewPagerAdapter(this);
+        viewPager2.setAdapter(myViewPagerAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
     }
 }

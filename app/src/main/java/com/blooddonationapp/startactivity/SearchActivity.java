@@ -50,6 +50,7 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     bloodBank bb = dataSnapshot.getValue(bloodBank.class);
                     list.add(bb);

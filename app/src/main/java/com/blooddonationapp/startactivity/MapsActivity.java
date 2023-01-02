@@ -133,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    //Izzah buat pop up (donor details) kat sini
+
     @Override
     public void onItemClick(int position) {
         //Izzah buat pop up (donor details) kat sini
