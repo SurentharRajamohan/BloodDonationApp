@@ -169,6 +169,10 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void queryData() {
+
+    }
+
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
