@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.content.Intent;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.SearchActivity;
@@ -92,6 +93,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //floatingActionButton visibility for the admin users
+        floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
+        Intent intent = getActivity().getIntent();
+        final String username = intent.getExtras().getString("username");
+        final boolean isAdmin = intent.getExtras().getBoolean("isAdmin");
+
+        if(!isAdmin){
+            floatingActionButton.setVisibility(View.GONE);
+        }
+
+
 
         // Initialize the state spinner
         malaysianStateSpinner = (Spinner) view.findViewById(R.id.fragmentHome_spinner_state);
