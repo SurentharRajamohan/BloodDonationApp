@@ -8,6 +8,17 @@
     android:layout_height="match_parent"
     android:layoutDirection="ltr">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/MapsActivity_TB_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Nearby Donors"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 <androidx.fragment.app.FragmentContainerView
     android:id="@+id/map"

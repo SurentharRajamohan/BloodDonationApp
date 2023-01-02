@@ -1,6 +1,7 @@
 package com.blooddonationapp.startactivity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -72,6 +73,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+
         mBottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
         sheetBehavior = BottomSheetBehavior.from(mBottomSheetLayout);
         header_Arrow_Image = findViewById(R.id.bottom_sheet_arrow);
@@ -101,6 +104,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         filterBloodType();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.MapsActivity_TB_toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, DisplayBloodBank.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     /**
