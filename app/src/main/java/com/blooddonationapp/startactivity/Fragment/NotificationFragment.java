@@ -2,13 +2,27 @@ package com.blooddonationapp.startactivity.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.blooddonationapp.startactivity.R;
+import com.blooddonationapp.startactivity.UserData.Notification;
+import com.blooddonationapp.startactivity.UserData.Request;
+import com.blooddonationapp.startactivity.Utils.CardView_NotificationAdapter;
+import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +39,9 @@ public class NotificationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private DatabaseReference databaseReference;
+    private CardView_NotificationAdapter adapter;
+    private RecyclerView recyclerView;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -61,6 +78,45 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_request_completed, container, false);
+
+        // Code for the card list view
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.RequestPendingFragment_RV_completedRequestList);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
+        adapter = new CardView_NotificationAdapter(getContext());
+        recyclerView.setAdapter(adapter);
+
+        loadData();
+
+        return view;
+    }
+    public void loadData() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mad2022-7b652-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        databaseReference = firebaseDatabase.getReference("notification");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Notification> tempNotification = new ArrayList<>();
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Notification notification = dataSnapshot.getValue(Notification.class);
+                    tempNotification.add(notification);
+                }
+                adapter.setItems(tempNotification);
+                adapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
