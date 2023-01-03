@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
         //SharedPreference to pass username to other activities
-        SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", 0);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         //onClickListeners
@@ -91,8 +91,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("username",username);
-                                        intent.putExtra("isAdmin",isAdmin);
+                                        Bundle data = new Bundle();
+                                        data.putString("username",username);
+                                        data.putBoolean("isAdmin",isAdmin);
+                                        intent.putExtras(data);
+//                                        intent.putExtra("username",username);
+//                                        intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);
                                         finish();
 
