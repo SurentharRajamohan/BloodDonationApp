@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editProfilePage">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBMainAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Edit Profile"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="675dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TBMainAct"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <EditText
+                android:id="@+id/EditProfile_editText_firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="First Name"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+
+            <EditText
+                android:id="@+id/EditProfile_editText_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="Last Name"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <EditText
+                android:id="@+id/EditProfile_editText_houseAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="Address"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <EditText
+                android:id="@+id/EditProfile_editText_phoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="Phone Number"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <EditText
+                android:id="@+id/EditProfile_editText_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="Email address"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <Spinner
+                android:id="@+id/EditProfile_spinner_genderChoice"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="@drawable/edit_text_shape"
+                android:fontFamily="@font/montserrat"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/EditProfile_editText_dateChoice"
+                android:layout_width="10dp"
+                android:layout_height="51dp"
+                android:background="@drawable/edit_text_shape"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:padding="15dp"
+                android:hint="dd/mm/yyyy"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout11"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <EditText
+                android:id="@+id/EditProfile_editText_country"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="Country"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="34dp"
+                android:fontFamily="@font/montserrat"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <Spinner
+                android:id="@+id/EditProfile_spinner_bloodTypeChoice"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="@drawable/edit_text_shape"
+                android:fontFamily="@font/montserrat"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout13"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <TextView
+                android:id="@+id/EditProfile_textView_separator"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout14"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <Button
+                android:id="@+id/EditProfile_button_confirmSelection"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Submit" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

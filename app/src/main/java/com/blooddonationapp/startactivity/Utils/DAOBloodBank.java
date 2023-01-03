@@ -13,7 +13,7 @@ public class DAOBloodBank {
 
     public DAOBloodBank() {
         // TO INITIALIZE CONNECTION TO MY DATABASE
-        FirebaseDatabase db = FirebaseDatabase.getInstance("https://blood-donation-app-c6d0c-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        FirebaseDatabase db = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = db.getReference(bloodBank.class.getSimpleName());
     }
 

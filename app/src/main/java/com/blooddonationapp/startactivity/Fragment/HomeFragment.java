@@ -96,9 +96,17 @@ public class HomeFragment extends Fragment {
 
         //floatingActionButton visibility for the admin users
         floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
-        Intent intent = getActivity().getIntent();
-        final String username = intent.getExtras().getString("username");
-        final boolean isAdmin = intent.getExtras().getBoolean("isAdmin");
+        Bundle extras = getActivity().getIntent().getExtras();
+
+        Intent intentReceived = getActivity().getIntent();
+        Bundle data = intentReceived.getExtras();
+        String username = data.getString("username");
+        Boolean isAdmin = data.getBoolean("isAdmin");
+
+
+//        Intent intent = getActivity().getIntent();
+//        final String username = intent.getExtras().getString("username","");
+//        final boolean isAdmin = intent.getExtras().getBoolean("isAdmin",false);
 
         if(!isAdmin){
             floatingActionButton.setVisibility(View.GONE);

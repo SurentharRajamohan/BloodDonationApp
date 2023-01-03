@@ -94,7 +94,7 @@ public class RequestCompletedFragment extends Fragment {
     }
 
     public void loadData(String path) {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mad2022-7b652-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("request").child(path);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
