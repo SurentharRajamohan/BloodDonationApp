@@ -99,6 +99,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+
+
         //floatingActionButton visibility for the admin users
         floatingActionMenu = view.findViewById(R.id.HomePage_FB_Main);
         registerAdminButton = view.findViewById(R.id.HomePage_FB_registerAdmin);
