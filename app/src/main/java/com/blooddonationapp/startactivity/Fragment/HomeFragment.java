@@ -98,9 +98,11 @@ public class HomeFragment extends Fragment {
         //floatingActionButton visibility for the admin users
         floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
 
+
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
         String user = sharedPreferences.getString("username", "");
         Boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+
 
         if(!isAdmin){
             floatingActionButton.setVisibility(View.GONE);

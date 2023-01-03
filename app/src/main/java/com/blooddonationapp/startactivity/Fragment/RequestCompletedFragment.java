@@ -96,11 +96,13 @@ public class RequestCompletedFragment extends Fragment {
 
     public void loadData(String path) {
 
+
        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
        String user = sharedPreferences.getString("username", "");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
+
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {

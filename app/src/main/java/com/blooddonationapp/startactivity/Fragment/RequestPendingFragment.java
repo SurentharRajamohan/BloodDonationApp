@@ -95,6 +95,7 @@ public class RequestPendingFragment extends Fragment {
     }
 
     public void loadData(String path) {
+
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
         String user = sharedPreferences.getString("username", "");
 
@@ -102,6 +103,7 @@ public class RequestPendingFragment extends Fragment {
 
         databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
             databaseReference.addValueEventListener(new ValueEventListener() {
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     ArrayList<Request> tempRequest = new ArrayList<>();

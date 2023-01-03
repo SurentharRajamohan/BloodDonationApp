@@ -24,7 +24,7 @@
             app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
         <TextView
-            android:id="@+id/TVUsername"
+            android:id="@+id/TVname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -38,7 +38,7 @@
             android:id="@+id/distance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TVUsername"
+            android:layout_below="@+id/TVname"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/bloodbank_image"
             android:text="distance"
@@ -46,7 +46,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/TVBloodType"
+            android:id="@+id/TVaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/distance"

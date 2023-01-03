@@ -1,5 +1,6 @@
 package com.blooddonationapp.startactivity.Fragment;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import com.blooddonationapp.startactivity.LoginActivity;
 import com.blooddonationapp.startactivity.LogoutScreen;
 import com.blooddonationapp.startactivity.R;
+import com.blooddonationapp.startactivity.SearchActivity;
+import com.blooddonationapp.startactivity.editProfilePage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,8 @@ import com.blooddonationapp.startactivity.R;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    Button editProfileBtn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,6 +82,15 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
 
+        editProfileBtn = view.findViewById(R.id.fragmentProfile_button_editProfile);
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), editProfilePage.class);
+                startActivity(intent);
+            }
+        });
+
         SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
         String userName = sharedPref.getString("username", "User");
         boolean isAdmin = sharedPref.getBoolean("isAdmin",false);
@@ -118,8 +132,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         return view;
     }
 }

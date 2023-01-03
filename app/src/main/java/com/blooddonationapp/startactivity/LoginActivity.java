@@ -91,8 +91,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("username",username);
-                                        intent.putExtra("isAdmin",isAdmin);
+                                        Bundle data = new Bundle();
+                                        data.putString("username",username);
+                                        data.putBoolean("isAdmin",isAdmin);
+                                        intent.putExtras(data);
+//                                        intent.putExtra("username",username);
+//                                        intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);
                                         finish();
 

@@ -25,6 +25,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".editProfilePage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Questionnaires"
             android:exported="false">
             <meta-data
