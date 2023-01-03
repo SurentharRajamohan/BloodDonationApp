@@ -17,17 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.content.Intent;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.SearchActivity;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.CardView_RVAdapter;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,8 +52,13 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    //declaring floatingAction Menu and its buttons
+    FloatingActionMenu floatingActionMenu;
+    FloatingActionButton addRequestButton, registerAdminButton;
+
+
     private Spinner bloodTypeSpinner, malaysianStateSpinner;
-    private Button searchButton, developerButton;
+    private Button searchButton;
     private FloatingActionButton floatingActionButton;
 
     DatabaseReference databaseReference;
@@ -94,14 +98,19 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         //floatingActionButton visibility for the admin users
-        floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
+        floatingActionMenu = view.findViewById(R.id.HomePage_FB_Main);
+        registerAdminButton = view.findViewById(R.id.HomePage_FB_registerAdmin);
+        addRequestButton = view.findViewById(R.id.HomePage_FB_addBloodRequest);
+
         Intent intent = getActivity().getIntent();
         final String username = intent.getExtras().getString("username");
         final boolean isAdmin = intent.getExtras().getBoolean("isAdmin");
 
         if(!isAdmin){
-            floatingActionButton.setVisibility(View.GONE);
+            floatingActionMenu.setVisibility(View.GONE);
+//            floatingActionButton.setVisibility(View.GONE);
         }
 
 
@@ -118,19 +127,7 @@ public class HomeFragment extends Fragment {
         adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
 
-        //Developer button REMOVELATERPLS
-        developerButton = (Button) view.findViewById(R.id.fragmentHome_button_developerButton);
-        developerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new developer_tools());
-            }
-        });
-
-        //Admin add request (USING DEVELOPER TOOLS)
-        //Please add if else statement for admin
-        floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        addRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Add donor request", Snackbar.LENGTH_LONG)
