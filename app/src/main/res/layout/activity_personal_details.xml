@@ -1,200 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
     tools:context=".PersonalDetailsActivity">
 
-
     <ImageView
-        android:id="@+id/PersonalDetailsPage_IV_profilePhoto"
-        android:layout_width="103dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="30dp"
-        android:minHeight="48dp"
-        android:src="@drawable/icon_add_profile_picture" />
+        android:id="@+id/PersonalDetailsPage_IV_invisibleProfilePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        android:visibility="invisible"/>
+
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="100">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/PersonalDetailsPage_ET_firstName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="50"
-            android:background="@drawable/edit_text_shape"
-            android:hint="@string/firstNameHint"
-            android:inputType="textPersonName"
-            android:maxLines="1"
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/PersonalDetailsPage_IV_profilePhoto"
+            android:layout_width="103dp"
+            android:layout_height="91dp"
+            android:layout_marginTop="30dp"
             android:minHeight="48dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="0dp"
-            android:textAlignment="textStart"
-            android:textSize="16sp" />
+            android:src="@drawable/icon_add_profile_picture" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/PersonalDetailsPage_ET_firstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/firstNameHint"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/PersonalDetailsPage_ET_lastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/lastNameHint"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/PersonalDetailsPage_ET_lastName"
-            android:layout_width="0dp"
+            android:id="@+id/PersonalDetailsPage_ET_address"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="50"
             android:background="@drawable/edit_text_shape"
-            android:hint="@string/lastNameHint"
-            android:inputType="textPersonName"
+            android:hint="@string/addressHint"
+            android:inputType="textPostalAddress"
             android:maxLines="1"
             android:minHeight="48dp"
             android:paddingStart="20dp"
             android:paddingEnd="0dp"
-            android:textAlignment="textStart"
             android:textSize="16sp" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/PersonalDetailsPage_ET_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/phoneNumberHint"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/PersonalDetailsPage_ET_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/addressHint"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:inputType="textPostalAddress"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
-        android:textSize="16sp" />
+        <EditText
+            android:id="@+id/PersonalDetailsPage_ET_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/emailAddressHint"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/PersonalDetailsPage_ET_phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/phoneNumberHint"
-        android:inputType="phone"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
-    <EditText
-        android:id="@+id/PersonalDetailsPage_ET_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/emailAddressHint"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
-        android:textSize="16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="100">
+            <Spinner
+                android:id="@+id/PersonalDetailsPage_Spinner_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
 
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/PersonalDetailsPage_ET_dateOfBirth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:drawableRight="@drawable/calendar_icon"
+                android:drawablePadding="-2dp"
+                android:focusable="false"
+
+                android:hint="@string/dateHint"
+                android:inputType="date"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="5dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/PersonalDetailsPage_ET_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/regionCountryHint"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/PersonalDetailsPage_Spinner_gender"
-            android:layout_width="0dp"
+            android:id="@+id/PersonalDetailsPage_Spinner_bloodGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-
-            android:layout_weight="50"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/edit_text_shape"
             android:minHeight="48dp"
             android:paddingStart="20dp"
             android:paddingEnd="0dp"
-            android:textSize="16sp"
-            />
-
-        <EditText
-            android:id="@+id/PersonalDetailsPage_ET_dateOfBirth"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="50"
-            android:focusable="false"
-            android:background="@drawable/edit_text_shape"
-            android:inputType="date"
-            android:maxLines="1"
-
-            android:drawableRight="@drawable/calendar_icon"
-            android:drawablePadding="-2dp"
-            android:hint="@string/dateHint"
-            android:minHeight="48dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="5dp"
             android:textSize="16sp" />
 
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/PersonalDetails_BTN_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_shape"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/PersonalDetailsPage_ET_country"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/regionCountryHint"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
-        android:textSize="16sp" />
 
-    <Spinner
-        android:id="@+id/PersonalDetailsPage_Spinner_bloodGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_shape"
-        android:minHeight="48dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
-        android:textSize="16sp"
-        />
-
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/PersonalDetails_BTN_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/button_shape"
-        android:text="Sign Up"
-        android:textColor="#FFFFFF" />
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
