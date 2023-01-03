@@ -8,18 +8,61 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/HomePage_FAB_addRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="50dp"
-        android:contentDescription="Add new Request"
-        android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/HomePage_FB_Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="0dp"
+        android:paddingBottom="8dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        app:menu_animationDelayPerItem="55"
+        app:menu_fab_size="normal"
+        app:menu_colorNormal="@color/red"
+        app:menu_colorPressed="@color/red"
+        app:menu_colorRipple="#99d4d4d4"
+        app:menu_buttonSpacing="0dp"
+        app:menu_labels_colorNormal="@color/white"
+        app:menu_labels_colorPressed="#444"
+        app:menu_labels_colorRipple="#66efecec"
+        app:menu_labels_cornerRadius="3dp"
+        app:menu_labels_ellipsize="none"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        app:menu_labels_margin="0dp"
+        app:menu_labels_maxLines="-1"
+        app:menu_labels_padding="8dp"
+        app:menu_labels_position="left"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        app:menu_labels_singleLine="false"
+        app:menu_labels_textColor="@color/red"
+        app:menu_labels_textSize="15sp"
+        app:menu_openDirection="up">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/HomePage_FB_addBloodRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/black"
+            app:fab_label="Add Request"
+            app:fab_size="mini"
+            android:src="@drawable/send_request_icon"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/HomePage_FB_registerAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/black"
+            app:fab_label="Register Admin"
+            app:fab_size="mini"
+            android:src="@drawable/admin_register"
+            />
+
+
+    </com.github.clans.fab.FloatingActionMenu>
 
     <SearchView
         android:id="@+id/HomePage_SV_searchBloodBank"
@@ -181,17 +224,8 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/fragmentHome_button_developerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
-        android:background="@drawable/button_shape"
-        android:text="Developer Options"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentHome_textView_emergencyDonorText"
-        app:layout_constraintVertical_bias="0.0" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
