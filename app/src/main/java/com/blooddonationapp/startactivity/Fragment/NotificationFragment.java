@@ -95,7 +95,7 @@ public class NotificationFragment extends Fragment {
         return view;
     }
     public void loadData() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mad2022-7b652-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("notification");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
