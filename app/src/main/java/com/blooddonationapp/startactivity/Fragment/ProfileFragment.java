@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.blooddonationapp.startactivity.LoginActivity;
+import com.blooddonationapp.startactivity.LogoutScreen;
 import com.blooddonationapp.startactivity.R;
 
 /**
@@ -34,7 +35,7 @@ public class ProfileFragment extends Fragment {
 
 
     //declaring elements
-    TextView username, bloodType, userRewards, userID, title;
+    TextView username, bloodType, userID, title;
     Button logOut, editProfile;
 
     public ProfileFragment() {
@@ -86,7 +87,7 @@ public class ProfileFragment extends Fragment {
         editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
         username = view.findViewById(R.id.fragmentProfile_textView_bloodDonorName);
         bloodType = view.findViewById(R.id.fragmentProfile_textView_bloodDonorBloodType);
-        userRewards = view.findViewById(R.id.fragmentProfile_textView_myRewards);
+
         userID = view.findViewById(R.id.fragmentProfile_textView_bloodDonorID);
         title = view.findViewById(R.id.fragmentProfile_textView_bloodDonorLabel);
 
@@ -95,7 +96,7 @@ public class ProfileFragment extends Fragment {
         userID.setText(userid);
         if(isAdmin){
             title.setText("Admin");
-            userRewards.setVisibility(View.GONE);
+
         }
 
         logOut.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +114,7 @@ public class ProfileFragment extends Fragment {
                 // Apply the changes
                 editor.apply();
 
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Intent intent = new Intent(getActivity(), LogoutScreen.class);
                 startActivity(intent);
             }
         });
