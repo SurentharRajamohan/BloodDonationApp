@@ -1,6 +1,9 @@
 package com.blooddonationapp.startactivity.Fragment;
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.blooddonationapp.startactivity.LoginActivity;
+import com.blooddonationapp.startactivity.LogoutScreen;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.SearchActivity;
 import com.blooddonationapp.startactivity.editProfilePage;
@@ -31,6 +37,11 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    //declaring elements
+    TextView username, bloodType, userID, title;
+    Button logOut, editProfile;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -66,8 +77,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
 
         editProfileBtn = view.findViewById(R.id.fragmentProfile_button_editProfile);
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +91,47 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("username", "User");
+        boolean isAdmin = sharedPref.getBoolean("isAdmin",false);
+        String bloodGroup = sharedPref.getString("bloodGroup","No Blood Group");
+        String userid = sharedPref.getString("userID","No ID");
+
+        logOut = view.findViewById(R.id.fragmentProfile_button_logout);
+        editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
+        username = view.findViewById(R.id.fragmentProfile_textView_bloodDonorName);
+        bloodType = view.findViewById(R.id.fragmentProfile_textView_bloodDonorBloodType);
+
+        userID = view.findViewById(R.id.fragmentProfile_textView_bloodDonorID);
+        title = view.findViewById(R.id.fragmentProfile_textView_bloodDonorLabel);
+
+        username.setText(userName);
+        bloodType.setText(bloodGroup);
+        userID.setText(userid);
+        if(isAdmin){
+            title.setText("Admin");
+
+        }
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get a SharedPreferences object
+                SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+
+                // Get an editor for the SharedPreferences object
+                SharedPreferences.Editor editor = preferences.edit();
+
+                // Clear all data from the SharedPreferences
+                editor.clear();
+
+                // Apply the changes
+                editor.apply();
+
+                Intent intent = new Intent(getActivity(), LogoutScreen.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }

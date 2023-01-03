@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,7 +50,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     //View instances
-    ImageView uploadPhoto;
+    ImageView uploadPhoto, invisiblePhoto;
     Button submitButton;
     Spinner bloodGroupInput, genderInput;
     EditText dateOfBirthInput, firstNameInput, lastNameInput, addressInput, phoneNumberInput, emailAddressInput, regionCountryInput;
@@ -72,6 +73,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         genderInput = findViewById(R.id.PersonalDetailsPage_Spinner_gender);
         bloodGroupInput = findViewById(R.id.PersonalDetailsPage_Spinner_bloodGroup);
         uploadPhoto = findViewById(R.id.PersonalDetailsPage_IV_profilePhoto);
+        invisiblePhoto = findViewById(R.id.PersonalDetailsPage_IV_invisibleProfilePicture);
         submitButton = findViewById(R.id.PersonalDetails_BTN_register);
         firstNameInput = findViewById(R.id.PersonalDetailsPage_ET_firstName);
         lastNameInput = findViewById(R.id.PersonalDetailsPage_ET_lastName);
@@ -124,6 +126,10 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(Uri result) {
                         filePath = result;
+                        ViewGroup.LayoutParams layoutParams = uploadPhoto.getLayoutParams();
+                        layoutParams.width = 300;
+                        layoutParams.height = 300;
+                        uploadPhoto.setLayoutParams(layoutParams);
                         uploadPhoto.setImageURI(result);
                     }
                 }

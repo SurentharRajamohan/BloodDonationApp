@@ -49,6 +49,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    //Circular Image view for profile picture
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+
     // For firebase recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -65,6 +70,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database'
     implementation('com.google.firebase:firebase-storage')
+
+    //Circle Image
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Rounded shape
+    implementation 'com.google.android.material:material:1.2.1'
 
 
     // Add the dependencies for any other desired Firebase products
