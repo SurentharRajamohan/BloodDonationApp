@@ -1,9 +1,13 @@
 package com.blooddonationapp.startactivity;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+        //SharedPreference to pass username to other activities
+        SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
 
         //onClickListeners
 
@@ -65,22 +75,28 @@ public class LoginActivity extends AppCompatActivity {
                                 //check if password is right
                                 final String databasePassword = snapshot.child(username).child("Password").getValue(String.class);
                                 final boolean isAdmin = (boolean) snapshot.child(username).child("isAdmin").getValue();
+                                final String bloodGroup = snapshot.child(username).child("bloodGroup").getValue(String.class);
+                                final String userID = snapshot.child(username).child("userID").getValue(String.class);
+
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                    if(snapshot.child(username).hasChild("address")){
+
+
+                                        //saving data in SharedPreferences
+                                        editor.putString("username", username);
+                                        editor.putBoolean("isAdmin", isAdmin);
+                                        editor.putString("bloodGroup", bloodGroup);
+                                        editor.putString("userID", userID);
+                                        editor.commit();
+
+
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         intent.putExtra("username",username);
                                         intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);
                                         finish();
-                                    }
-                                    else if(isAdmin){
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("username",username);
-                                        intent.putExtra("isAdmin", true);
-                                        startActivity(intent);
-                                        finish();
-                                    }
+
+
 
                                 }
 

@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -74,7 +76,13 @@ public class RegisterActivity extends AppCompatActivity {
                             if(snapshot.hasChild(username))
                                 Toast.makeText(RegisterActivity.this, "This username has been taken", Toast.LENGTH_SHORT).show();
                             else{
+                                // Generate a random UUID (Universally Unique Identifier)
+                                UUID uuid = UUID.randomUUID();
+
+                                String userID = uuid.toString();
+
                                 databaseReference.child("users").child(username).child("Email").setValue(email);
+                                databaseReference.child("users").child(username).child("userID").setValue(userID);
                                 databaseReference.child("users").child(username).child("Password").setValue(password);
                                 databaseReference.child("users").child(username).child("isAdmin").setValue(false);
                                 Intent intent = new Intent(RegisterActivity.this, PersonalDetailsActivity.class);
