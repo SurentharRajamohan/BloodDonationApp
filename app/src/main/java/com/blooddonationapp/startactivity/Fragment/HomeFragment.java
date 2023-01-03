@@ -1,6 +1,7 @@
 package com.blooddonationapp.startactivity.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -96,17 +97,12 @@ public class HomeFragment extends Fragment {
 
         //floatingActionButton visibility for the admin users
         floatingActionButton = view.findViewById(R.id.HomePage_FAB_addRequest);
-        Bundle extras = getActivity().getIntent().getExtras();
-
-        Intent intentReceived = getActivity().getIntent();
-        Bundle data = intentReceived.getExtras();
-        String username = data.getString("username");
-        Boolean isAdmin = data.getBoolean("isAdmin");
 
 
-//        Intent intent = getActivity().getIntent();
-//        final String username = intent.getExtras().getString("username","");
-//        final boolean isAdmin = intent.getExtras().getBoolean("isAdmin",false);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        String user = sharedPreferences.getString("username", "");
+        Boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+
 
         if(!isAdmin){
             floatingActionButton.setVisibility(View.GONE);

@@ -1,5 +1,6 @@
 package com.blooddonationapp.startactivity.Fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -94,16 +95,24 @@ public class RequestCompletedFragment extends Fragment {
     }
 
     public void loadData(String path) {
+
+
+       SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+       String user = sharedPreferences.getString("username", "");
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        databaseReference = firebaseDatabase.getReference("request").child(path);
+        databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
+
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Request> tempRequest = new ArrayList<>();
 
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Request pending = dataSnapshot.getValue(Request.class);
-                    tempRequest.add(pending);
+                    Request completed = dataSnapshot.getValue(Request.class);
+                    tempRequest.add(completed);
                 }
                 adapter.setItems(tempRequest);
                 adapter.notifyDataSetChanged();
