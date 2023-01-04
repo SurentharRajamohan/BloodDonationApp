@@ -14,11 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.blooddonationapp.startactivity.LoginActivity;
 import com.blooddonationapp.startactivity.LogoutScreen;
 import com.blooddonationapp.startactivity.R;
-import com.blooddonationapp.startactivity.SearchActivity;
-import com.blooddonationapp.startactivity.editProfilePage;
+import com.blooddonationapp.startactivity.EditProfilePage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,13 +82,7 @@ public class ProfileFragment extends Fragment {
 
 
         editProfileBtn = view.findViewById(R.id.fragmentProfile_button_editProfile);
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), editProfilePage.class);
-                startActivity(intent);
-            }
-        });
+
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
         String userName = sharedPref.getString("username", "User");
@@ -99,6 +91,16 @@ public class ProfileFragment extends Fragment {
         String userid = sharedPref.getString("userID","No ID");
         int points = sharedPref.getInt("points",0);
 
+        if(isAdmin){
+            editProfileBtn.setVisibility(View.GONE);}
+
+            editProfileBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), EditProfilePage.class);
+                    startActivity(intent);
+                }
+            });
         logOut = view.findViewById(R.id.fragmentProfile_button_logout);
         editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
         username = view.findViewById(R.id.fragmentProfile_textView_bloodDonorName);

@@ -78,40 +78,49 @@ public class LoginActivity extends AppCompatActivity {
                                 final String bloodGroup = snapshot.child(username).child("bloodGroup").getValue(String.class);
                                 final String userID = snapshot.child(username).child("userID").getValue(String.class);
                                 final int points = snapshot.child(username).child("points").getValue(Integer.class);
+                                final String firstName = snapshot.child(username).child("firstName").getValue(String.class);
+                                final String lastName = snapshot.child(username).child("lastName").getValue(String.class);
+                                final String address = snapshot.child(username).child("address").getValue(String.class);
+                                final String country= snapshot.child(username).child("country").getValue(String.class);
+                                final String email = snapshot.child(username).child("Email").getValue(String.class);
+                                final String gender = snapshot.child(username).child("gender").getValue(String.class);
+                                final String dateOfBirth = snapshot.child(username).child("dateOfBirth").getValue(String.class);
+                                final String phoneNumber = snapshot.child(username).child("phoneNumber").getValue(String.class);
 
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-
 
                                         //saving data in SharedPreferences
                                         editor.putString("username", username);
                                         editor.putBoolean("isAdmin", isAdmin);
                                         editor.putString("bloodGroup", bloodGroup);
                                         editor.putString("userID", userID);
+                                        editor.putString("firstName", firstName);
+                                        editor.putString("lastName", lastName);
+                                        editor.putString("phoneNumber", phoneNumber);
+                                        editor.putString("address", address);
+                                        editor.putString("country", country);
+                                        editor.putString("email", email);
+                                        editor.putString("gender", gender);
+                                        editor.putString("dateOfBirth", dateOfBirth);
                                         editor.putInt("points",points);
                                         editor.commit();
 
 
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        Bundle data = new Bundle();
-                                        data.putString("username",username);
-                                        data.putBoolean("isAdmin",isAdmin);
-                                        intent.putExtras(data);
-//                                        intent.putExtra("username",username);
-//                                        intent.putExtra("isAdmin",isAdmin);
+//                                        Bundle data = new Bundle();
+//                                        data.putString("username",username);
+//                                        data.putBoolean("isAdmin",isAdmin);
+//                                        intent.putExtras(data);
+                                        intent.putExtra("username",username);
+                                        intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);
                                         finish();
 
-
-
-                                }
-
-                                else{
+                                }else{
                                     Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-
-                            else{
+                            }else{
                                 Toast.makeText(LoginActivity.this, "Wrong username", Toast.LENGTH_SHORT).show();
                             }
 
