@@ -3,9 +3,9 @@ Mobile App Development Assignment
 
 Team Members' Progress: 
 - Suren (100%)
-- Faris
+- Faris (100%)
 - Faiqah
-- Jia JUn
+- Jia JUn (0%)
 - Siti Nurfaizzah
 
 
