@@ -1,11 +1,18 @@
 package com.blooddonationapp.startactivity.UserData;
 
-public class Request {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class Request implements Serializable {
     String name,date,time,status;
+    @Exclude
+    private String key;
 
     public Request(){}
 
     public Request(String name, String date, String time, String status) {
+
         this.name = name;
         this.date = date;
         this.time = time;
@@ -24,8 +31,16 @@ public class Request {
         return date;
     }
 
+    public String getKey() {
+        return key;
+    }
+
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getTime() {

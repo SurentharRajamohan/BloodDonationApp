@@ -3,11 +3,10 @@ Mobile App Development Assignment
 
 Team Members' Progress: 
 - Suren (100%)
-- Faris (100%)
-- Faiqah
-- Jia JUn (0%)
-- Siti Nurfaizzah
-
+- Faris (75%)
+- Faiqah (100%)
+- Jia Jun (0%)
+- Siti Nurfaizzah (25%)
 
 Done:
 1) Firebase connection
