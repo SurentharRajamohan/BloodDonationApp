@@ -1,25 +1,31 @@
 package com.blooddonationapp.startactivity.Fragment;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -42,6 +48,9 @@ public class RequestPendingFragment extends Fragment {
     private DatabaseReference databaseReference;
     private CardView_RequestAdapter adapter;
     private RecyclerView recyclerView;
+    private FrameLayout frameLayout;
+    private ArrayList<Request> tempRequest;
+    private String key;
 
     public RequestPendingFragment() {
         // Required empty public constructor
@@ -80,6 +89,8 @@ public class RequestPendingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_request_pending, container, false);
 
+
+
         // Code for the card list view
 
         recyclerView = (RecyclerView) view.findViewById(R.id.RequestPendingFragment_RV_pendingRequestList);
@@ -90,6 +101,9 @@ public class RequestPendingFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         loadData("pending");
+
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(recyclerView);
 
         return view;
     }
@@ -106,14 +120,13 @@ public class RequestPendingFragment extends Fragment {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    ArrayList<Request> tempRequest = new ArrayList<>();
+                    tempRequest = new ArrayList<>();
 
                     for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                         Request pending = dataSnapshot.getValue(Request.class);
-                        if(pending.getStatus().equals("Successful")){
-
-                        }
+                        pending.setKey(dataSnapshot.getKey());
                         tempRequest.add(pending);
+                        key = dataSnapshot.getKey();
                     }
                     adapter.setItems(tempRequest);
                     adapter.notifyDataSetChanged();
@@ -127,5 +140,115 @@ public class RequestPendingFragment extends Fragment {
                 }
             });
 
+    }
+
+    ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT |  ItemTouchHelper.LEFT) {
+
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+            builder1.setMessage("Donation completed?");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            copyFirebaseData();
+                            deleteFirebaseData(key);
+
+                            adapter.notifyDataSetChanged();
+
+
+
+//
+//                            tempRequest.remove(viewHolder.getAdapterPosition());
+//                            adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
+        }
+    };
+
+    public void copyFirebaseData() {
+
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        String user = sharedPreferences.getString("username", "");
+
+        Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        databaseReference = firebaseDatabase.getReference("request").child(user).child("pending");
+        final DatabaseReference toCompleted = firebaseDatabase.getReference("request").child(user).child("completed");
+
+        selectedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot complete : dataSnapshot.getChildren()) {
+                    String completeKey = complete.getKey();
+                    String date = complete.child("date").getValue(String.class);
+                    String name = complete.child("name").getValue(String.class);
+                    String time = complete.child("time").getValue(String.class);
+                    toCompleted.child(completeKey).child("date").setValue(date);
+                    toCompleted.child(completeKey).child("name").setValue(name);
+                    toCompleted.child(completeKey).child("time").setValue(time);
+                    toCompleted.child(completeKey).child("status").setValue("Donation Completed");
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void deleteFirebaseData(String key) {
+
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        String user = sharedPreferences.getString("username", "");
+
+        Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        databaseReference = firebaseDatabase.getReference("request").child(user).child("pending").child(key);
+
+
+        selectedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot delete : dataSnapshot.getChildren()) {
+                    delete.getRef().removeValue();
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

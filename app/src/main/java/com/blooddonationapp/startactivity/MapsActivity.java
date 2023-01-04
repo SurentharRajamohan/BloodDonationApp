@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.blooddonationapp.startactivity.Fragment.PopDonorDetails;
+import com.blooddonationapp.startactivity.Fragment.PopSuccessful;
 import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.MyAdapter;
@@ -150,7 +152,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onItemClick(int position) {
-        //Izzah buat pop up (donor details) kat sini
+        Intent intent= new Intent(MapsActivity.this, PopDonorDetails.class);
+        startActivity(intent);
     }
 
     private void getNearbyMarkers() {
