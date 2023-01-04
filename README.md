@@ -5,7 +5,7 @@ Team Members' Progress:
 - Suren (100%)
 - Faris (75%)
 - Faiqah (100%)
-- Jia Jun (0%)
+- Jia Jun (100%)
 - Siti Nurfaizzah (25%)
 
 Done:
