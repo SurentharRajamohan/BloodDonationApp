@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                 final boolean isAdmin = (boolean) snapshot.child(username).child("isAdmin").getValue();
                                 final String bloodGroup = snapshot.child(username).child("bloodGroup").getValue(String.class);
                                 final String userID = snapshot.child(username).child("userID").getValue(String.class);
+                                final int points = snapshot.child(username).child("points").getValue(Integer.class);
 
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
@@ -87,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putBoolean("isAdmin", isAdmin);
                                         editor.putString("bloodGroup", bloodGroup);
                                         editor.putString("userID", userID);
+                                        editor.putInt("points",points);
                                         editor.commit();
 
 

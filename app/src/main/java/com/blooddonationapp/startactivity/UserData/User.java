@@ -2,13 +2,14 @@ package com.blooddonationapp.startactivity.UserData;
 
 public class User {
 
-    private String name,latitude,longitude,bloodtype;
+    private String name,latitude,longitude,bloodType;
+    private int points;
 
-    public User(String name, String latitude, String longitude,String bloodtype) {
+    public User(String name, String latitude, String longitude,String bloodType) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.bloodtype = bloodtype;
+        this.bloodType = bloodType;
     }
 
 
@@ -37,15 +38,24 @@ public class User {
         return longitude;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
     public String getBloodType() {
-        return bloodtype;
+        return bloodType;
     }
 
     public void setBloodType(String bloodType) {
-        this.bloodtype = bloodType;
+        this.bloodType = bloodType;
     }
+
 }

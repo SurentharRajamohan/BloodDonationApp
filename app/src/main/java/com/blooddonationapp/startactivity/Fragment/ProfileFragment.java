@@ -40,8 +40,9 @@ public class ProfileFragment extends Fragment {
 
 
     //declaring elements
-    TextView username, bloodType, userID, title;
+    TextView username, bloodType, userID, title, pointsDisplay;
     Button logOut, editProfile;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -96,6 +97,7 @@ public class ProfileFragment extends Fragment {
         boolean isAdmin = sharedPref.getBoolean("isAdmin",false);
         String bloodGroup = sharedPref.getString("bloodGroup","No Blood Group");
         String userid = sharedPref.getString("userID","No ID");
+        int points = sharedPref.getInt("points",0);
 
         logOut = view.findViewById(R.id.fragmentProfile_button_logout);
         editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
@@ -104,10 +106,13 @@ public class ProfileFragment extends Fragment {
 
         userID = view.findViewById(R.id.fragmentProfile_textView_bloodDonorID);
         title = view.findViewById(R.id.fragmentProfile_textView_bloodDonorLabel);
+        pointsDisplay = view.findViewById(R.id.fragmentProfile_textView_points);
+
 
         username.setText(userName);
         bloodType.setText(bloodGroup);
         userID.setText(userid);
+        pointsDisplay.setText(Integer.toString(points));
         if(isAdmin){
             title.setText("Admin");
 
@@ -134,4 +139,6 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
+
+
 }
