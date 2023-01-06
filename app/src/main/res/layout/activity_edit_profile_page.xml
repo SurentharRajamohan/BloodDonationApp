@@ -45,14 +45,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="First Name"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
 
             <EditText
                 android:id="@+id/EditProfile_editText_lastName"
@@ -61,14 +61,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="Last Name"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,14 +89,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="Address"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,14 +116,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="Phone Number"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -143,14 +143,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="Email address"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -167,26 +167,26 @@
                 android:id="@+id/EditProfile_spinner_genderChoice"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
                 android:layout_margin="2dp"
+                android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
-                android:fontFamily="@font/montserrat"
-                android:padding="10dp"/>
+                android:fontFamily="sans-serif"
+                android:padding="10dp" />
 
             <EditText
                 android:id="@+id/EditProfile_editText_dateChoice"
                 android:layout_width="10dp"
                 android:layout_height="51dp"
-                android:background="@drawable/edit_text_shape"
-                android:layout_weight="1"
                 android:layout_margin="2dp"
-                android:padding="15dp"
-                android:hint="dd/mm/yyyy"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:fontFamily="@font/montserrat"/>
+                android:fontFamily="sans-serif"
+                android:hint="dd/mm/yyyy"
+                android:padding="15dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,14 +206,14 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
+                android:fontFamily="sans-serif"
                 android:hint="Country"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp"
-                android:fontFamily="@font/montserrat"/>
+                tools:layout_editor_absoluteY="34dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -230,11 +230,11 @@
                 android:id="@+id/EditProfile_spinner_bloodTypeChoice"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
                 android:layout_margin="2dp"
+                android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
-                android:fontFamily="@font/montserrat"
-                android:padding="10dp"/>
+                android:fontFamily="sans-serif"
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -269,7 +269,9 @@
             <Button
                 android:id="@+id/EditProfile_button_confirmSelection"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:fontFamily="sans-serif-medium"
                 android:text="Submit" />
         </LinearLayout>
 
