@@ -1,6 +1,6 @@
 package com.blooddonationapp.startactivity;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,10 +38,8 @@ public class LoginActivity extends AppCompatActivity implements ForgotPasswordDi
 
 int TACcode;
 
-//firebase variables (database)
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-    DatabaseReference databaseReference = firebaseDatabase.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +56,9 @@ int TACcode;
 
 
 
+        //firebase variables (database)
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
 
         //SharedPreference to pass username to other activities
         SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", 0);
@@ -184,48 +185,67 @@ int TACcode;
 
     @Override
     public void sendTacCode(String userName) {
-        //Toast.makeText(this, username + "haha", Toast.LENGTH_SHORT).show();
-//        Random random = new Random();
-//        TACcode = random.nextInt(8999)+1000;
-//        final String[] email = new String[1];
-//
-//databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-//    @Override
-//    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//        //check if this username exist
-//        if(snapshot.hasChild(userName)){
-//            email[0] = snapshot.child(userName).child("Email").getValue(String.class);
-//        }
-//    }
-//
-//    @Override
-//    public void onCancelled(@NonNull DatabaseError error) {
-//
-//    }
-//});
-//
-//String url = "https://rahilacademy.com/otp/sendEmail.php";
-//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        }){
-//            @Nullable
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("email", email[0]);
-//                params.put("code", String.valueOf(TACcode));
-//                return params;
-//            }
-//        };
-//        requestQueue.add(stringRequest);
+        final String[] email = new String[1];
+
+        //SharedPreference to pass username to other activities
+        SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", 0);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+
+        editor.putString("username", userName);
+        editor.commit();
+
+
+        Random random = new Random();
+        TACcode = random.nextInt(8999)+1000;
+
+
+        //firebase variables (database)
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        //check if this username exist
+        if(snapshot.hasChild(userName)){
+            Toast.makeText(LoginActivity.this, snapshot.child(userName).child("Email").getValue(String.class), Toast.LENGTH_SHORT).show();
+            email[0] = snapshot.child(userName).child("Email").getValue(String.class);
+        }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
+    }
+});
+
+String url = "https://blooddonationappsurenthar.000webhostapp.com/sendEmail.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, OTPCodeActivity.class);
+                intent.putExtra("TACCode", String.valueOf(TACcode));
+                startActivity(intent);
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, "Error : "+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", "surenthar.rajamohan@gmail.com");
+                params.put("code", String.valueOf(TACcode));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
