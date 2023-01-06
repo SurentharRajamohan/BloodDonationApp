@@ -37,6 +37,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class PersonalDetailsActivity extends AppCompatActivity {
 
@@ -53,8 +54,8 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     ImageView uploadPhoto, invisiblePhoto;
     Button submitButton;
     Spinner bloodGroupInput, genderInput;
-    EditText dateOfBirthInput, firstNameInput, lastNameInput, addressInput, phoneNumberInput, emailAddressInput, regionCountryInput;
-
+    EditText dateOfBirthInput, firstNameInput, lastNameInput, addressInput, phoneNumberInput, regionCountryInput;
+//    EditText emailAddressInput;
     //datePicker instance
     private DatePickerDialog datePickerDialog;
 
@@ -79,7 +80,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         lastNameInput = findViewById(R.id.PersonalDetailsPage_ET_lastName);
         addressInput = findViewById(R.id.PersonalDetailsPage_ET_address);
         phoneNumberInput = findViewById(R.id.PersonalDetailsPage_ET_phoneNumber);
-        emailAddressInput = findViewById(R.id.PersonalDetailsPage_ET_email);
+//        emailAddressInput = findViewById(R.id.PersonalDetailsPage_ET_email);
         regionCountryInput = findViewById(R.id.PersonalDetailsPage_ET_country);
 
         // get the Firebase  storage reference
@@ -182,7 +183,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
         final String firstName = firstNameInput.getText().toString();
         final String lastName = lastNameInput.getText().toString();
-        final String email = emailAddressInput.getText().toString();
+//        final String email = emailAddressInput.getText().toString();
         final String dateOfBirth = dateOfBirthInput.getText().toString();
         final String address = addressInput.getText().toString();
         final String phoneNumber = phoneNumberInput.getText().toString();
@@ -192,10 +193,17 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String username = intent.getExtras().getString("Username");
+        final String email = intent.getExtras().getString("Email");
+        final String password = intent.getExtras().getString("Password");
+        final String isAdmin = intent.getExtras().getString("isAdmin");
+
+    //Pattern for phone number
+        Pattern phoneNumberPattern = Pattern.compile("(011[0-9]{8}|015[0-9]{8}|01[0-9]{8}|0[0-9]{9})");
+
         //exceptions
-        if (email.isEmpty())
-            Toast.makeText(PersonalDetailsActivity.this, "Please enter your email address", Toast.LENGTH_SHORT).show();
-        else if (firstName.isEmpty())
+//        if (email.isEmpty())
+//            Toast.makeText(PersonalDetailsActivity.this, "Please enter your email address", Toast.LENGTH_SHORT).show();
+        if (firstName.isEmpty())
             Toast.makeText(PersonalDetailsActivity.this, "Please enter your first name", Toast.LENGTH_SHORT).show();
         else if (username.isEmpty())
             Toast.makeText(PersonalDetailsActivity.this, "No username", Toast.LENGTH_SHORT).show();
@@ -215,27 +223,31 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             Toast.makeText(PersonalDetailsActivity.this, "Please enter your blood group", Toast.LENGTH_SHORT).show();
         else if (filePath == null)
             Toast.makeText(PersonalDetailsActivity.this, "Please upload your picture", Toast.LENGTH_SHORT).show();
+        else if(!(phoneNumberPattern.matcher(phoneNumber).matches()))
+            Toast.makeText(PersonalDetailsActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
         else {
 
             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    UUID uuid = UUID.randomUUID();
+                    String userID = uuid.toString();
 
                     //check for duplicate email address
-
+                    databaseReference.child("users").child(username).child("Email").setValue(email);
+                    databaseReference.child("users").child(username).child("userID").setValue(userID);
+                    databaseReference.child("users").child(username).child("Password").setValue(password);
+                    databaseReference.child("users").child(username).child("isAdmin").setValue(false);
                     databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                     databaseReference.child("users").child(username).child("lastName").setValue(lastName);
                     databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
                     databaseReference.child("users").child(username).child("address").setValue(address);
-                    databaseReference.child("users").child(username).child("firstName").setValue(firstName);
-                    databaseReference.child("users").child(username).child("lastName").setValue(lastName);
-                    databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
                     databaseReference.child("users").child(username).child("address").setValue(address);
                     databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
                     databaseReference.child("users").child(username).child("country").setValue(country);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
-
+                    databaseReference.child("users").child(username).child("points").setValue(0);
 
 
                 }

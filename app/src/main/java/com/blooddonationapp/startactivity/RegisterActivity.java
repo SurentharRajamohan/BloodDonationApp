@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +65,10 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Please enter your password again", Toast.LENGTH_SHORT).show();
                 else if(!(password.equals(confirmPassword)))
                     Toast.makeText(RegisterActivity.this, "Entered passwords are not matching", Toast.LENGTH_SHORT).show();
+                else if(!(password.length() >= 8))
+                    Toast.makeText(RegisterActivity.this, "Make sure the password length is >= 8", Toast.LENGTH_SHORT).show();
+                else if(!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
+                    Toast.makeText(RegisterActivity.this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
 
                 //write data to database
                 else{
@@ -76,17 +81,20 @@ public class RegisterActivity extends AppCompatActivity {
                             if(snapshot.hasChild(username))
                                 Toast.makeText(RegisterActivity.this, "This username has been taken", Toast.LENGTH_SHORT).show();
                             else{
-                                // Generate a random UUID (Universally Unique Identifier)
-                                UUID uuid = UUID.randomUUID();
+//                                // Generate a random UUID (Universally Unique Identifier)
+//                                UUID uuid = UUID.randomUUID();
+//
+//                                String userID = uuid.toString();
 
-                                String userID = uuid.toString();
-
-                                databaseReference.child("users").child(username).child("Email").setValue(email);
-                                databaseReference.child("users").child(username).child("userID").setValue(userID);
-                                databaseReference.child("users").child(username).child("Password").setValue(password);
-                                databaseReference.child("users").child(username).child("isAdmin").setValue(false);
+//                                databaseReference.child("users").child(username).child("Email").setValue(email);
+//                                databaseReference.child("users").child(username).child("userID").setValue(userID);
+//                                databaseReference.child("users").child(username).child("Password").setValue(password);
+//                                databaseReference.child("users").child(username).child("isAdmin").setValue(false);
                                 Intent intent = new Intent(RegisterActivity.this, PersonalDetailsActivity.class);
                                 intent.putExtra("Username", username);
+                                intent.putExtra("Password", password);
+                                intent.putExtra("Email", email);
+                                intent.putExtra("isAdmin", false);
                                 startActivity(intent);
                             }
 
