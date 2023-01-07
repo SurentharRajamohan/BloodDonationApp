@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
@@ -55,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button B;
     private Button A;
     private Button O;
-    private String name;
+
 
 
     @Override
@@ -75,6 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
 
 
@@ -131,7 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+       // DisplayBloodBank bb = new DisplayBloodBank();
         Bundle bundle = getIntent().getExtras();
         String latitude = bundle.getString("latitude");
         String longitude = bundle.getString("longitude");
@@ -154,13 +157,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onItemClick(int position) {
 
-        //Sending data of donors name to the next activity
-        Intent intent= new Intent(MapsActivity.this, PopDonorDetails.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("DonorName", name);
+        SharedPreferences sharedPreferences = getSharedPreferences("userCredentials",0);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin",false);
 
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if(isAdmin) {
+
+            Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
+            startActivity(intent);
+        }
     }
 
     private void getNearbyMarkers() {
@@ -181,7 +185,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     User users = dataSnapshot.getValue(User.class);
                     final Double tempLat = Double.parseDouble(users.getLatitude());
                     final Double tempLng = Double.parseDouble(users.getLongitude());
-                    name = users.getName();
+                    String name = users.getName();
 
                     LatLng allLatLang = new LatLng(tempLat,tempLng);
                     MarkerOptions markerOptions = new MarkerOptions();
