@@ -30,7 +30,7 @@ public class NewPasswordDialogBox extends AppCompatDialogFragment {
 
         builder.setView(view)
                 .setTitle("New Password")
-                .setPositiveButton("Send Verification Code", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String newPassword =  password.getText().toString();

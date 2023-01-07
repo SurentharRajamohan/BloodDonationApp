@@ -61,7 +61,8 @@ public class OTPCodeActivity extends AppCompatActivity implements NewPasswordDia
 
                 //update changes
                 databaseReference.child("users").child(userName).child("Password").setValue(newPassword);
-                startActivity(new Intent(OTPCodeActivity.this, RegisterActivity.class));
+                Toast.makeText(OTPCodeActivity.this, "Password has been changed successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(OTPCodeActivity.this, LoginActivity.class));
                 finish();
             }
 

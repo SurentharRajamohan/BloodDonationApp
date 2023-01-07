@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +37,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -241,15 +245,31 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                     databaseReference.child("users").child(username).child("lastName").setValue(lastName);
                     databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
-                    databaseReference.child("users").child(username).child("address").setValue(address);
-                    databaseReference.child("users").child(username).child("address").setValue(address);
                     databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
                     databaseReference.child("users").child(username).child("country").setValue(country);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
                     databaseReference.child("users").child(username).child("points").setValue(0);
 
+                    Geocoder geocoder = new Geocoder(PersonalDetailsActivity.this);
+                    List<Address> addressList;
+                    double latitude, longitude;
+                    try {
+                        addressList = geocoder.getFromLocationName(address , 1);
 
+                        if(addressList != null){
+                            latitude = addressList.get(0).getLatitude();
+                            longitude = addressList.get(0).getLongitude();
+                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(longitude);
+                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(latitude);
+                        }else {
+                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(25.0001);
+                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(71.0001);
+                        }
+
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
