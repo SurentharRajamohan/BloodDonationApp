@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAdminActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/AddAdmin_TBMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Add admin"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/AddAdmin_MainLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/AddAdmin_ET_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/AddAdmin_ET_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/AddAdmin_ET_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/AddAdmin_ET_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/AddAdmin_ET_firstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/firstNameHint"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/AddAdmin_ET_lastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/lastNameHint"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/AddAdmin_ET_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/addressHint"
+            android:inputType="textPostalAddress"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/AddAdmin_ET_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/regionCountryHint"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+
+
+
+        <EditText
+            android:id="@+id/AddAdmin_ET_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/phoneNumberHint"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AddAdmin_BTN_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_shape"
+            android:text="REGISTER"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

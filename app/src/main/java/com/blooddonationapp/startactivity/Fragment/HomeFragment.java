@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.blooddonationapp.startactivity.AddAdminActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.SearchActivity;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
@@ -145,7 +146,7 @@ public class HomeFragment extends Fragment {
         registerAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getActivity(), AddAdminActivity.class));
             }
         });
 
