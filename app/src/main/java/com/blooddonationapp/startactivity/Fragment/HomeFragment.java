@@ -141,6 +141,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //register admin page redirection
+        registerAdminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         // Code for the card list view
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragmentHome_refresh_swipe);
