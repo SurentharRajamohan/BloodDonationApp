@@ -5,18 +5,19 @@ import com.google.firebase.database.Exclude;
 import java.io.Serializable;
 
 public class Request implements Serializable {
-    String name,date,time,status;
+    String name,date,time,status,donor;
     @Exclude
     private String key;
 
     public Request(){}
 
-    public Request(String name, String date, String time, String status) {
+    public Request(String name, String date, String time, String status,String donor) {
 
         this.name = name;
         this.date = date;
         this.time = time;
         this.status = status;
+        this.donor = donor;
     }
 
     public String getName() {
@@ -33,6 +34,14 @@ public class Request implements Serializable {
 
     public String getKey() {
         return key;
+    }
+
+    public String getDonor() {
+        return donor;
+    }
+
+    public void setDonor(String donor) {
+        this.donor = donor;
     }
 
     public void setDate(String date) {

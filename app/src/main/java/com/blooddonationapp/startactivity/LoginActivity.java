@@ -124,10 +124,6 @@ int TACcode;
 
 
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                        Bundle data = new Bundle();
-//                                        data.putString("username",username);
-//                                        data.putBoolean("isAdmin",isAdmin);
-//                                        intent.putExtras(data);
                                         intent.putExtra("username",username);
                                         intent.putExtra("isAdmin",isAdmin);
                                         startActivity(intent);

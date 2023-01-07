@@ -159,16 +159,20 @@ public class RequestPendingFragment extends Fragment {
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            copyFirebaseData();
+
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials",0);
+                            String user = sharedPreferences.getString("username", "");
+                            copyFirebaseData(user);
                             deleteFirebaseData(key);
 
                             adapter.notifyDataSetChanged();
 
 
 
-//
-//                            tempRequest.remove(viewHolder.getAdapterPosition());
-//                            adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+
+
+
                         }
                     });
 
@@ -186,10 +190,8 @@ public class RequestPendingFragment extends Fragment {
         }
     };
 
-    public void copyFirebaseData() {
+    public void copyFirebaseData(String user) {
 
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
-        String user = sharedPreferences.getString("username", "");
 
         Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");

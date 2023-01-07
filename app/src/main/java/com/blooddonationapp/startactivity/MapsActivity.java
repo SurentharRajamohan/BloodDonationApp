@@ -55,6 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button B;
     private Button A;
     private Button O;
+    private String name;
 
 
     @Override
@@ -130,7 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-       // DisplayBloodBank bb = new DisplayBloodBank();
+
         Bundle bundle = getIntent().getExtras();
         String latitude = bundle.getString("latitude");
         String longitude = bundle.getString("longitude");
@@ -152,7 +153,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onItemClick(int position) {
+
+        //Sending data of donors name to the next activity
         Intent intent= new Intent(MapsActivity.this, PopDonorDetails.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("DonorName", name);
+
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
@@ -174,7 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     User users = dataSnapshot.getValue(User.class);
                     final Double tempLat = Double.parseDouble(users.getLatitude());
                     final Double tempLng = Double.parseDouble(users.getLongitude());
-                    String name = users.getName();
+                    name = users.getName();
 
                     LatLng allLatLang = new LatLng(tempLat,tempLng);
                     MarkerOptions markerOptions = new MarkerOptions();
