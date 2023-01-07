@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button O;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
 
 
@@ -152,8 +156,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onItemClick(int position) {
-        Intent intent= new Intent(MapsActivity.this, PopDonorDetails.class);
-        startActivity(intent);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userCredentials",0);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin",false);
+
+        if(isAdmin) {
+
+            Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
+            startActivity(intent);
+        }
     }
 
     private void getNearbyMarkers() {

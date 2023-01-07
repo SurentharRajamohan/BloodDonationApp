@@ -1,6 +1,7 @@
 package com.blooddonationapp.startactivity.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -106,9 +107,11 @@ public class HomeFragment extends Fragment {
         registerAdminButton = view.findViewById(R.id.HomePage_FB_registerAdmin);
         addRequestButton = view.findViewById(R.id.HomePage_FB_addBloodRequest);
 
-        Intent intent = getActivity().getIntent();
-        final String username = intent.getExtras().getString("username");
-        final boolean isAdmin = intent.getExtras().getBoolean("isAdmin");
+
+        //DONT FUCKING CHANGE THIS
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",0);
+        final boolean isAdmin = sharedPref.getBoolean("isAdmin", false);
+
 
         if(!isAdmin){
             floatingActionMenu.setVisibility(View.GONE);
