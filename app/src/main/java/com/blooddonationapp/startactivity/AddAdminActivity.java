@@ -2,6 +2,7 @@ package com.blooddonationapp.startactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import android.location.Address;
@@ -49,6 +50,16 @@ public class AddAdminActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+        //Toolbar back button
+        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.AddAdmin_TBMain);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
         //onClickListeners
 
