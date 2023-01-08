@@ -13,9 +13,12 @@ public class bloodBank implements Parcelable {
     // added by Faris for homepage
     private String date, time, state;
 
+    //to calculate distance
+    private double distance;
+
     public bloodBank(){}
 
-    public bloodBank(String name, String address, String longitude, String latitude, String date, String time, String bloodRequested, String state) {
+    public bloodBank(String name, String address, String latitude, String longitude, String date, String time, String bloodRequested, String state) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -31,6 +34,14 @@ public class bloodBank implements Parcelable {
         address = in.readString();
         latitude = in.readString();
         longitude = in.readString();
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public String getState() {
@@ -119,8 +130,8 @@ public class bloodBank implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(address);
-        parcel.writeString(longitude);
         parcel.writeString(latitude);
+        parcel.writeString(longitude);
 
     }
 }

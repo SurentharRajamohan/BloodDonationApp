@@ -96,8 +96,11 @@ int TACcode;
                                 final int points = snapshot.child(username).child("points").getValue(Integer.class);
                                 final String firstName = snapshot.child(username).child("firstName").getValue(String.class);
                                 final String lastName = snapshot.child(username).child("lastName").getValue(String.class);
-                                final String addressLatitude =  snapshot.child(username).child("address").child("latitude").getValue().toString();
-                                final String addressLongitude = snapshot.child(username).child("address").child("longitude").getValue().toString();
+                                final String address = snapshot.child(username).child("address").getValue(String.class);
+
+                                final double latitude = snapshot.child(username).child("LatLng").child("latitude").getValue(double.class);
+                                final double longitude = snapshot.child(username).child("LatLng").child("longitude").getValue(double.class);
+
                                 final String country= snapshot.child(username).child("country").getValue(String.class);
                                 final String email = snapshot.child(username).child("Email").getValue(String.class);
                                 final String gender = snapshot.child(username).child("gender").getValue(String.class);
@@ -115,8 +118,10 @@ int TACcode;
                                         editor.putString("firstName", firstName);
                                         editor.putString("lastName", lastName);
                                         editor.putString("phoneNumber", phoneNumber);
-                                        editor.putString("addressLatitude", addressLatitude);
-                                        editor.putString("addressLongitude", addressLongitude);
+
+                                        editor.putString("latitude", String.valueOf(latitude));
+                                        editor.putString("longitude", String.valueOf(latitude));
+
                                         editor.putString("country", country);
                                         editor.putString("email", email);
                                         editor.putString("gender", gender);

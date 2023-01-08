@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
@@ -56,6 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button B;
     private Button A;
     private Button O;
+    private String DonorName;
+    private String latitude, longitude;
 
 
 
@@ -76,6 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 
 
 
@@ -135,19 +139,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
        // DisplayBloodBank bb = new DisplayBloodBank();
+
         Bundle bundle = getIntent().getExtras();
-        String latitude = bundle.getString("latitude");
-        String longitude = bundle.getString("longitude");
+        latitude = bundle.getString("latitude");
+        longitude = bundle.getString("longitude");
+        String name = bundle.getString("name");
 
 
 
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-2.1,3.4);
-        LatLng sydney = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng bloodBankLatLng = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(bloodBankLatLng);
+        markerOptions.title(name);
+
+        mMap.addMarker(markerOptions);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(bloodBankLatLng));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bloodBankLatLng, 10.0f));
+
+
 
         getNearbyMarkers();
 
@@ -162,7 +174,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if(isAdmin) {
 
+
+
             Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
+            Bundle bundle2 = new Bundle();
+            bundle2.putString("DonorName", DonorName);
+
+            intent.putExtras(bundle2);
             startActivity(intent);
         }
     }
@@ -170,7 +188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void getNearbyMarkers() {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        databaseReference = firebaseDatabase.getReference("user");
+        databaseReference = firebaseDatabase.getReference("users");
         recyclerView = findViewById(R.id.recyclerView);
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -183,17 +201,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     User users = dataSnapshot.getValue(User.class);
-                    final Double tempLat = Double.parseDouble(users.getLatitude());
-                    final Double tempLng = Double.parseDouble(users.getLongitude());
-                    String name = users.getName();
+                    final Double tempLat = dataSnapshot.child("address").child("latitude").getValue(double.class);
+                    final Double tempLng = dataSnapshot.child("address").child("longitude").getValue(double.class);
+                    final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
+                    DonorName = users.getFirstName();
 
-                    LatLng allLatLang = new LatLng(tempLat,tempLng);
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(allLatLang);
+                    if(!isAdmin) {
 
-                    mMap.addMarker(markerOptions);
+                        final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
+                        users.setDistance(distance);
 
-                    list.add(users);
+
+                        LatLng allLatLang = new LatLng(tempLat, tempLng);
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(allLatLang);
+
+                        mMap.addMarker(markerOptions);
+
+//                        mMap.moveCamera(CameraUpdateFactory.newLatLng(allLatLang));
+//                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(allLatLang, 10.0f));
+
+                        list.add(users);
+
+
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -246,7 +277,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // running a for loop to compare elements.
         for (User item : list) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.getBloodType().toLowerCase().contains(text.toLowerCase())) {
+            if (item.getBloodGroup().toLowerCase().contains(text.toLowerCase())) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item);
@@ -261,5 +292,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // list to our adapter class.
             adapter.filterList(filteredlist);
         }
+    }
+
+    private double getDistance(Double donorlat,Double donorlng, Double lat, Double lng){
+
+        Location startPoint=new Location("donorLocation");
+        startPoint.setLatitude(donorlat);
+        startPoint.setLongitude(donorlng);
+
+
+        Location endPoint=new Location("locationA");
+        endPoint.setLatitude(lat);
+        endPoint.setLongitude(lng);
+
+        double distance=startPoint.distanceTo(endPoint);
+
+        return distance;
+
+
+
+
+
     }
 }

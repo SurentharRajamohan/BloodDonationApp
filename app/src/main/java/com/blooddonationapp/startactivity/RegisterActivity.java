@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -84,14 +86,14 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "This username has been taken", Toast.LENGTH_SHORT).show();
                             else{
 //                                // Generate a random UUID (Universally Unique Identifier)
-//                                UUID uuid = UUID.randomUUID();
-//
-//                                String userID = uuid.toString();
+                                UUID uuid = UUID.randomUUID();
 
-//                                databaseReference.child("users").child(username).child("Email").setValue(email);
-//                                databaseReference.child("users").child(username).child("userID").setValue(userID);
-//                                databaseReference.child("users").child(username).child("Password").setValue(password);
-//                                databaseReference.child("users").child(username).child("isAdmin").setValue(false);
+                                String userID = uuid.toString();
+
+                                databaseReference.child("users").child(username).child("Email").setValue(email);
+                                databaseReference.child("users").child(username).child("userID").setValue(userID);
+                                databaseReference.child("users").child(username).child("Password").setValue(password);
+                                databaseReference.child("users").child(username).child("isAdmin").setValue(false);
                                 Intent intent = new Intent(RegisterActivity.this, PersonalDetailsActivity.class);
                                 intent.putExtra("Username", username);
                                 intent.putExtra("Password", password);
