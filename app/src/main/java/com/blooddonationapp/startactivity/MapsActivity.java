@@ -59,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button O;
     private String DonorName;
     private String latitude, longitude;
+    private final double MAX_DISTANCE = 30.0;
 
 
 
@@ -206,10 +207,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
                     DonorName = users.getFirstName();
 
-                    if(!isAdmin) {
 
-                        final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
-                        users.setDistance(distance);
+                    final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
+                    users.setDistance(distance/1000);
+
+                    if(!isAdmin && users.getDistance() < MAX_DISTANCE) {
+
 
 
                         LatLng allLatLang = new LatLng(tempLat, tempLng);
@@ -218,8 +221,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         mMap.addMarker(markerOptions);
 
-//                        mMap.moveCamera(CameraUpdateFactory.newLatLng(allLatLang));
-//                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(allLatLang, 10.0f));
 
                         list.add(users);
 
