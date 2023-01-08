@@ -201,8 +201,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     User users = dataSnapshot.getValue(User.class);
-                    final Double tempLat = dataSnapshot.child("address").child("latitude").getValue(double.class);
-                    final Double tempLng = dataSnapshot.child("address").child("longitude").getValue(double.class);
+                    final Double tempLat = dataSnapshot.child("LatLng").child("latitude").getValue(double.class);
+                    final Double tempLng = dataSnapshot.child("LatLng").child("longitude").getValue(double.class);
                     final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
                     DonorName = users.getFirstName();
 
