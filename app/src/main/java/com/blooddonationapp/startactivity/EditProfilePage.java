@@ -2,6 +2,7 @@ package com.blooddonationapp.startactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -17,7 +18,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,7 +40,7 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
     private EditText dateChoice, firstName, lastName, address, phoneNumber, email, country; //EditProfile_editText_dateChoice
     final Calendar myCalendar = Calendar.getInstance();
     private Button submit;
-    private Toolbar toolbar;
+//    private Toolbar toolbar;
 
 
 
@@ -56,6 +56,16 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_page);
 
+        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.EditProfile_TBMainAct);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
 
 //Shared preference instance
         SharedPreferences sharedPref = getSharedPreferences("userCredentials", Context.MODE_PRIVATE);
@@ -70,14 +80,9 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         String countryV = sharedPref.getString("country","Null");
         String bloodGroupV = sharedPref.getString("bloodGroup","Null");
 
-//Toolbar back button
+//Toolbar backbutton
 //        toolbar = findViewById(R.id.TBMainAct);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+
 
         //initialize the edit text
         firstName = findViewById(R.id.EditProfile_editText_firstName);

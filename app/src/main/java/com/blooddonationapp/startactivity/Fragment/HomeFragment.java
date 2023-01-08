@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.blooddonationapp.startactivity.AddAdminActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.SearchActivity;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
@@ -132,12 +133,21 @@ public class HomeFragment extends Fragment {
         adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
 
+        // redirection for floating button
         addRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Add donor request", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 replaceFragment(new developer_tools());
+            }
+        });
+
+        // register admin page redirection
+        registerAdminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AddAdminActivity.class));
             }
         });
 

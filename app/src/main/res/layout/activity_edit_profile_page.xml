@@ -7,7 +7,7 @@
     tools:context=".EditProfilePage">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/TBMainAct"
+        android:id="@+id/EditProfile_TBMainAct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="?attr/homeAsUpIndicator"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TBMainAct"
+        app:layout_constraintTop_toBottomOf="@+id/EditProfile_TBMainAct"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout

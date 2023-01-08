@@ -247,15 +247,35 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                     databaseReference.child("users").child(username).child("lastName").setValue(lastName);
                     databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
-                    databaseReference.child("users").child(username).child("address").setValue(getLocationFromAddress(getApplicationContext(),address));
-//                    databaseReference.child("users").child(username).child("address").setValue(address);
+
+                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),address));
+                    databaseReference.child("users").child(username).child("address").setValue(address);
+
                     databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
                     databaseReference.child("users").child(username).child("country").setValue(country);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
                     databaseReference.child("users").child(username).child("points").setValue(0);
 
+                    Geocoder geocoder = new Geocoder(PersonalDetailsActivity.this);
+                    List<Address> addressList;
+                    double latitude, longitude;
+                    try {
+                        addressList = geocoder.getFromLocationName(address , 1);
 
+                        if(addressList != null){
+                            latitude = addressList.get(0).getLatitude();
+                            longitude = addressList.get(0).getLongitude();
+                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(longitude);
+                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(latitude);
+                        }else {
+                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(25.0001);
+                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(71.0001);
+                        }
+
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override

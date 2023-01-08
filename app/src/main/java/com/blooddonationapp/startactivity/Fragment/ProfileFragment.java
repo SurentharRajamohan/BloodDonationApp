@@ -137,6 +137,7 @@ public class ProfileFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), LogoutScreen.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
         return view;

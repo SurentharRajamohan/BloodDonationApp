@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/black"
+            android:translationZ="100dp"
             app:fab_label="Add Request"
             app:fab_size="mini"
             android:src="@drawable/send_request_icon"
