@@ -133,6 +133,7 @@ public class HomeFragment extends Fragment {
         adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
 
+        // redirection for floating button
         addRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +143,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //register admin page redirection
+        // register admin page redirection
         registerAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
