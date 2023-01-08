@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -53,6 +55,17 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
 
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     bloodBank bb = dataSnapshot.getValue(bloodBank.class);
+                    Double tempLat = Double.parseDouble(bb.getLatitude());
+                    Double tempLng = Double.parseDouble(bb.getLongitude());
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("userCredentials", 0);
+                    String latitude = sharedPreferences.getString("latitude", "");
+                    String longitude = sharedPreferences.getString("longitude", "");
+
+                    final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
+                    bb.setDistance(distance);
+
+
                     list.add(bb);
                 }
                 adapter.notifyDataSetChanged();
@@ -126,6 +139,27 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
         Intent intent = new Intent(SearchActivity.this, DisplayBloodBank.class);
         intent.putExtra("Blood Bank", list.get(position));
         startActivity(intent);
+
+    }
+
+    private double getDistance(Double donorlat,Double donorlng, Double lat, Double lng){
+
+        Location startPoint=new Location("donorLocation");
+        startPoint.setLatitude(donorlat);
+        startPoint.setLongitude(donorlng);
+
+
+        Location endPoint=new Location("locationA");
+        endPoint.setLatitude(lat);
+        endPoint.setLongitude(lng);
+
+        double distance=startPoint.distanceTo(endPoint);
+
+        return distance;
+
+
+
+
 
     }
 }

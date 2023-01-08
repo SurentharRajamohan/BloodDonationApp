@@ -35,7 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/distance"
+            android:id="@+id/TVdistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/TVname"
@@ -49,7 +49,7 @@
             android:id="@+id/TVaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/distance"
+            android:layout_below="@+id/TVdistance"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/bloodbank_image"
             android:text="location"

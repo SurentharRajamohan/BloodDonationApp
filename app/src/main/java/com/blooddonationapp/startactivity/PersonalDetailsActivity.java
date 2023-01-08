@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +39,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -241,8 +247,8 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                     databaseReference.child("users").child(username).child("lastName").setValue(lastName);
                     databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
-                    databaseReference.child("users").child(username).child("address").setValue(address);
-                    databaseReference.child("users").child(username).child("address").setValue(address);
+                    databaseReference.child("users").child(username).child("address").setValue(getLocationFromAddress(getApplicationContext(),address));
+//                    databaseReference.child("users").child(username).child("address").setValue(address);
                     databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
                     databaseReference.child("users").child(username).child("country").setValue(country);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
@@ -332,6 +338,30 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                                 });
             }
         }
+    }
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 }
 
