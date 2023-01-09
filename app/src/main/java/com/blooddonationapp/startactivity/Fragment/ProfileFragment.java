@@ -2,21 +2,28 @@ package com.blooddonationapp.startactivity.Fragment;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.blooddonationapp.startactivity.LoginActivity;
 import com.blooddonationapp.startactivity.LogoutScreen;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.EditProfilePage;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +46,7 @@ public class ProfileFragment extends Fragment {
 
     //declaring elements
     TextView username, bloodType, userID, title, pointsDisplay;
-    Button logOut, editProfile;
+    Button logOut, editProfile, deleteProfileButton;
 
 
     public ProfileFragment() {
@@ -80,6 +87,9 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //firebase variables (database)
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
 
         editProfileBtn = view.findViewById(R.id.fragmentProfile_button_editProfile);
 
@@ -105,7 +115,7 @@ public class ProfileFragment extends Fragment {
         editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
         username = view.findViewById(R.id.fragmentProfile_textView_bloodDonorName);
         bloodType = view.findViewById(R.id.fragmentProfile_textView_bloodDonorBloodType);
-
+        deleteProfileButton = view.findViewById(R.id.fragmentProfile_button_deleteProfile);
         userID = view.findViewById(R.id.fragmentProfile_textView_bloodDonorID);
         title = view.findViewById(R.id.fragmentProfile_textView_bloodDonorLabel);
         pointsDisplay = view.findViewById(R.id.fragmentProfile_textView_points);
@@ -114,11 +124,72 @@ public class ProfileFragment extends Fragment {
         username.setText(userName);
         bloodType.setText(bloodGroup);
         userID.setText(userid);
-        pointsDisplay.setText(Integer.toString(points));
+        pointsDisplay.setText(Integer.toString(points) + " points");
         if(isAdmin){
             title.setText("Admin");
 
         }
+
+        deleteProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // instance of alert dialog to build alert dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setIcon(R.drawable.app_logo);
+                builder.setTitle("Delete Profile");
+                builder.setMessage("Are you sure you wanted to delete your profile?");
+
+                // set the neutral button to do some actions
+                builder.setNeutralButton("DISMISS", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // set the positive button to do delete from databse
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Get a SharedPreferences object
+                        SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+
+                        // Get an editor for the SharedPreferences object
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        // Clear all data from the SharedPreferences
+                        editor.clear();
+
+                        // Apply the changes
+                        editor.apply();
+                        //update changes
+                        databaseReference.child("users").child(userName).removeValue();
+                        Toast.makeText(getActivity(), "Successfully removed", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+
+                    }
+                });
+
+                // set the negative button to do dismiss
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // show the alert dialog
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+
+                alertDialog.getWindow().setGravity(Gravity.CENTER);
+            }
+        });
+
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +211,15 @@ public class ProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
+
+
+
+
+
+
+
+
+
         return view;
     }
 

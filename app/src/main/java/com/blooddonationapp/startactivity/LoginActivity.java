@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements ForgotPasswordDi
 
 
 int TACcode;
-String emailh;
+String emailAddress;
 
 
 
@@ -189,8 +189,6 @@ String emailh;
 
     @Override
     public void sendTacCode(String userName) {
-//        String[] email = new String[1];
-//        final String[] email = new String[1];e
 
         //SharedPreference to pass username to other activities
         SharedPreferences sharedPref = this.getSharedPreferences("userCredentials", 0);
@@ -216,7 +214,7 @@ databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventLi
         //check if this username exist
         if(snapshot.hasChild(userName)){
             Toast.makeText(LoginActivity.this, "Surenthar Email : "+snapshot.child(userName).child("Email").getValue(String.class), Toast.LENGTH_SHORT).show();
-            emailh = snapshot.child(userName).child("Email").getValue(String.class);
+            emailAddress = snapshot.child(userName).child("Email").getValue(String.class);
             String url = "https://blooddonationappsurenthar.000webhostapp.com/sendEmail.php";
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -237,9 +235,8 @@ databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventLi
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-//                String emailTemp = email[0];
                     Map<String, String> params = new HashMap<>();
-                    params.put("email", emailh);
+                    params.put("email", emailAddress);
                     params.put("code", ""+ String.valueOf(TACcode));
                     return params;
                 }
@@ -253,36 +250,5 @@ databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventLi
 
     }
 });
-
-
-
-//String url = "https://blooddonationappsurenthar.000webhostapp.com/sendEmail.php";
-//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(LoginActivity.this, OTPCodeActivity.class);
-//                intent.putExtra("TACCode", String.valueOf(TACcode));
-//                startActivity(intent);
-//                finish();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(LoginActivity.this, "Error : "+error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        }){
-//            @Nullable
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-////                String emailTemp = email[0];
-//                Map<String, String> params = new HashMap<>();
-//                params.put("email", emailh);
-//                params.put("code", ""+ String.valueOf(TACcode));
-//                return params;
-//            }
-//        };
-//        requestQueue.add(stringRequest);
     }
 }
