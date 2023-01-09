@@ -118,9 +118,9 @@ int TACcode;
                                         editor.putString("firstName", firstName);
                                         editor.putString("lastName", lastName);
                                         editor.putString("phoneNumber", phoneNumber);
-
+                                        editor.putString("address",  address);
                                         editor.putString("latitude", String.valueOf(latitude));
-                                        editor.putString("longitude", String.valueOf(latitude));
+                                        editor.putString("longitude", String.valueOf(longitude));
 
                                         editor.putString("country", country);
                                         editor.putString("email", email);

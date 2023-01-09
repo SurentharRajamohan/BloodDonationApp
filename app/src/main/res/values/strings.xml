@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StartActivity</string>
+    <string name="app_name">Blood Donation</string>
     <string name="emailAddressHint">Email address</string>
     <string name="usernameHint">Username</string>
     <string name="passwordHint">Password</string>
