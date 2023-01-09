@@ -3,8 +3,10 @@ package com.blooddonationapp.startactivity.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,8 +24,16 @@ import android.widget.Toast;
 
 import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
+import com.blooddonationapp.startactivity.UserData.Notification;
+import com.blooddonationapp.startactivity.UserData.Request;
+import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
 import java.text.SimpleDateFormat;
@@ -61,6 +71,8 @@ public class developer_tools extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private DatabaseReference databaseReference;
+    private ArrayList<User> tempUser;
 
     public developer_tools() {
         // Required empty public constructor
@@ -147,6 +159,12 @@ public class developer_tools extends Fragment {
         submitDataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
                 String bloodBankName = ETBloodBankName.getText().toString();
                 String bloodBankAddress = ETBloodBankAddress.getText().toString();
                 String bloodBankLongitude = ETBloodBankLongitude.getText().toString();
@@ -160,6 +178,12 @@ public class developer_tools extends Fragment {
                 dao.add(bloodBankObject).addOnSuccessListener(suc -> {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
                 });
+
+
+
+                Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood" );
+                loadUser(notification);
+
             }
         });
         return view;
@@ -170,5 +194,65 @@ public class developer_tools extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.MainActivity_NHF_fragmentContainer, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void loadUser(Notification notification){
+
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        databaseReference = firebaseDatabase.getReference("users");
+
+        ArrayList<String> list = new ArrayList<>();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    User user = dataSnapshot.getValue(User.class);
+                    final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
+                    if(isAdmin==false) {
+                        list.add(user.getFirstName());
+                    }
+
+
+                }
+                addNotification(notification,list);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+    }
+
+    private void addNotification(Notification notification, ArrayList<String> list){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+
+
+
+
+        for(int i = 0; i< list.size(); i++){
+//            Toast.makeText(getContext(), list.get(i).getFirstName(), Toast.LENGTH_SHORT).show();
+            databaseReference = firebaseDatabase.getReference("notification").child(list.get(i));
+            databaseReference.push().setValue(notification);
+        }
+
+
+
+
+
     }
 }
