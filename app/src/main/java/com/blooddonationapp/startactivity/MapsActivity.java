@@ -177,7 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-            Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
+            Intent intent = new Intent(MapsActivity.this, PopSuccessful.class);
             Bundle bundle2 = new Bundle();
             bundle2.putString("DonorName", DonorName);
 
