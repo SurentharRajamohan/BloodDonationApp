@@ -1,11 +1,14 @@
 package com.blooddonationapp.startactivity.UserData;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String firstName,latitude,longitude,bloodGroup, image;
     private int points;
     private boolean isAdmin;
     private double distance;
+
 
     public User(String firstName, String latitude, String longitude,String bloodGroup) {
         this.firstName = firstName;

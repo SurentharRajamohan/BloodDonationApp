@@ -246,10 +246,8 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
                     editor.putString("gender", gender);
                     editor.putString("dateOfBirth", dateOfBirth);
                     editor.putString("latitude", String.valueOf(databaseReference.child("users").child(username).child("LatLng").child("latitude")));
-
-                    Toast.makeText(EditProfilePage.this, sharedPref.getString("latitude", "latitude"), Toast.LENGTH_SHORT).show();
                     editor.putString("longitude", String.valueOf(databaseReference.child("users").child(username).child("LatLng").child("longitude")));
-//                    Toast.makeText(EditProfilePage.this, sharedPref.getString("", "latitude"), Toast.LENGTH_SHORT).show();
+
                     editor.commit();
                 }
 
