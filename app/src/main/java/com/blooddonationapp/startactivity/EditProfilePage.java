@@ -45,8 +45,6 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
     private EditText dateChoice, firstName, lastName, address, phoneNumber, email, country; //EditProfile_editText_dateChoice
     final Calendar myCalendar = Calendar.getInstance();
     private Button submit;
-//    private Toolbar toolbar;
-
 
 
 
