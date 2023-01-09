@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.overflow_menu_sendRequest:
                         switchFragmentRequestBlood();
                         return true;
+                    case R.id.overflow_menu_addEvent:
+                        startActivity(new Intent(this, AddEventActivity.class));
                 }
             }
 //            Navigation.findNavController(this,R.id.MainActivity_NHF_fragmentContainer).navigate(item.getItemId());

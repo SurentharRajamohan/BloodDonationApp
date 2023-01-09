@@ -182,7 +182,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             Bundle bundle2 = new Bundle();
             bundle2.putString("DonorName", DonorName);
-
             intent.putExtra("User", list.get(position));
 
 
