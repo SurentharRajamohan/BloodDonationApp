@@ -164,18 +164,14 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
             bloodTypeSpinner.setSelection(7);
         }
 
-submit.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-updateData();
-        Toast.makeText(EditProfilePage.this, "Successfully updated data", Toast.LENGTH_SHORT).show();
-        finish();
-
-    }
-});
-
-
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateData();
+                Toast.makeText(EditProfilePage.this, "Successfully updated data", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 
 
@@ -258,7 +254,7 @@ updateData();
     }
 
     private void updateLabel() {
-        String myFormat="dd//MM/yy";
+        String myFormat="dd/MM/yy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
         dateChoice.setText(dateFormat.format(myCalendar.getTime()));
     }

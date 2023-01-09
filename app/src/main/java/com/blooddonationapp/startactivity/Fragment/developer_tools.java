@@ -2,6 +2,7 @@ package com.blooddonationapp.startactivity.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
@@ -103,7 +105,9 @@ public class developer_tools extends Fragment {
         goBackHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new HomeFragment());
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
             }
         });
 

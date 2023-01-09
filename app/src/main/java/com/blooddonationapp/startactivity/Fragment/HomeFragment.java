@@ -54,18 +54,12 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    //declaring floatingAction Menu and its buttons
-    FloatingActionMenu floatingActionMenu;
-    FloatingActionButton addRequestButton, registerAdminButton;
-
-
     private Spinner bloodTypeSpinner, malaysianStateSpinner;
     private Button searchButton;
     private FloatingActionButton floatingActionButton;
 
     DatabaseReference databaseReference;
     SearchView searchView;
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -100,26 +94,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-
-
-        //floatingActionButton visibility for the admin users
-        floatingActionMenu = view.findViewById(R.id.HomePage_FB_Main);
-        registerAdminButton = view.findViewById(R.id.HomePage_FB_registerAdmin);
-        addRequestButton = view.findViewById(R.id.HomePage_FB_addBloodRequest);
-
-
-        //DONT FUCKING CHANGE THIS
+        // DON'T CHANGE THIS!
         SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",0);
         final boolean isAdmin = sharedPref.getBoolean("isAdmin", false);
-
-
-        if(!isAdmin){
-            floatingActionMenu.setVisibility(View.GONE);
-//            floatingActionButton.setVisibility(View.GONE);
-        }
-
-
 
         // Initialize the state spinner
         malaysianStateSpinner = (Spinner) view.findViewById(R.id.fragmentHome_spinner_state);
@@ -132,25 +109,6 @@ public class HomeFragment extends Fragment {
         ArrayAdapter<CharSequence> adapterBloodTypeSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.bloodGroup, android.R.layout.simple_spinner_dropdown_item);
         adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
-
-        // redirection for floating button
-        addRequestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Add donor request", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                replaceFragment(new developer_tools());
-            }
-        });
-
-        // register admin page redirection
-        registerAdminButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AddAdminActivity.class));
-            }
-        });
-
 
         // Code for the card list view
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragmentHome_refresh_swipe);
@@ -192,17 +150,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-    }
-
-    private void queryData() {
-
-    }
-
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.MainActivity_NHF_fragmentContainer, fragment);
-        fragmentTransaction.commit();
     }
 
     @Override
