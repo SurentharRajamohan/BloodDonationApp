@@ -1,6 +1,15 @@
 package com.blooddonationapp.startactivity.UserData;
 
+<<<<<<< Updated upstream
 public class User {
+=======
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+
+public class User implements Parcelable {
+>>>>>>> Stashed changes
 
     private String firstName,latitude,longitude,bloodGroup, image;
     private int points;
@@ -19,6 +28,24 @@ public class User {
     public User( ) {
 
     }
+
+    protected User(Parcel in) {
+        firstName = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public double getDistance() {
         return distance;
@@ -81,4 +108,17 @@ public class User {
         this.bloodGroup = bloodGroup;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(firstName);
+        parcel.writeString(latitude);
+        parcel.writeString(longitude);
+        parcel.writeString(bloodGroup);
+
+    }
 }

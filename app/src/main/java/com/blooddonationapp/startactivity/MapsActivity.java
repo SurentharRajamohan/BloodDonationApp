@@ -178,10 +178,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
+<<<<<<< Updated upstream
             Bundle bundle2 = new Bundle();
             bundle2.putString("DonorName", DonorName);
+=======
+            intent.putExtra("User", list.get(position));
+//            Bundle bundle2 = new Bundle();
+//            bundle2.putString("DonorName", DonorName);
 
-            intent.putExtras(bundle2);
+>>>>>>> Stashed changes
+
             startActivity(intent);
         }
     }
@@ -205,7 +211,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     final Double tempLat = dataSnapshot.child("LatLng").child("latitude").getValue(double.class);
                     final Double tempLng = dataSnapshot.child("LatLng").child("longitude").getValue(double.class);
                     final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
-                    DonorName = users.getFirstName();
+//                    DonorName = users.getFirstName();
 
 
                     final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));

@@ -17,6 +17,8 @@ import com.blooddonationapp.startactivity.PersonalDetailsActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.RegisterActivity;
 import com.blooddonationapp.startactivity.UserData.Request;
+import com.blooddonationapp.startactivity.UserData.User;
+import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,12 +76,16 @@ public class PopDonorDetails extends Activity {
         sharedPreferences = getSharedPreferences("userCredentials", 0);
         isAdmin = sharedPreferences.getBoolean("isAdmin", false);
 
+        Intent intent = getIntent();
+        User donor = intent.getParcelableExtra("User");
+        DonorName = donor.getFirstName();
+
         btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //write data to database
-                      Bundle bundle = getIntent().getExtras();
-                      DonorName = bundle.getString("DonorName");
+//                      Bundle bundle = getIntent().getExtras();
+//                      DonorName = bundle.getString("DonorName");
                         user = sharedPreferences.getString("username", "");
 
                         addNewRequest(DonorName,user);
@@ -89,7 +95,7 @@ public class PopDonorDetails extends Activity {
                          Bundle bundle2 = new Bundle();
                         bundle2.putString("DonorName", DonorName);
 
-                        intent.putExtras(bundle);
+                        intent.putExtras(bundle2);
                          startActivity(intent);
 
 
