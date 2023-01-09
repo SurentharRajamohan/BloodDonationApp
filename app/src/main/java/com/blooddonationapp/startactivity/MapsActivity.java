@@ -177,16 +177,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+
             Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
-<<<<<<< Updated upstream
+
             Bundle bundle2 = new Bundle();
             bundle2.putString("DonorName", DonorName);
-=======
-            intent.putExtra("User", list.get(position));
-//            Bundle bundle2 = new Bundle();
-//            bundle2.putString("DonorName", DonorName);
 
->>>>>>> Stashed changes
+            intent.putExtra("User", list.get(position));
+
 
             startActivity(intent);
         }

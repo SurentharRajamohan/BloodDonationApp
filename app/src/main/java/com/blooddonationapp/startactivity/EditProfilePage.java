@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +33,10 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class EditProfilePage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -80,8 +85,6 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         String countryV = sharedPref.getString("country","Null");
         String bloodGroupV = sharedPref.getString("bloodGroup","Null");
 
-//Toolbar backbutton
-//        toolbar = findViewById(R.id.TBMainAct);
 
 
         //initialize the edit text
@@ -164,18 +167,14 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
             bloodTypeSpinner.setSelection(7);
         }
 
-submit.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-updateData();
-        Toast.makeText(EditProfilePage.this, "Successfully updated data", Toast.LENGTH_SHORT).show();
-        finish();
-
-    }
-});
-
-
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateData();
+                Toast.makeText(EditProfilePage.this, "Successfully updated data", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 
 
@@ -231,6 +230,7 @@ updateData();
                     databaseReference.child("users").child(username).child("country").setValue(countryV);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
+                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),addressV));
 
                     SharedPreferences sharedPref = getSharedPreferences("userCredentials", 0);
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -245,6 +245,9 @@ updateData();
                     editor.putString("email", emailV);
                     editor.putString("gender", gender);
                     editor.putString("dateOfBirth", dateOfBirth);
+                    editor.putString("latitude", String.valueOf(databaseReference.child("users").child(username).child("LatLng").child("latitude")));
+                    editor.putString("longitude", String.valueOf(databaseReference.child("users").child(username).child("LatLng").child("longitude")));
+
                     editor.commit();
                 }
 
@@ -257,8 +260,32 @@ updateData();
         }
     }
 
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
+    }
+
     private void updateLabel() {
-        String myFormat="dd//MM/yy";
+        String myFormat="dd/MM/yy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
         dateChoice.setText(dateFormat.format(myCalendar.getTime()));
     }

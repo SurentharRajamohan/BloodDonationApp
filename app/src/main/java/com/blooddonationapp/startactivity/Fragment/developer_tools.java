@@ -1,9 +1,16 @@
 package com.blooddonationapp.startactivity.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,15 +26,27 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
+import com.blooddonationapp.startactivity.UserData.Notification;
+import com.blooddonationapp.startactivity.UserData.Request;
+import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +78,8 @@ public class developer_tools extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private DatabaseReference databaseReference;
+    private ArrayList<User> tempUser;
 
     public developer_tools() {
         // Required empty public constructor
@@ -103,11 +124,13 @@ public class developer_tools extends Fragment {
         goBackHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new HomeFragment());
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
             }
         });
 
-        // EDIT TEXT SHIT
+        // EDIT TEXT
         ETBloodBankName = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankName);
         ETBloodBankAddress = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankAddress);
         ETBloodBankLongitude = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankLongitude);
@@ -143,10 +166,22 @@ public class developer_tools extends Fragment {
         submitDataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
                 String bloodBankName = ETBloodBankName.getText().toString();
                 String bloodBankAddress = ETBloodBankAddress.getText().toString();
-                String bloodBankLongitude = ETBloodBankLongitude.getText().toString();
-                String bloodBankLatitude = ETBloodBankLatitude.getText().toString();
+                LatLng address = getLocationFromAddress(getContext(), bloodBankAddress);
+
+                Double bloodBankLongitudeRaw = address.longitude;
+                Double bloodBankLatitudeRaw = address.latitude;
+                String bloodBankLongitude = bloodBankLatitudeRaw.toString();
+                String bloodBankLatitude = bloodBankLongitudeRaw.toString();
+
+
                 String currentTime = TCCurrentTime.getText().toString();
                 String currentDate = date;
                 String wantedBlood = bloodTypeSpinner.getSelectedItem().toString();
@@ -156,6 +191,12 @@ public class developer_tools extends Fragment {
                 dao.add(bloodBankObject).addOnSuccessListener(suc -> {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
                 });
+
+
+
+                Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood" );
+                loadUser(notification);
+
             }
         });
         return view;
@@ -166,5 +207,89 @@ public class developer_tools extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.MainActivity_NHF_fragmentContainer, fragment);
         fragmentTransaction.commit();
+    }
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
+    }
+        
+    private void loadUser(Notification notification){
+
+
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            databaseReference = firebaseDatabase.getReference("users");
+
+            ArrayList<String> list = new ArrayList<>();
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        User user = dataSnapshot.getValue(User.class);
+                        final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
+                        if (isAdmin == false) {
+                            list.add(user.getFirstName());
+                        }
+
+
+                    }
+                    addNotification(notification, list);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+    private void addNotification(Notification notification, ArrayList<String> list){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+
+
+
+
+        for(int i = 0; i< list.size(); i++){
+//            Toast.makeText(getContext(), list.get(i).getFirstName(), Toast.LENGTH_SHORT).show();
+            databaseReference = firebaseDatabase.getReference("notification").child(list.get(i));
+            databaseReference.push().setValue(notification);
+        }
+
+
+
+
+
     }
 }

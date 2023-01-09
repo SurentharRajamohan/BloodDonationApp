@@ -1,20 +1,22 @@
 package com.blooddonationapp.startactivity.UserData;
 
-<<<<<<< Updated upstream
-public class User {
-=======
+
+import java.util.ArrayList;
+
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
 
 public class User implements Parcelable {
->>>>>>> Stashed changes
+
 
     private String firstName,latitude,longitude,bloodGroup, image;
     private int points;
     private boolean isAdmin;
     private double distance;
+
 
     public User(String firstName, String latitude, String longitude,String bloodGroup) {
         this.firstName = firstName;

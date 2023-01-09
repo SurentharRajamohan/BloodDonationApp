@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/DestHome"
-        android:label="fragment_home"
+        android:label="Home Page"
         tools:layout="@layout/fragment_home"
         android:name="com.blooddonationapp.startactivity.Fragment.HomeFragment"/>
     <fragment
         android:id="@+id/DestRequest"
         android:name="com.blooddonationapp.startactivity.Fragment.RequestFragment"
-        android:label="fragment_request"
+        android:label="Requests"
         tools:layout="@layout/fragment_request" />
     <fragment
         android:id="@+id/DestNotification"
         android:name="com.blooddonationapp.startactivity.Fragment.NotificationFragment"
-        android:label="fragment_notification"
+        android:label="Notifications"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/DestProfile"
         android:name="com.blooddonationapp.startactivity.Fragment.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
 
