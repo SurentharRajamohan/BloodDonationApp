@@ -257,25 +257,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
                     databaseReference.child("users").child(username).child("points").setValue(0);
 
-                    Geocoder geocoder = new Geocoder(PersonalDetailsActivity.this);
-                    List<Address> addressList;
-                    double latitude, longitude;
-                    try {
-                        addressList = geocoder.getFromLocationName(address , 1);
-
-                        if(addressList != null){
-                            latitude = addressList.get(0).getLatitude();
-                            longitude = addressList.get(0).getLongitude();
-                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(longitude);
-                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(latitude);
-                        }else {
-                            databaseReference.child("users").child(username).child("address").child("longitude").setValue(25.0001);
-                            databaseReference.child("users").child(username).child("address").child("latitude").setValue(71.0001);
-                        }
-
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
                 }
 
                 @Override
