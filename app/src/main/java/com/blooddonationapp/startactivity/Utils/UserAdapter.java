@@ -59,7 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         User user = list.get(position);
         holder.name.setText(user.getFirstName());
         holder.bloodtype.setText(user.getBloodGroup());
-        holder.distance.setText(new DecimalFormat("##.##" + " km").format(user.getDistance()/1000));
+        holder.distance.setText(new DecimalFormat("##.##" + " km").format(user.getDistance()));
 //        Glide.with(holder.donorImage.getContext()).load(user.getImage()).into(holder.donorImage);
         FirebaseStorage mStorage = FirebaseStorage.getInstance("gs://blood-donation-applicati-79711.appspot.com/");
         StorageReference ref = mStorage.getReference();
