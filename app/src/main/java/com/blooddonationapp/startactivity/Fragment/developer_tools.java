@@ -223,7 +223,7 @@ public class developer_tools extends Fragment {
             }
 
             Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
 
@@ -231,39 +231,40 @@ public class developer_tools extends Fragment {
         }
 
         return p1;
+    }
         
     private void loadUser(Notification notification){
 
 
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        databaseReference = firebaseDatabase.getReference("users");
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            databaseReference = firebaseDatabase.getReference("users");
 
-        ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> list = new ArrayList<>();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    User user = dataSnapshot.getValue(User.class);
-                    final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
-                    if(isAdmin==false) {
-                        list.add(user.getFirstName());
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        User user = dataSnapshot.getValue(User.class);
+                        final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
+                        if (isAdmin == false) {
+                            list.add(user.getFirstName());
+                        }
+
+
                     }
+                    addNotification(notification, list);
 
 
                 }
-                addNotification(notification,list);
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                }
+            });
+        }
 
 
 
@@ -271,7 +272,7 @@ public class developer_tools extends Fragment {
 
 
 
-    }
+
 
     private void addNotification(Notification notification, ArrayList<String> list){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
