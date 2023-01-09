@@ -98,18 +98,6 @@ public class HomeFragment extends Fragment {
         SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",0);
         final boolean isAdmin = sharedPref.getBoolean("isAdmin", false);
 
-        // Initialize the state spinner
-        malaysianStateSpinner = (Spinner) view.findViewById(R.id.fragmentHome_spinner_state);
-        ArrayAdapter<CharSequence> adapterMalaysianStateSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.states, android.R.layout.simple_spinner_item);
-        adapterMalaysianStateSpinner.setDropDownViewResource(R.layout.home_fragment_custom_spinner_item);
-        malaysianStateSpinner.setAdapter(adapterMalaysianStateSpinner);
-
-        // Initialize the blood type spinner
-        bloodTypeSpinner = (Spinner) view.findViewById(R.id.fragmentHome_spinner_bloodType);
-        ArrayAdapter<CharSequence> adapterBloodTypeSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.bloodGroup, android.R.layout.simple_spinner_dropdown_item);
-        adapterBloodTypeSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bloodTypeSpinner.setAdapter(adapterBloodTypeSpinner);
-
         // Code for the card list view
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragmentHome_refresh_swipe);
         recyclerView = (RecyclerView) view.findViewById(R.id.fragmentHome_recyclerView_cards);

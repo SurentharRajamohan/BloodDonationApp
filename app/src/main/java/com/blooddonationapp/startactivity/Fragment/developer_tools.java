@@ -1,8 +1,12 @@
 package com.blooddonationapp.startactivity.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -29,17 +33,20 @@ import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -123,7 +130,7 @@ public class developer_tools extends Fragment {
             }
         });
 
-        // EDIT TEXT SHIT
+        // EDIT TEXT
         ETBloodBankName = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankName);
         ETBloodBankAddress = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankAddress);
         ETBloodBankLongitude = (EditText) view.findViewById(R.id.fragmentDeveloperTools_editText_bloodBankLongitude);
@@ -167,8 +174,14 @@ public class developer_tools extends Fragment {
 
                 String bloodBankName = ETBloodBankName.getText().toString();
                 String bloodBankAddress = ETBloodBankAddress.getText().toString();
-                String bloodBankLongitude = ETBloodBankLongitude.getText().toString();
-                String bloodBankLatitude = ETBloodBankLatitude.getText().toString();
+                LatLng address = getLocationFromAddress(getContext(), bloodBankAddress);
+
+                Double bloodBankLongitudeRaw = address.longitude;
+                Double bloodBankLatitudeRaw = address.latitude;
+                String bloodBankLongitude = bloodBankLatitudeRaw.toString();
+                String bloodBankLatitude = bloodBankLongitudeRaw.toString();
+
+
                 String currentTime = TCCurrentTime.getText().toString();
                 String currentDate = date;
                 String wantedBlood = bloodTypeSpinner.getSelectedItem().toString();
@@ -196,6 +209,29 @@ public class developer_tools extends Fragment {
         fragmentTransaction.commit();
     }
 
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
+        
     private void loadUser(Notification notification){
 
 
