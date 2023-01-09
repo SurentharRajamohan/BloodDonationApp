@@ -12,4 +12,9 @@
         android:title="Request Blood"
         android:icon="@drawable/send_request_icon"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/overflow_menu_addEvent"
+        android:title="Request Blood"
+        android:icon="@drawable/ic_add_event"
+        app:showAsAction="always"/>
 </menu>
