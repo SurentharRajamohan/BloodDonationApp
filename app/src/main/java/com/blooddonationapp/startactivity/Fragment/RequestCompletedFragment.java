@@ -16,6 +16,7 @@ import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
+import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
  * Use the {@link RequestCompletedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RequestCompletedFragment extends Fragment {
+public class RequestCompletedFragment extends Fragment implements RecyclerViewInterface {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,7 +90,7 @@ public class RequestCompletedFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        adapter = new CardView_RequestAdapter(getContext());
+        adapter = new CardView_RequestAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
 
         loadData("completed");
@@ -150,6 +151,11 @@ public class RequestCompletedFragment extends Fragment {
 
         databaseReference.setValue(point);
 
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
 
     }
 }

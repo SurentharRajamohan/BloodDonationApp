@@ -20,6 +20,7 @@ import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
+import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
  * Use the {@link RequestPendingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RequestPendingFragment extends Fragment {
+public class RequestPendingFragment extends Fragment implements RecyclerViewInterface {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +52,7 @@ public class RequestPendingFragment extends Fragment {
     private FrameLayout frameLayout;
     private ArrayList<Request> tempRequest;
     private String key;
+    private String name;
 
     public RequestPendingFragment() {
         // Required empty public constructor
@@ -97,7 +99,7 @@ public class RequestPendingFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        adapter = new CardView_RequestAdapter(getContext());
+        adapter = new CardView_RequestAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
 
         loadData("pending");
@@ -193,7 +195,7 @@ public class RequestPendingFragment extends Fragment {
     public void copyFirebaseData(String user) {
 
 
-        Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
+        Query selectedQuery = databaseReference.orderByChild("status").equalTo("Request accepted");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
         databaseReference = firebaseDatabase.getReference("request").child(user).child("pending");
@@ -206,7 +208,7 @@ public class RequestPendingFragment extends Fragment {
                 for (DataSnapshot complete : dataSnapshot.getChildren()) {
                     String completeKey = complete.getKey();
                     String date = complete.child("date").getValue(String.class);
-                    String name = complete.child("name").getValue(String.class);
+                    name = complete.child("name").getValue(String.class);
                     String time = complete.child("time").getValue(String.class);
                     toCompleted.child(completeKey).child("date").setValue(date);
                     toCompleted.child(completeKey).child("name").setValue(name);
@@ -252,5 +254,54 @@ public class RequestPendingFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        androidx.appcompat.app.AlertDialog.Builder builder1 = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+        builder1.setMessage("Accept Request?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials",0);
+                        String user = sharedPreferences.getString("username", "");
+
+                        String key = tempRequest.get(position).getKey();
+                        String name = tempRequest.get(position).getName();
+
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                        databaseReference = firebaseDatabase.getReference("request").child(user).child("pending").child(key).child("status");
+                        databaseReference.setValue("Request accepted");
+                        DatabaseReference databaseReference2 = firebaseDatabase.getReference("request").child(name).child("pending").child(key).child("status");
+                        databaseReference2.setValue("Request accepted");
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
     }
 }
