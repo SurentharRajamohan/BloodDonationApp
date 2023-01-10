@@ -4,6 +4,8 @@ public class Notification {
 
     String date, title, description;
 
+
+
     public Notification(){}
 
     public Notification(String date, String title, String description) {
@@ -11,6 +13,8 @@ public class Notification {
         this.title = title;
         this.description = description;
     }
+
+
 
     public String getDate() {
         return date;
