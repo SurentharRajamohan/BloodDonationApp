@@ -128,7 +128,7 @@ public class PopDonorDetails extends Activity {
 
 
 
-        newRequest = new Request(hospital, getCurrentDate(),currentTime, "Request Accepted",donor);
+        newRequest = new Request(hospital, getCurrentDate(),currentTime, "Request Pending",donor);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

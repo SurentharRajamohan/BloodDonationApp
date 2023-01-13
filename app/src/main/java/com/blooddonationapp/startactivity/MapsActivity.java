@@ -208,7 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     final Double tempLat = dataSnapshot.child("LatLng").child("latitude").getValue(double.class);
                     final Double tempLng = dataSnapshot.child("LatLng").child("longitude").getValue(double.class);
                     final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
-//                    DonorName = users.getFirstName();
+                    final String donorNameDisplay = users.getFirstName();
 
 
                     final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
@@ -221,6 +221,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         LatLng allLatLang = new LatLng(tempLat, tempLng);
                         MarkerOptions markerOptions = new MarkerOptions();
                         markerOptions.position(allLatLang);
+                        markerOptions.title(donorNameDisplay);
 
                         mMap.addMarker(markerOptions);
 

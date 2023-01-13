@@ -132,7 +132,7 @@
             android:id="@+id/fragmentProfile_button_editProfile"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
             android:layout_weight="2"
             android:background="@drawable/button_shape"
             android:text="Edit Profile" />
@@ -142,8 +142,11 @@
             android:id="@+id/fragmentProfile_button_logout"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
+
+
             android:layout_weight="2"
             android:background="@drawable/button_shape"
             android:text="Logout" />
