@@ -66,6 +66,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Please enter your email address", Toast.LENGTH_SHORT).show();
                 else if(username.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your username", Toast.LENGTH_SHORT).show();
+                else if(username.contains(" "))
+                    Toast.makeText(RegisterActivity.this, "Do not use space in username", Toast.LENGTH_SHORT).show();
                 else if(password.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your password", Toast.LENGTH_SHORT).show();
                 else if(confirmPassword.isEmpty())

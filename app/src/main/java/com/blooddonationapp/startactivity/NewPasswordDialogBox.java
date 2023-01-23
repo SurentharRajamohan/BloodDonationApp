@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class NewPasswordDialogBox extends AppCompatDialogFragment {
 
-    private EditText password, confirmPassword;
+    private EditText password;
     private NewPasswordDialogBoxListener newPasswordDialogListener;
 
 
@@ -26,7 +26,7 @@ public class NewPasswordDialogBox extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_password_dialog_box, null);
         password = view.findViewById(R.id.NewPassword_ET_Password);
-//        confirmPassword = view.findViewById(R.id.NewPassword_ET_ConfirmPassword);
+
 
         builder.setView(view)
                 .setTitle("New Password")
