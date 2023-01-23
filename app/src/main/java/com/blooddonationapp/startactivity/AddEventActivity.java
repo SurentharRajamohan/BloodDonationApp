@@ -1,5 +1,6 @@
 package com.blooddonationapp.startactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.blooddonationapp.startactivity.UserData.Notification;
@@ -73,6 +74,7 @@ public class AddEventActivity extends AppCompatActivity {
                     Notification notification = new Notification(date, eventName, "Location: " + location + " " + "Time: " + time);
                     loadUser(notification);
                     Toast.makeText(AddEventActivity.this, "Succesfully added", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddEventActivity.this, MainActivity.class));
                 }
 
 
@@ -115,10 +117,10 @@ public class AddEventActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User user = dataSnapshot.getValue(User.class);
-                    final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
-                    if (isAdmin == false) {
+
+
                         list.add(user.getUserID());
-                    }
+                        
 
 
                 }
