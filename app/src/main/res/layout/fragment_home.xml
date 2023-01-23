@@ -13,110 +13,112 @@
         android:layout_width="371dp"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/edit_text_shape"
         app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_bloodNeeded"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.652" />
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/fragmentHome_textView_bloodNeeded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
         android:fontFamily="@font/montserrat"
         android:text="Blood Needed"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_emergencyDonorText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="374dp"
         android:layout_height="97dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/homepage_custom_border"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_emergencyDonorText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentHome_textView_bloodNeeded">
 
         <ImageView
             android:id="@+id/fragmentHome_image_abMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_abminus" />
+            android:src="@drawable/blood_empty_abminus" />
 
         <ImageView
             android:id="@+id/fragmentHome_image_aMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_aminus" />
+            android:src="@drawable/blood_empty_aminus" />
 
         <ImageView
             android:id="@+id/fragmentHome_image_aplusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_aplus" />
+            android:src="@drawable/blood_empty_aplus" />
 
         <ImageView
             android:id="@+id/fragmentHome_image_bMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_bminus" />
+            android:src="@drawable/blood_empty_bminus" />
 
         <ImageView
             android:id="@+id/fragmentHome_image_bPlusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_bplus" />
+            android:src="@drawable/blood_empty_bplus" />
 
         <ImageView
             android:id="@+id/fragmentHome_image_oMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_full_ominus" />
+            android:src="@drawable/blood_empty_ominus" />
+
+        <ImageView
+            android:id="@+id/fragmentHome_image_oPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_oplus" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/fragmentHome_textView_emergencyDonorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/emergency_donors"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.966" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="376dp"
-        android:layout_height="379dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="279dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/homepage_custom_border"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.885">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentHome_textView_emergencyDonorText">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/fragmentHome_refresh_swipe"
@@ -131,4 +133,15 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/fragmentHome_button_refreshStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh Stock"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_emergencyDonorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
