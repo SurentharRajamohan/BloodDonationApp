@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.blooddonationapp.startactivity.AddAdminActivity;
 import com.blooddonationapp.startactivity.R;
@@ -110,7 +111,6 @@ public class HomeFragment extends Fragment {
         // To access DAO (CRUD database operations) methods
         dao = new DAOBloodBank();
         loadData();
-
         return view;
     }
 
