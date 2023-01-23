@@ -108,6 +108,7 @@ String emailAddress;
                                 final String dateOfBirth = snapshot.child(username).child("dateOfBirth").getValue(String.class);
                                 final String phoneNumber = snapshot.child(username).child("phoneNumber").getValue(String.class);
 
+
                                 if(databasePassword.equals(password)){
                                     Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
 

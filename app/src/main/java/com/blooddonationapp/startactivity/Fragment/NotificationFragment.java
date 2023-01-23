@@ -101,7 +101,7 @@ public class NotificationFragment extends Fragment {
     public void loadData() {
 
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
-        String user = sharedPreferences.getString("username", "");
+        String user = sharedPreferences.getString("userID", "");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("notification").child(user);

@@ -16,6 +16,7 @@ public class User implements Parcelable {
     private int points;
     private boolean isAdmin;
     private double distance;
+    private String userID;
 
 
     public User(String firstName, String latitude, String longitude,String bloodGroup) {
@@ -108,6 +109,10 @@ public class User implements Parcelable {
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
+    }
+
+    public String getUserID() {
+        return userID;
     }
 
     @Override

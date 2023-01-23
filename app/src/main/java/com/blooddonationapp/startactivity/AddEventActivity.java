@@ -117,7 +117,7 @@ public class AddEventActivity extends AppCompatActivity {
                     User user = dataSnapshot.getValue(User.class);
                     final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
                     if (isAdmin == false) {
-                        list.add(user.getFirstName());
+                        list.add(user.getUserID());
                     }
 
 
