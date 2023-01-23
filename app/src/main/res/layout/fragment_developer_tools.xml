@@ -47,7 +47,7 @@
         android:id="@+id/linearLayout15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="116dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,33 +85,6 @@
             android:padding="10dp"
             android:paddingLeft="50dp" />
 
-        <EditText
-            android:id="@+id/fragmentDeveloperTools_editText_bloodBankLongitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/edit_text_shape"
-            android:hint="Blood Bank Longitude"
-            android:minWidth="800dp"
-            android:minHeight="30dp"
-            android:padding="10dp"
-            app:layout_constraintVertical_bias="0.431" />
-
-        <EditText
-            android:id="@+id/fragmentDeveloperTools_editText_bloodBankLatitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/edit_text_shape"
-            android:hint="Blood Bank Latitude"
-            android:minWidth="800dp"
-            android:minHeight="30dp"
-            android:padding="10dp"
-            app:layout_constraintVertical_bias="0.517" />
 
         <Spinner
             android:id="@+id/fragmentDeveloperTools_spinner_bloodType"
