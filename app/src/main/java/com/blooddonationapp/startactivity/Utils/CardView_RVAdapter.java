@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class CardView_RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
     private Context context;
     ArrayList<bloodBank> list = new ArrayList<>();
 
@@ -51,18 +50,28 @@ public class CardView_RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         vh.bloodBankDate.setText(bloodBankObj.getDate());
         vh.bloodBankTime.setText(bloodBankObj.getTime());
 
-        if(bloodBankObj.getBloodRequested().equals("AB-")){
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_abminus);
-        }else if(bloodBankObj.getBloodRequested().equals("A-")) {
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_aminus);
-        } else if(bloodBankObj.getBloodRequested().equals("A+")){
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_aplus);
-        } else if(bloodBankObj.getBloodRequested().equals("B-")){
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_bminus);
-        } else if(bloodBankObj.getBloodRequested().equals("B+")){
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_bplus);
-        } else if(bloodBankObj.getBloodRequested().equals("O-")){
-            vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_ominus);
+        switch (bloodBankObj.getBloodRequested()) {
+            case "AB-":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_abminus);
+                break;
+            case "A-":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_aminus);
+                break;
+            case "A+":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_aplus);
+                break;
+            case "B-":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_bminus);
+                break;
+            case "B+":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_bplus);
+                break;
+            case "O-":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_ominus);
+                break;
+            case "O+":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_oplus);
+                break;
         }
 
     }
