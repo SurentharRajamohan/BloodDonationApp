@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class CardView_RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    static int numberABMinus, numberAMinus, numberAPlus;
     private Context context;
     ArrayList<bloodBank> list = new ArrayList<>();
 
