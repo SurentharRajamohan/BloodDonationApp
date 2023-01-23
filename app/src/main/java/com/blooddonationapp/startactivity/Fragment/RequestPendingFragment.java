@@ -53,6 +53,7 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
     private ArrayList<Request> tempRequest;
     private String key;
     private String name;
+    private boolean isAdmin;
 
     public RequestPendingFragment() {
         // Required empty public constructor
@@ -105,7 +106,11 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
         loadData("pending");
 
         ItemTouchHelper helper = new ItemTouchHelper(callback);
-        helper.attachToRecyclerView(recyclerView);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", true);
+        if(isAdmin) {
+            helper.attachToRecyclerView(recyclerView);
+        }
 
         return view;
     }
@@ -117,8 +122,8 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
-        databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
+                databaseReference.addValueEventListener(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -258,50 +263,42 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
     @Override
     public void onItemClick(int position) {
-        androidx.appcompat.app.AlertDialog.Builder builder1 = new androidx.appcompat.app.AlertDialog.Builder(getContext());
-        builder1.setMessage("Accept Request?");
-        builder1.setCancelable(true);
+        if (!isAdmin) {
+            androidx.appcompat.app.AlertDialog.Builder builder1 = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+            builder1.setMessage("Accept Request?");
+            builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials",0);
-                        String user = sharedPreferences.getString("username", "");
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials", 0);
+                            String user = sharedPreferences.getString("username", "");
 
-                        String key = tempRequest.get(position).getKey();
-                        String name = tempRequest.get(position).getName();
+                            String key = tempRequest.get(position).getKey();
+                            String name = tempRequest.get(position).getName();
 
-                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-                        databaseReference = firebaseDatabase.getReference("request").child(user).child("pending").child(key).child("status");
-                        databaseReference.setValue("Request accepted");
-                        DatabaseReference databaseReference2 = firebaseDatabase.getReference("request").child(name).child("pending").child(key).child("status");
-                        databaseReference2.setValue("Request accepted");
-
-
-
+                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                            databaseReference = firebaseDatabase.getReference("request").child(user).child("pending").child(key).child("status");
+                            databaseReference.setValue("Request accepted");
+                            DatabaseReference databaseReference2 = firebaseDatabase.getReference("request").child(name).child("pending").child(key).child("status");
+                            databaseReference2.setValue("Request accepted");
 
 
+                        }
+                    });
 
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
 
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
 
-
-
-
-
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-
+        }
     }
 }
