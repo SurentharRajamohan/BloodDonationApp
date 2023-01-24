@@ -7,32 +7,24 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextClock;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blooddonationapp.startactivity.PersonalDetailsActivity;
+
 import com.blooddonationapp.startactivity.R;
-import com.blooddonationapp.startactivity.RegisterActivity;
 import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.User;
-import com.blooddonationapp.startactivity.UserData.bloodBank;
-import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
 public class PopDonorDetails extends Activity {
 

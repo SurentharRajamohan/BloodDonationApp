@@ -1,11 +1,10 @@
 package com.blooddonationapp.startactivity.Fragment;
 
-import android.content.DialogInterface;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +15,7 @@ import android.view.ViewGroup;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Notification;
-import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.Utils.CardView_NotificationAdapter;
-import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
-import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

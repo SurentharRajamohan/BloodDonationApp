@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class AddAdminActivity extends AppCompatActivity {
 
@@ -78,6 +81,8 @@ public class AddAdminActivity extends AppCompatActivity {
                 final String country = countryInput.getText().toString();
                 final String phoneNumber = phoneNumberInput.getText().toString();
 
+                //Pattern for phone number
+                Pattern phoneNumberPattern = Pattern.compile("(011[0-9]{8}|015[0-9]{8}|01[0-9]{8}|0[0-9]{9})");
 
                 //exceptions
                 if(email.isEmpty())
@@ -104,14 +109,10 @@ public class AddAdminActivity extends AppCompatActivity {
                     Toast.makeText(AddAdminActivity.this, "Make sure the password length is >= 8", Toast.LENGTH_SHORT).show();
                 else if(!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
                     Toast.makeText(AddAdminActivity.this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                else if(!(phoneNumberPattern.matcher(phoneNumber).matches()))
+                    Toast.makeText(AddAdminActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-
-                    //write data to database
+                //write data to database
                 else{
 
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -136,31 +137,13 @@ public class AddAdminActivity extends AppCompatActivity {
                                 databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                                 databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
 
+                                databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),address));
+                                databaseReference.child("users").child(username).child("address").setValue(address);
 
                                 databaseReference.child("users").child(username).child("bloodGroup").setValue("Null");
                                 databaseReference.child("users").child(username).child("gender").setValue("Null");
                                 databaseReference.child("users").child(username).child("dateOfBirth").setValue("Null");
                                 databaseReference.child("users").child(username).child("points").setValue(0);
-
-                                Geocoder geocoder = new Geocoder(AddAdminActivity.this);
-                                List<Address> addressList;
-                                double latitude, longitude;
-                                try {
-                                    addressList = geocoder.getFromLocationName(address , 1);
-
-                                    if(addressList != null){
-                                        latitude = addressList.get(0).getLatitude();
-                                        longitude = addressList.get(0).getLongitude();
-                                        databaseReference.child("users").child(username).child("address").child("longitude").setValue(longitude);
-                                        databaseReference.child("users").child(username).child("address").child("latitude").setValue(latitude);
-                                    }else {
-                                        databaseReference.child("users").child(username).child("address").child("longitude").setValue(25.0001);
-                                        databaseReference.child("users").child(username).child("address").child("latitude").setValue(71.0001);
-                                    }
-
-                                }catch (IOException e){
-                                    e.printStackTrace();
-                                }
 
                                 Toast.makeText(AddAdminActivity.this, "Successfully added admin user", Toast.LENGTH_SHORT).show();
                                 finish();
@@ -180,5 +163,28 @@ public class AddAdminActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 }

@@ -1,13 +1,11 @@
 package com.blooddonationapp.startactivity.Fragment;
 
-import android.app.AlertDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,7 +27,6 @@ import android.widget.Toast;
 import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Notification;
-import com.blooddonationapp.startactivity.UserData.Request;
 import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.DAOBloodBank;
@@ -41,11 +38,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 /**

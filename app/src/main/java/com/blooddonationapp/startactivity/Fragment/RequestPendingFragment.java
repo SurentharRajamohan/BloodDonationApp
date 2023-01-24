@@ -18,10 +18,8 @@ import android.widget.FrameLayout;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Request;
-import com.blooddonationapp.startactivity.UserData.bloodBank;
 import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
 import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

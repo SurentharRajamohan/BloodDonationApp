@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Request;
-import com.blooddonationapp.startactivity.UserData.User;
 import com.blooddonationapp.startactivity.Utils.CardView_RequestAdapter;
 import com.blooddonationapp.startactivity.Utils.RecyclerViewInterface;
 import com.google.firebase.database.DataSnapshot;

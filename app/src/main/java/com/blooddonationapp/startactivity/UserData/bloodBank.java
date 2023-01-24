@@ -3,7 +3,7 @@ package com.blooddonationapp.startactivity.UserData;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.time.LocalDateTime;
+
 
 public class bloodBank implements Parcelable {
 

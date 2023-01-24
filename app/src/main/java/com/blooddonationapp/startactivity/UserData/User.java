@@ -1,13 +1,7 @@
 package com.blooddonationapp.startactivity.UserData;
 
-
-import java.util.ArrayList;
-
-
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.ArrayList;
 
 public class User implements Parcelable {
 

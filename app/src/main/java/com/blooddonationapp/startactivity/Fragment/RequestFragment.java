@@ -2,7 +2,6 @@ package com.blooddonationapp.startactivity.Fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -10,16 +9,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.Utils.MyViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 /**
  * A simple {@link Fragment} subclass.
