@@ -22,20 +22,20 @@
         android:id="@+id/DisplayBloodBank_TV_LocationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="80dp"
         android:text="Location"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Locationtxt"
         app:layout_constraintTop_toBottomOf="@+id/DisplayBloodBank_ImageView_bloodBankImage" />
 
     <TextView
         android:id="@+id/DisplayBloodBank_TV_NameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="100dp"
         android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Phonetxt"
         app:layout_constraintTop_toBottomOf="@+id/DisplayBloodBank_TV_LocationTitle" />
 
     <Button
