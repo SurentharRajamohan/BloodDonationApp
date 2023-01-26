@@ -27,11 +27,11 @@
             android:id="@+id/TVname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/bloodbank_image"
-            android:text="Bloodbank Name"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/bloodbank_image"
+            android:text="@string/bloodBankNameHint"
             android:textColor="#000"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
@@ -39,22 +39,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/TVname"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/bloodbank_image"
-            android:text="distance"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/bloodbank_image"
+            android:text="@string/distance"
             android:textColor="#000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/TVaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/TVdistance"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/bloodbank_image"
-            android:text="location"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/bloodbank_image"
+            android:text="@string/locationHint"
             android:textColor="#000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

@@ -17,7 +17,8 @@
             android:layout_height="40dp"
             android:padding="5dp"
             android:src="@drawable/blood_image_request"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/login_image"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,26 +34,26 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/NotificationFragment_textView_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="@string/dateHint"
                     android:textSize="14sp"
                     android:layout_margin="0dp"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:textStyle="bold"/>
             </LinearLayout>
 
             <TextView
                 android:id="@+id/NotificationFragment_textView_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
+                android:layout_height="0dp"
+                android:text="@string/description"
                 android:textSize="16sp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"/>

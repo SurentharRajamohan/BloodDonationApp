@@ -14,7 +14,8 @@
             android:layout_height="40dp"
             android:padding="5dp"
             android:src="@drawable/blood_image_request"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/login_image"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
                     android:id="@+id/RequestFragment_textView_nameDisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name:"
+                    android:text="@string/nameText"
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
@@ -36,7 +37,7 @@
                     android:id="@+id/RequestFragment_textView_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Should be the name"
+                    android:text=""
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"/>
@@ -49,7 +50,7 @@
                     android:id="@+id/RequestFragment_textView_dateDisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date:"
+                    android:text="@string/date"
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
@@ -58,7 +59,7 @@
                     android:id="@+id/RequestFragment_textView_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Should be the date"
+                    android:text=""
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"/>
@@ -71,7 +72,7 @@
                     android:id="@+id/RequestFragment_textView_timedisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time:"
+                    android:text="@string/timeHint"
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
@@ -80,7 +81,7 @@
                     android:id="@+id/RequestFragment_textView_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Should be the time"
+                    android:text=""
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"/>
@@ -89,8 +90,8 @@
             <TextView
                 android:id="@+id/RequestFragment_textView_status"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Should be the status"
+                android:layout_height="0dp"
+                android:text=""
                 android:textSize="16sp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"/>

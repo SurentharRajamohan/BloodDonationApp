@@ -358,6 +358,8 @@ public class HomeFragment extends Fragment {
         // setting up the views for fragments for onClickListener methods
         searchView = (SearchView) view.findViewById(R.id.HomePage_SV_searchBloodBank);
 
+        searchView.setQueryHint("Search Blood Bank/Hospital");
+
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

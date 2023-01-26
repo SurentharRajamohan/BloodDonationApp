@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:text="Questionnaire"
+        android:text="@string/Questionnaire"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text="Fill up the following questionnaire and become a donor"
+        android:text="@string/questionnaireDesc"
         android:textSize="16sp"
         />
 
@@ -38,7 +38,7 @@
         android:layout_weight="50"
         android:layout_marginTop="10dp"
         android:weightSum="60"
-       >
+        tools:ignore="InefficientWeight">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -48,7 +48,8 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="10"
-            android:background="@drawable/questionnaire_container">
+            android:background="@drawable/questionnaire_container"
+            tools:ignore="NestedWeights">
 
             <TextView
                 android:id="@+id/q1"
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Do you have diabetes?"
+                android:text="@string/question1"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,14 +82,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                 <RadioButton
                     android:id="@+id/no1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="No" />
+                    android:text="@string/no" />
 
 
             </RadioGroup>
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Have you ever had problem with your heart or lungs?"
+                android:text="@string/question2"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,14 +138,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                     <RadioButton
                         android:id="@+id/no2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="No" />
+                        android:text="@string/no" />
 
 
 
@@ -168,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="In the last 28 days have you had Covid-19?"
+                android:text="@string/question3"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,14 +196,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                     <RadioButton
                         android:id="@+id/no3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="No" />
+                        android:text="@string/no" />
 
 
             </RadioGroup>
@@ -225,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Have you ever been tested positive for HIV/AIDS?"
+                android:text="@string/question4"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -252,14 +253,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                     <RadioButton
                         android:id="@+id/no4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="No" />
+                        android:text="@string/no" />
 
 
 
@@ -283,7 +284,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Have you ever had cancer?"
+                android:text="@string/question5"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -309,14 +310,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                     <RadioButton
                         android:id="@+id/no5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="No" />
+                        android:text="@string/no" />
 
 
 
@@ -340,7 +341,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Any vaccinations injected in the past 3 months?"
+                android:text="@string/question6"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -367,14 +368,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Yes" />
+                        android:text="@string/yes" />
 
                     <RadioButton
                         android:id="@+id/no6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="No" />
+                        android:text="@string/no" />
 
 
 
@@ -393,7 +394,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
-        android:text="By clicking, you agree to our terms and conditions"
+        android:text="@string/agreement"
          />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -404,7 +405,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/unavailable_button_shape"
-        android:text="Become a donor"
+        android:text="@string/donor"
         android:textColor="#FFFFFF" />
 
 
