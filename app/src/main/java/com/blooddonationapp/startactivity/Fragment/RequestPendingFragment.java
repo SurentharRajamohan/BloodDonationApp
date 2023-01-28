@@ -270,11 +270,7 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
     public void deleteFirebaseData(String user, String key) {
 
-<<<<<<< Updated upstream
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
-        String user = sharedPreferences.getString("username", "");
-=======
->>>>>>> Stashed changes
+
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 

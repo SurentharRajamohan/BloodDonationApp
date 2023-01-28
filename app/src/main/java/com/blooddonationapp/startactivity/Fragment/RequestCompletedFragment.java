@@ -121,12 +121,10 @@ public class RequestCompletedFragment extends Fragment implements RecyclerViewIn
                 adapter.setItems(tempRequest);
                 adapter.notifyDataSetChanged();
                 //add points for donor
-<<<<<<< Updated upstream
-                points = tempRequest.size() * 10;
-=======
+
                 points = tempRequest.size()+1*10;
->>>>>>> Stashed changes
-//                setPoints(user,points);
+
+
                 setPoints(user, points);
 
 
