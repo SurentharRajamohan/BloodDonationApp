@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blooddonationapp.startactivity.R;
 
-public class notificationViewHolder extends RecyclerView.ViewHolder{
+public class notificationViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView title,date,description;
+    public TextView title, date, description;
 
     public notificationViewHolder(@NonNull View itemView) {
         super(itemView);

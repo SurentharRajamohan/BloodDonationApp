@@ -35,40 +35,40 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = host.getNavController();
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         setupBottomNavMenu(navController);
     }
 
-    private void adminChecker(){
-        SharedPreferences sharedPref = getSharedPreferences("userCredentials",0);
+    private void adminChecker() {
+        SharedPreferences sharedPref = getSharedPreferences("userCredentials", 0);
         isAdmin = sharedPref.getBoolean("isAdmin", false);
     }
 
 
     @Override
     public boolean onSupportNavigateUp() {
-        return Navigation.findNavController(this,R.id.MainActivity_NHF_fragmentContainer).navigateUp();
+        return Navigation.findNavController(this, R.id.MainActivity_NHF_fragmentContainer).navigateUp();
     }
 
-    private void  setupBottomNavMenu(NavController navController){
+    private void setupBottomNavMenu(NavController navController) {
         BottomNavigationView bottomNav = findViewById(R.id.MainActivity_BN_bottomNav);
-        NavigationUI.setupWithNavController(bottomNav,navController);
+        NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu if the user is admin:
-        if(isAdmin)
+        if (isAdmin)
             getMenuInflater().inflate(R.menu.overflow_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         try {
-            if(isAdmin){
-                switch (item.getItemId()){
+            if (isAdmin) {
+                switch (item.getItemId()) {
                     case R.id.overflow_menu_registerAdmins:
                         startActivity(new Intent(this, AddAdminActivity.class));
                         return true;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void switchFragmentRequestBlood(){
+    public void switchFragmentRequestBlood() {
         developer_tools fragment = new developer_tools();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.MainActivity_NHF_fragmentContainer, fragment);

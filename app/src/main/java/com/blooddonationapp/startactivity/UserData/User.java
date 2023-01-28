@@ -6,14 +6,14 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
 
-    private String firstName,latitude,longitude,bloodGroup, image;
+    private String firstName, latitude, longitude, bloodGroup, image;
     private int points;
     private boolean isAdmin;
     private double distance;
     private String userID;
 
 
-    public User(String firstName, String latitude, String longitude,String bloodGroup) {
+    public User(String firstName, String latitude, String longitude, String bloodGroup) {
         this.firstName = firstName;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -21,8 +21,7 @@ public class User implements Parcelable {
     }
 
 
-
-    public User( ) {
+    public User() {
 
     }
 

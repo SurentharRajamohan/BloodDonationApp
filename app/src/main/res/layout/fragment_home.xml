@@ -53,6 +53,13 @@
             android:src="@drawable/blood_empty_abminus" />
 
         <ImageView
+            android:id="@+id/fragmentHome_image_abPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_abplus"/>
+
+        <ImageView
             android:id="@+id/fragmentHome_image_aMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

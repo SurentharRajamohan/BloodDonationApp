@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
 public class bloodBank implements Parcelable {
 
     private String name, address, bloodRequested;
@@ -16,7 +15,8 @@ public class bloodBank implements Parcelable {
     //to calculate distance
     private double distance;
 
-    public bloodBank(){}
+    public bloodBank() {
+    }
 
     public bloodBank(String name, String address, String latitude, String longitude, String date, String time, String bloodRequested, String state) {
         this.name = name;

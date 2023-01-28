@@ -55,7 +55,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final double MAX_DISTANCE = 30.0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,19 +63,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(binding.getRoot());
 
 
-
-
-
-
-
 //         Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-
-
 
 
         mBottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
@@ -87,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
-                if(sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
+                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -100,6 +90,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
             }
+
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
 
@@ -132,13 +123,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-       // DisplayBloodBank bb = new DisplayBloodBank();
+        // DisplayBloodBank bb = new DisplayBloodBank();
 
         Bundle bundle = getIntent().getExtras();
         latitude = bundle.getString("latitude");
         longitude = bundle.getString("longitude");
         String name = bundle.getString("name");
-
 
 
         mMap = googleMap;
@@ -154,7 +144,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bloodBankLatLng, 10.0f));
 
 
-
         getNearbyMarkers();
 
     }
@@ -163,12 +152,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onItemClick(int position) {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userCredentials",0);
-        boolean isAdmin = sharedPreferences.getBoolean("isAdmin",false);
+        SharedPreferences sharedPreferences = getSharedPreferences("userCredentials", 0);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
 
-        if(isAdmin) {
-
-
+        if (isAdmin) {
 
 
             Intent intent = new Intent(MapsActivity.this, PopDonorDetails.class);
@@ -189,14 +176,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         recyclerView = findViewById(R.id.recyclerView);
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserAdapter(this,list,this);
+        adapter = new UserAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User users = dataSnapshot.getValue(User.class);
                     final Double tempLat = dataSnapshot.child("LatLng").child("latitude").getValue(double.class);
                     final Double tempLng = dataSnapshot.child("LatLng").child("longitude").getValue(double.class);
@@ -205,10 +192,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     final Double distance = getDistance(tempLat, tempLng, Double.parseDouble(latitude), Double.parseDouble(longitude));
-                    users.setDistance(distance/1000);
+                    users.setDistance(distance / 1000);
 
-                    if(!isAdmin && users.getDistance() < MAX_DISTANCE) {
-
+                    if (!isAdmin && users.getDistance() < MAX_DISTANCE) {
 
 
                         LatLng allLatLang = new LatLng(tempLat, tempLng);
@@ -235,18 +221,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-
     }
 
-    private void filterBloodType(){
-         B= findViewById(R.id.BtypeButton);
-        A= findViewById(R.id.ATypeButton);
-        O= findViewById(R.id.OTypeButton);
+    private void filterBloodType() {
+        B = findViewById(R.id.BtypeButton);
+        A = findViewById(R.id.ATypeButton);
+        O = findViewById(R.id.OTypeButton);
 
         B.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               filter("B");
+                filter("B");
             }
         });
         A.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +248,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-
 
 
     }
@@ -292,23 +276,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private double getDistance(Double donorlat,Double donorlng, Double lat, Double lng){
+    private double getDistance(Double donorlat, Double donorlng, Double lat, Double lng) {
 
-        Location startPoint=new Location("donorLocation");
+        Location startPoint = new Location("donorLocation");
         startPoint.setLatitude(donorlat);
         startPoint.setLongitude(donorlng);
 
 
-        Location endPoint=new Location("locationA");
+        Location endPoint = new Location("locationA");
         endPoint.setLatitude(lat);
         endPoint.setLongitude(lng);
 
-        double distance=startPoint.distanceTo(endPoint);
+        double distance = startPoint.distanceTo(endPoint);
 
         return distance;
-
-
-
 
 
     }

@@ -178,7 +178,7 @@ public class developer_tools extends Fragment {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
                 });
 
-                Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood" );
+                Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood");
                 loadUser(notification);
             }
         });
@@ -214,37 +214,38 @@ public class developer_tools extends Fragment {
         }
         return p1;
     }
-        
-    private void loadUser(Notification notification){
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
-            databaseReference = firebaseDatabase.getReference("users");
 
-            ArrayList<String> list = new ArrayList<>();
+    private void loadUser(Notification notification) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        databaseReference = firebaseDatabase.getReference("users");
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
+        ArrayList<String> list = new ArrayList<>();
 
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        User user = dataSnapshot.getValue(User.class);
-                        final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
-                        if (isAdmin == false) {
-                            list.add(user.getFirstName());
-                        }
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    final boolean isAdmin = dataSnapshot.child("isAdmin").getValue(boolean.class);
+                    if (isAdmin == false) {
+                        list.add(user.getFirstName());
                     }
-                    addNotification(notification, list);
                 }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                addNotification(notification, list);
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-    private void addNotification(Notification notification, ArrayList<String> list){
+            }
+        });
+    }
+
+    private void addNotification(Notification notification, ArrayList<String> list) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
-        for(int i = 0; i< list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             databaseReference = firebaseDatabase.getReference("notification").child(list.get(i));
             databaseReference.push().setValue(notification);
         }

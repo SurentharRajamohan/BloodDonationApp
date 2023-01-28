@@ -40,7 +40,6 @@ public class AddEventActivity extends AppCompatActivity {
         //firebase variables (database)
 
 
-
         //Toolbar back button
         androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.AddEvent_TB_toolbar);
 
@@ -55,7 +54,7 @@ public class AddEventActivity extends AppCompatActivity {
         //declaring the variables
         final EditText eventNameInput = findViewById(R.id.AddEvent_ET_eventName);
         final EditText locationInput = findViewById(R.id.AddEvent_ET_location);
-        final EditText dateInput  = findViewById(R.id.AddEvent_ET_date);
+        final EditText dateInput = findViewById(R.id.AddEvent_ET_date);
         final EditText timeInput = findViewById(R.id.AddEvent_ET_time);
         final Button submit = findViewById(R.id.AddEvent_BTN_submit);
 
@@ -68,7 +67,7 @@ public class AddEventActivity extends AppCompatActivity {
                 final String date = dateInput.getText().toString();
                 final String time = timeInput.getText().toString();
 
-                if(eventName.isEmpty() || location.isEmpty() || date.isEmpty() || time.isEmpty()){
+                if (eventName.isEmpty() || location.isEmpty() || date.isEmpty() || time.isEmpty()) {
                     Toast.makeText(AddEventActivity.this, "Please complete all details", Toast.LENGTH_SHORT).show();
                 } else {
                     Notification notification = new Notification(date, eventName, "Location: " + location + " " + "Time: " + time);
@@ -78,13 +77,8 @@ public class AddEventActivity extends AppCompatActivity {
                 }
 
 
-
-
             }
         });
-
-
-
 
 
     }
@@ -92,7 +86,7 @@ public class AddEventActivity extends AppCompatActivity {
     private void addEvent(Notification notification, ArrayList<String> list) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
-        for(int i = 0; i< list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
 //
             databaseReference = firebaseDatabase.getReference("notification").child(list.get(i));
             databaseReference.push().setValue(notification);
@@ -102,8 +96,7 @@ public class AddEventActivity extends AppCompatActivity {
     }
 
 
-
-    private void loadUser(Notification notification){
+    private void loadUser(Notification notification) {
 
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
@@ -119,8 +112,7 @@ public class AddEventActivity extends AppCompatActivity {
                     User user = dataSnapshot.getValue(User.class);
 
 
-                        list.add(user.getUserID());
-                        
+                    list.add(user.getUserID());
 
 
                 }
@@ -135,16 +127,6 @@ public class AddEventActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }
