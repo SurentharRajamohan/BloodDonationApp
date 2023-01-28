@@ -10,8 +10,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +22,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blooddonationapp.startactivity.AddAdminActivity;
 import com.blooddonationapp.startactivity.MainActivity;
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.UserData.Notification;
@@ -54,7 +53,7 @@ public class developer_tools extends Fragment {
     private Button goBackHomeBtn, submitDataBtn;
 
     // EDIT TEXT FIELDS
-    private EditText ETBloodBankName, ETBloodBankAddress, ETBloodBankLongitude, ETBloodBankLatitude;
+    private EditText ETBloodBankName, ETBloodBankAddress;
 
     // FOR GETTING CURRENT DATE
     private TextView dateTimeDisplay;
@@ -172,6 +171,17 @@ public class developer_tools extends Fragment {
                 String currentDate = date;
                 String wantedBlood = bloodTypeSpinner.getSelectedItem().toString();
                 String state = malaysianStateSpinner.getSelectedItem().toString();
+
+                //exceptions
+                if(bloodBankName.isEmpty())
+                    Toast.makeText(getActivity(), "Please enter the blood bank's name", Toast.LENGTH_SHORT).show();
+                else if(bloodBankAddress.isEmpty())
+                    Toast.makeText(getActivity(), "Please enter the admin's email address", Toast.LENGTH_SHORT).show();
+                else if(wantedBlood.isEmpty())
+                    Toast.makeText(getActivity(), "Please choose the wanted blood type", Toast.LENGTH_SHORT).show();
+                else if(state.isEmpty())
+                    Toast.makeText(getActivity(), "Please choose the state", Toast.LENGTH_SHORT).show();
+                else{
                 bloodBank bloodBankObject = new bloodBank(bloodBankName, bloodBankAddress, bloodBankLongitude,
                         bloodBankLatitude, currentDate, currentTime, wantedBlood, state);
                 dao.add(bloodBankObject).addOnSuccessListener(suc -> {
@@ -179,17 +189,10 @@ public class developer_tools extends Fragment {
                 });
 
                 Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood" );
-                loadUser(notification);
+                loadUser(notification);}
             }
         });
         return view;
-    }
-
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.MainActivity_NHF_fragmentContainer, fragment);
-        fragmentTransaction.commit();
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
