@@ -36,17 +36,15 @@ import java.util.Locale;
 
 public class EditProfilePage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-   private Spinner genderSpinner, bloodTypeSpinner;
+    private Spinner genderSpinner, bloodTypeSpinner;
     private EditText dateChoice, firstName, lastName, address, phoneNumber, email, country; //EditProfile_editText_dateChoice
     final Calendar myCalendar = Calendar.getInstance();
     private Button submit;
 
 
-
     //firebase variables (database)
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
     DatabaseReference databaseReference = firebaseDatabase.getReference();
-
 
 
     @Override
@@ -65,26 +63,25 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         });
 
 
-//Shared preference instance
+        //Shared preference instance
         SharedPreferences sharedPref = getSharedPreferences("userCredentials", Context.MODE_PRIVATE);
         String userNameV = sharedPref.getString("username", "User");
-        String firstNameV = sharedPref.getString("firstName","Null");
-        String lastNameV = sharedPref.getString("lastName","Null");
-        String addressV = sharedPref.getString("address","Null");
-        String phoneNumberV = sharedPref.getString("phoneNumber","Null");
-        String emailV = sharedPref.getString("email","Null");
-        String genderV = sharedPref.getString("gender","Null");
-        String dateOfBirthV = sharedPref.getString("dateOfBirth","Null");
-        String countryV = sharedPref.getString("country","Null");
-        String bloodGroupV = sharedPref.getString("bloodGroup","Null");
-
+        String firstNameV = sharedPref.getString("firstName", "Null");
+        String lastNameV = sharedPref.getString("lastName", "Null");
+        String addressV = sharedPref.getString("address", "Null");
+        String phoneNumberV = sharedPref.getString("phoneNumber", "Null");
+        String emailV = sharedPref.getString("email", "Null");
+        String genderV = sharedPref.getString("gender", "Null");
+        String dateOfBirthV = sharedPref.getString("dateOfBirth", "Null");
+        String countryV = sharedPref.getString("country", "Null");
+        String bloodGroupV = sharedPref.getString("bloodGroup", "Null");
 
 
         //initialize the edit text
         firstName = findViewById(R.id.EditProfile_editText_firstName);
         lastName = findViewById(R.id.EditProfile_editText_lastName);
         address = findViewById(R.id.EditProfile_editText_houseAddress);
-        phoneNumber= findViewById(R.id.EditProfile_editText_phoneNumber);
+        phoneNumber = findViewById(R.id.EditProfile_editText_phoneNumber);
         email = findViewById(R.id.EditProfile_editText_email);
         country = findViewById(R.id.EditProfile_editText_country);
 
@@ -100,37 +97,37 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         country.setText(countryV);
 
         // To initialize the spinner
-        genderSpinner =  findViewById(R.id.EditProfile_spinner_genderChoice);
+        genderSpinner = findViewById(R.id.EditProfile_spinner_genderChoice);
         ArrayAdapter<CharSequence> adapterGenderSpinner = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
         adapterGenderSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(adapterGenderSpinner);
         genderSpinner.setOnItemSelectedListener(this);
 
         //set data in spinners
-        if(genderV.equalsIgnoreCase("male")){
+        if (genderV.equalsIgnoreCase("male")) {
             genderSpinner.setSelection(0);
-        }else if(genderV.equalsIgnoreCase("female")){
+        } else if (genderV.equalsIgnoreCase("female")) {
             genderSpinner.setSelection(1);
-        }else{
+        } else {
             genderSpinner.setSelection(2);
         }
 
         // Date picker
-        dateChoice =  findViewById(R.id.EditProfile_editText_dateChoice);
+        dateChoice = findViewById(R.id.EditProfile_editText_dateChoice);
         dateChoice.setText(dateOfBirthV);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH,month);
-                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
                 updateLabel();
             }
         };
         dateChoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(EditProfilePage.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(EditProfilePage.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -142,21 +139,21 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
         bloodTypeSpinner.setOnItemSelectedListener(this);
 
 
-        if(bloodGroupV.equalsIgnoreCase("A+")){
+        if (bloodGroupV.equalsIgnoreCase("A+")) {
             bloodTypeSpinner.setSelection(0);
-        }else if(bloodGroupV.equalsIgnoreCase("A-")){
+        } else if (bloodGroupV.equalsIgnoreCase("A-")) {
             bloodTypeSpinner.setSelection(1);
-        }else if(bloodGroupV.equalsIgnoreCase("B+")){
+        } else if (bloodGroupV.equalsIgnoreCase("B+")) {
             bloodTypeSpinner.setSelection(2);
-        }else if(bloodGroupV.equalsIgnoreCase("B-")){
+        } else if (bloodGroupV.equalsIgnoreCase("B-")) {
             bloodTypeSpinner.setSelection(3);
-        }else if(bloodGroupV.equalsIgnoreCase("O+")){
+        } else if (bloodGroupV.equalsIgnoreCase("O+")) {
             bloodTypeSpinner.setSelection(4);
-        }else if(bloodGroupV.equalsIgnoreCase("O-")){
+        } else if (bloodGroupV.equalsIgnoreCase("O-")) {
             bloodTypeSpinner.setSelection(5);
-        }else if(bloodGroupV.equalsIgnoreCase("AB+")){
+        } else if (bloodGroupV.equalsIgnoreCase("AB+")) {
             bloodTypeSpinner.setSelection(6);
-        }else{
+        } else {
             bloodTypeSpinner.setSelection(7);
         }
 
@@ -223,7 +220,7 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
                     databaseReference.child("users").child(username).child("country").setValue(countryV);
                     databaseReference.child("users").child(username).child("gender").setValue(gender);
                     databaseReference.child("users").child(username).child("bloodGroup").setValue(bloodGroup);
-                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),addressV));
+                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(), addressV));
 
                     SharedPreferences sharedPref = getSharedPreferences("userCredentials", 0);
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -267,7 +264,7 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
             }
 
             Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
             Toast.makeText(context, "This address is invalid", Toast.LENGTH_SHORT).show();
@@ -278,8 +275,8 @@ public class EditProfilePage extends AppCompatActivity implements AdapterView.On
     }
 
     private void updateLabel() {
-        String myFormat="dd/MM/yy";
-        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+        String myFormat = "dd/MM/yy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         dateChoice.setText(dateFormat.format(myCalendar.getTime()));
     }
 

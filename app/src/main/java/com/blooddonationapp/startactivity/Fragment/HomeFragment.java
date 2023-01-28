@@ -37,7 +37,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
-    int bloodNumber_abminus = 0, bloodNumber_aminus = 0, bloodNumber_aplus = 0, bloodNumber_bminus, bloodNumber_bplus, bloodNumber_ominus, bloodNumber_oplus, bloodNumber_total = 0;
+    int bloodNumber_abminus = 0, bloodNumber_abplus = 0, bloodNumber_aminus = 0, bloodNumber_aplus = 0, bloodNumber_bminus, bloodNumber_bplus, bloodNumber_ominus, bloodNumber_oplus, bloodNumber_total = 0;
     static int childrenCountDatabase = 0;
 
     SwipeRefreshLayout swipeRefreshLayout;
@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
     Button refreshStockButton;
 
     //blood stock images
-    ImageView fragmentHome_image_abMinusBlood, fragmentHome_image_aMinusBlood, fragmentHome_image_aplusBlood,  fragmentHome_image_bMinusBlood,
+    ImageView fragmentHome_image_abMinusBlood, fragmentHome_image_abPlusBlood, fragmentHome_image_aMinusBlood, fragmentHome_image_aplusBlood, fragmentHome_image_bMinusBlood,
             fragmentHome_image_bPlusBlood, fragmentHome_image_oMinusBlood, fragmentHome_image_oPlusBlood;
 
     public HomeFragment() {
@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment {
 
         // for bloodstock images
         fragmentHome_image_abMinusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_abMinusBlood);
+        fragmentHome_image_abPlusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_abPlusBlood);
         fragmentHome_image_aMinusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_aMinusBlood);
         fragmentHome_image_aplusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_aplusBlood);
         fragmentHome_image_bMinusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_bMinusBlood);
@@ -100,7 +101,7 @@ public class HomeFragment extends Fragment {
         fragmentHome_image_oPlusBlood = (ImageView) view.findViewById(R.id.fragmentHome_image_oPlusBlood);
 
         // DON'T CHANGE THIS!
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",0);
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials", 0);
         final boolean isAdmin = sharedPref.getBoolean("isAdmin", false);
 
         // Code for the card list view
@@ -139,13 +140,16 @@ public class HomeFragment extends Fragment {
                 ArrayList<bloodBank> tempBloodBankObject = new ArrayList<>();
                 // snapshot variable is to access the database
 
-                for(DataSnapshot data : snapshot.getChildren()){
+                for (DataSnapshot data : snapshot.getChildren()) {
                     bloodBank bloodBanks = data.getValue(bloodBank.class);
                     switch (bloodBanks.getBloodRequested()) {
                         case "AB-":
                             bloodNumber_abminus++;
                             bloodNumber_total++;
                             break;
+                        case "AB+":
+                            bloodNumber_abplus++;
+                            bloodNumber_total++;
                         case "A-":
                             bloodNumber_aminus++;
                             bloodNumber_total++;
@@ -174,8 +178,8 @@ public class HomeFragment extends Fragment {
                     tempBloodBankObject.add(bloodBanks);
                 }
 
-                int factor = bloodNumber_total/childrenCountDatabase;
-                if(factor != 0){
+                int factor = bloodNumber_total / childrenCountDatabase;
+                if (factor != 0) {
                     insaneLogic(factor);
                 }
                 // adding it to the card view through the adapter
@@ -197,6 +201,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 bloodNumber_total = 0;
                 bloodNumber_abminus = 0;
+                bloodNumber_abplus = 0;
                 bloodNumber_aminus = 0;
                 bloodNumber_aplus = 0;
                 bloodNumber_bminus = 0;
@@ -205,13 +210,16 @@ public class HomeFragment extends Fragment {
                 bloodNumber_oplus = 0;
 
                 childrenCountDatabase = (int) snapshot.getChildrenCount();
-                for(DataSnapshot data : snapshot.getChildren()){
+                for (DataSnapshot data : snapshot.getChildren()) {
                     bloodBank bloodBanks = data.getValue(bloodBank.class);
                     switch (bloodBanks.getBloodRequested()) {
                         case "AB-":
                             bloodNumber_abminus++;
                             bloodNumber_total++;
                             break;
+                        case "AB+":
+                            bloodNumber_abplus++;
+                            bloodNumber_total++;
                         case "A-":
                             bloodNumber_aminus++;
                             bloodNumber_total++;
@@ -239,8 +247,8 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                int factor = bloodNumber_total/childrenCountDatabase;
-                if(factor != 0){
+                int factor = bloodNumber_total / childrenCountDatabase;
+                if (factor != 0) {
                     insaneLogic(factor);
                 }
             }
@@ -252,102 +260,115 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void insaneLogic(int factor){
+    public void insaneLogic(int factor) {
         bloodNumber_total = bloodNumber_total / factor;
 
         bloodNumber_abminus = bloodNumber_abminus / factor;
+        bloodNumber_abplus = bloodNumber_abplus / factor;
         bloodNumber_aminus = bloodNumber_aminus / factor;
         bloodNumber_aplus = bloodNumber_aplus / factor;
         bloodNumber_bminus = bloodNumber_bminus / factor;
         bloodNumber_bplus = bloodNumber_bplus / factor;
-        bloodNumber_ominus = bloodNumber_ominus /factor;
+        bloodNumber_ominus = bloodNumber_ominus / factor;
         bloodNumber_oplus = bloodNumber_oplus / factor;
     }
 
-    public void changeImageStock(){
+    public void changeImageStock() {
         float tempPercentage = 0;
 
         tempPercentage = (float) bloodNumber_abminus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_abMinusBlood.setBackgroundResource(R.drawable.blood_full_abminus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_abMinusBlood.setBackgroundResource(R.drawable.blood_high_abminus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_abMinusBlood.setBackgroundResource(R.drawable.blood_medium_abminus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_abMinusBlood.setBackgroundResource(R.drawable.blood_low_abminus);
+        }
+
+        tempPercentage = (float) bloodNumber_abplus / bloodNumber_total;
+        tempPercentage = tempPercentage * 100;
+        if (tempPercentage <= 5) {
+            fragmentHome_image_abPlusBlood.setBackgroundResource(R.drawable.blood_full_abplus);
+        } else if (tempPercentage <= 25) {
+            fragmentHome_image_abPlusBlood.setBackgroundResource(R.drawable.blood_high_abplus);
+        } else if (tempPercentage <= 50) {
+            fragmentHome_image_abPlusBlood.setBackgroundResource(R.drawable.blood_medium_abplus);
+        } else if (tempPercentage <= 75) {
+            fragmentHome_image_abPlusBlood.setBackgroundResource(R.drawable.blood_low_abplus);
         }
 
         tempPercentage = (float) bloodNumber_aminus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_aMinusBlood.setBackgroundResource(R.drawable.blood_full_aminus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_aMinusBlood.setBackgroundResource(R.drawable.blood_high_aminus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_aMinusBlood.setBackgroundResource(R.drawable.blood_medium_aminus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_aMinusBlood.setBackgroundResource(R.drawable.blood_low_aminus);
         }
 
         tempPercentage = (float) bloodNumber_aplus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_aplusBlood.setBackgroundResource(R.drawable.blood_full_aplus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_aplusBlood.setBackgroundResource(R.drawable.blood_high_aplus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_aplusBlood.setBackgroundResource(R.drawable.blood_medium_aplus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_aplusBlood.setBackgroundResource(R.drawable.blood_low_aplus);
         }
 
         tempPercentage = (float) bloodNumber_bminus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_bMinusBlood.setBackgroundResource(R.drawable.blood_full_bminus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_bMinusBlood.setBackgroundResource(R.drawable.blood_high_bminus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_bMinusBlood.setBackgroundResource(R.drawable.blood_medium_bminus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_bMinusBlood.setBackgroundResource(R.drawable.blood_low_bminus);
         }
 
         tempPercentage = (float) bloodNumber_bplus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_bPlusBlood.setBackgroundResource(R.drawable.blood_full_bplus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_bPlusBlood.setBackgroundResource(R.drawable.blood_high_bplus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_bPlusBlood.setBackgroundResource(R.drawable.blood_medium_bplus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_bPlusBlood.setBackgroundResource(R.drawable.blood_low_bplus);
         }
 
         tempPercentage = (float) bloodNumber_ominus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_oMinusBlood.setBackgroundResource(R.drawable.blood_full_ominus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_oMinusBlood.setBackgroundResource(R.drawable.blood_high_ominus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_oMinusBlood.setBackgroundResource(R.drawable.blood_medium_ominus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_oMinusBlood.setBackgroundResource(R.drawable.blood_low_ominus);
         }
 
         tempPercentage = (float) bloodNumber_oplus / bloodNumber_total;
         tempPercentage = tempPercentage * 100;
-        if(tempPercentage <= 5) {
+        if (tempPercentage <= 5) {
             fragmentHome_image_oPlusBlood.setBackgroundResource(R.drawable.blood_full_oplus);
-        } else if(tempPercentage <= 25){
+        } else if (tempPercentage <= 25) {
             fragmentHome_image_oPlusBlood.setBackgroundResource(R.drawable.blood_high_oplus);
-        } else if(tempPercentage <= 50){
+        } else if (tempPercentage <= 50) {
             fragmentHome_image_oPlusBlood.setBackgroundResource(R.drawable.blood_medium_oplus);
-        } else if(tempPercentage <= 75){
+        } else if (tempPercentage <= 75) {
             fragmentHome_image_oPlusBlood.setBackgroundResource(R.drawable.blood_low_oplus);
         }
     }

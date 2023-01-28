@@ -16,14 +16,14 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-       switch (position){
-           case 0:
-               return new RequestPendingFragment();
-           case 1:
-               return new RequestCompletedFragment();
-           default:
-               return new RequestPendingFragment();
-       }
+        switch (position) {
+            case 0:
+                return new RequestPendingFragment();
+            case 1:
+                return new RequestCompletedFragment();
+            default:
+                return new RequestPendingFragment();
+        }
     }
 
     @Override

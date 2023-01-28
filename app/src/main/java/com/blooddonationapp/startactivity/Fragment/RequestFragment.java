@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.blooddonationapp.startactivity.R;
 import com.blooddonationapp.startactivity.Utils.MyViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -75,9 +76,8 @@ public class RequestFragment extends Fragment {
     }
 
 
-
     @Override
-    public void onViewCreated( View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tabLayout = view.findViewById(R.id.RequestFragment_TL_tabLayout);
         viewPager2 = view.findViewById(R.id.RequestFragment_VP_viewPager);
         myViewPagerAdapter = new MyViewPagerAdapter(this);

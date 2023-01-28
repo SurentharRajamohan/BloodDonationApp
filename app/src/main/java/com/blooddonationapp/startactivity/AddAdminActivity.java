@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -85,44 +86,44 @@ public class AddAdminActivity extends AppCompatActivity {
                 Pattern phoneNumberPattern = Pattern.compile("(011[0-9]{8}|015[0-9]{8}|01[0-9]{8}|0[0-9]{9})");
 
                 //exceptions
-                if(email.isEmpty())
+                if (email.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's email address", Toast.LENGTH_SHORT).show();
-                else if(username.isEmpty())
+                else if (username.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's username", Toast.LENGTH_SHORT).show();
-                else if(password.isEmpty())
+                else if (password.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's password", Toast.LENGTH_SHORT).show();
-                else if(confirmPassword.isEmpty())
+                else if (confirmPassword.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's password", Toast.LENGTH_SHORT).show();
-                else if(firstName.isEmpty())
+                else if (firstName.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's firstname", Toast.LENGTH_SHORT).show();
-                else if(lastName.isEmpty())
+                else if (lastName.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's lastname", Toast.LENGTH_SHORT).show();
-                else if(address.isEmpty())
+                else if (address.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's address", Toast.LENGTH_SHORT).show();
-                else if(country.isEmpty())
+                else if (country.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's country", Toast.LENGTH_SHORT).show();
-                else if(phoneNumber.isEmpty())
+                else if (phoneNumber.isEmpty())
                     Toast.makeText(AddAdminActivity.this, "Please enter the admin's phone number", Toast.LENGTH_SHORT).show();
-                else if(!(password.equals(confirmPassword)))
+                else if (!(password.equals(confirmPassword)))
                     Toast.makeText(AddAdminActivity.this, "Entered passwords are not matching", Toast.LENGTH_SHORT).show();
-                else if(!(password.length() >= 8))
+                else if (!(password.length() >= 8))
                     Toast.makeText(AddAdminActivity.this, "Make sure the password length is >= 8", Toast.LENGTH_SHORT).show();
-                else if(!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
+                else if (!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
                     Toast.makeText(AddAdminActivity.this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
-                else if(!(phoneNumberPattern.matcher(phoneNumber).matches()))
+                else if (!(phoneNumberPattern.matcher(phoneNumber).matches()))
                     Toast.makeText(AddAdminActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
 
-                //write data to database
-                else{
+                    //write data to database
+                else {
 
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             //check for duplicate email address
-                            if(snapshot.hasChild(username))
+                            if (snapshot.hasChild(username))
                                 Toast.makeText(AddAdminActivity.this, "This username has been taken", Toast.LENGTH_SHORT).show();
-                            else{
+                            else {
 //                                // Generate a random UUID (Universally Unique Identifier)
                                 UUID uuid = UUID.randomUUID();
 
@@ -137,7 +138,7 @@ public class AddAdminActivity extends AppCompatActivity {
                                 databaseReference.child("users").child(username).child("firstName").setValue(firstName);
                                 databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
 
-                                databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),address));
+                                databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(), address));
                                 databaseReference.child("users").child(username).child("address").setValue(address);
 
                                 databaseReference.child("users").child(username).child("bloodGroup").setValue("Null");
@@ -164,6 +165,7 @@ public class AddAdminActivity extends AppCompatActivity {
         });
 
     }
+
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -178,7 +180,7 @@ public class AddAdminActivity extends AppCompatActivity {
             }
 
             Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
             Toast.makeText(context, "This address is invalid", Toast.LENGTH_SHORT).show();

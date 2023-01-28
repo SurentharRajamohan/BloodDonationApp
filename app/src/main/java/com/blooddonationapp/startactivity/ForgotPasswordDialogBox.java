@@ -18,9 +18,8 @@ public class ForgotPasswordDialogBox extends AppCompatDialogFragment {
     private ForgotPasswordDialogListener forgotPasswordDialogListener;
 
 
-
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -37,7 +36,7 @@ public class ForgotPasswordDialogBox extends AppCompatDialogFragment {
                 .setPositiveButton("Send Verification Code", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String usernameValue =  username.getText().toString();
+                        String usernameValue = username.getText().toString();
                         forgotPasswordDialogListener.sendTacCode(usernameValue);
                     }
                 });
@@ -57,12 +56,9 @@ public class ForgotPasswordDialogBox extends AppCompatDialogFragment {
         }
     }
 
-    public interface ForgotPasswordDialogListener{
+    public interface ForgotPasswordDialogListener {
         void sendTacCode(String username);
     }
-
-
-
 
 
 }

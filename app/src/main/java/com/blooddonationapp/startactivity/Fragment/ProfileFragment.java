@@ -94,23 +94,24 @@ public class ProfileFragment extends Fragment {
         editProfileBtn = view.findViewById(R.id.fragmentProfile_button_editProfile);
 
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("userCredentials", Context.MODE_PRIVATE);
         String userName = sharedPref.getString("username", "User");
-        boolean isAdmin = sharedPref.getBoolean("isAdmin",false);
-        String bloodGroup = sharedPref.getString("bloodGroup","No Blood Group");
-        String userid = sharedPref.getString("userID","No ID");
-        int points = sharedPref.getInt("points",0);
+        boolean isAdmin = sharedPref.getBoolean("isAdmin", false);
+        String bloodGroup = sharedPref.getString("bloodGroup", "No Blood Group");
+        String userid = sharedPref.getString("userID", "No ID");
+        int points = sharedPref.getInt("points", 0);
 
-        if(isAdmin){
-            editProfileBtn.setVisibility(View.GONE);}
+        if (isAdmin) {
+            editProfileBtn.setVisibility(View.GONE);
+        }
 
-            editProfileBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), EditProfilePage.class);
-                    startActivity(intent);
-                }
-            });
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfilePage.class);
+                startActivity(intent);
+            }
+        });
         logOut = view.findViewById(R.id.fragmentProfile_button_logout);
         editProfile = view.findViewById(R.id.fragmentProfile_button_editProfile);
         username = view.findViewById(R.id.fragmentProfile_textView_bloodDonorName);
@@ -125,7 +126,7 @@ public class ProfileFragment extends Fragment {
         bloodType.setText(bloodGroup);
         userID.setText(userid);
         pointsDisplay.setText(Integer.toString(points) + " points");
-        if(isAdmin){
+        if (isAdmin) {
             title.setText("Admin");
 
         }
@@ -153,7 +154,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Get a SharedPreferences object
-                        SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+                        SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials", Context.MODE_PRIVATE);
 
                         // Get an editor for the SharedPreferences object
                         SharedPreferences.Editor editor = preferences.edit();
@@ -169,7 +170,6 @@ public class ProfileFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                         startActivity(intent);
                         getActivity().finish();
-
                     }
                 });
 
@@ -195,7 +195,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Get a SharedPreferences object
-                SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials",Context.MODE_PRIVATE);
+                SharedPreferences preferences = getActivity().getSharedPreferences("userCredentials", Context.MODE_PRIVATE);
 
                 // Get an editor for the SharedPreferences object
                 SharedPreferences.Editor editor = preferences.edit();
@@ -211,13 +211,6 @@ public class ProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
-
-
-
-
-
-
 
 
         return view;

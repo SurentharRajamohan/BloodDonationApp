@@ -26,11 +26,11 @@ public class CardView_RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     ArrayList<bloodBank> list = new ArrayList<>();
 
-    public CardView_RVAdapter(Context ctx){
+    public CardView_RVAdapter(Context ctx) {
         this.context = ctx;
     }
 
-    public void setItems(ArrayList<bloodBank> bloodBanks){
+    public void setItems(ArrayList<bloodBank> bloodBanks) {
         list.addAll(bloodBanks);
     }
 
@@ -53,6 +53,9 @@ public class CardView_RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         switch (bloodBankObj.getBloodRequested()) {
             case "AB-":
                 vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_abminus);
+                break;
+            case "AB+":
+                vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_abplus);
                 break;
             case "A-":
                 vh.bloodTypeImage.setBackgroundResource(R.drawable.blood_full_aminus);

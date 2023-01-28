@@ -18,10 +18,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class OTPCodeActivity extends AppCompatActivity implements NewPasswordDialogBox.NewPasswordDialogBoxListener{
+public class OTPCodeActivity extends AppCompatActivity implements NewPasswordDialogBox.NewPasswordDialogBoxListener {
 
     Button confirm;
     PinView pinView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class OTPCodeActivity extends AppCompatActivity implements NewPasswordDia
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(tacCode.equals(pinView.getText().toString())){
+                if (tacCode.equals(pinView.getText().toString())) {
                     NewPasswordDialogBox newPasswordDialogBox = new NewPasswordDialogBox();
                     newPasswordDialogBox.show(getSupportFragmentManager(), "New Password Dialog");
 
@@ -71,7 +72,6 @@ public class OTPCodeActivity extends AppCompatActivity implements NewPasswordDia
 
             }
         });
-
 
 
     }

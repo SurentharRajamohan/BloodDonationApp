@@ -5,13 +5,14 @@ import com.google.firebase.database.Exclude;
 import java.io.Serializable;
 
 public class Request implements Serializable {
-    String name,date,time,status,donor;
+    String name, date, time, status, donor;
     @Exclude
     private String key;
 
-    public Request(){}
+    public Request() {
+    }
 
-    public Request(String name, String date, String time, String status,String donor) {
+    public Request(String name, String date, String time, String status, String donor) {
 
         this.name = name;
         this.date = date;

@@ -91,22 +91,21 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
         View view = inflater.inflate(R.layout.fragment_request_pending, container, false);
 
 
-
         // Code for the card list view
 
         recyclerView = (RecyclerView) view.findViewById(R.id.RequestPendingFragment_RV_pendingRequestList);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        adapter = new CardView_RequestAdapter(getContext(),this);
+        adapter = new CardView_RequestAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
 
         loadData("pending");
 
         ItemTouchHelper helper = new ItemTouchHelper(callback);
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
         isAdmin = sharedPreferences.getBoolean("isAdmin", true);
-        if(isAdmin) {
+        if (isAdmin) {
             helper.attachToRecyclerView(recyclerView);
         }
 
@@ -115,39 +114,39 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
     public void loadData(String path) {
 
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
         String user = sharedPreferences.getString("username", "");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
-            databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
-                databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
+        databaseReference.addValueEventListener(new ValueEventListener() {
 
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    tempRequest = new ArrayList<>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tempRequest = new ArrayList<>();
 
-                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        Request pending = dataSnapshot.getValue(Request.class);
-                        pending.setKey(dataSnapshot.getKey());
-                        tempRequest.add(pending);
-                        key = dataSnapshot.getKey();
-                    }
-                    adapter.setItems(tempRequest);
-                    adapter.notifyDataSetChanged();
-
-
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Request pending = dataSnapshot.getValue(Request.class);
+                    pending.setKey(dataSnapshot.getKey());
+                    tempRequest.add(pending);
+                    key = dataSnapshot.getKey();
                 }
+                adapter.setItems(tempRequest);
+                adapter.notifyDataSetChanged();
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
-    ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT |  ItemTouchHelper.LEFT) {
+    ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -165,17 +164,12 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
-                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials",0);
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials", 0);
                             String user = sharedPreferences.getString("username", "");
                             copyFirebaseData(user);
                             deleteFirebaseData(key);
 
                             adapter.notifyDataSetChanged();
-
-
-
-
-
 
 
                         }
@@ -231,7 +225,7 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
     public void deleteFirebaseData(String key) {
 
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
         String user = sharedPreferences.getString("username", "");
 
         Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
@@ -246,7 +240,6 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
 
                 for (DataSnapshot delete : dataSnapshot.getChildren()) {
                     delete.getRef().removeValue();
-
 
 
                 }

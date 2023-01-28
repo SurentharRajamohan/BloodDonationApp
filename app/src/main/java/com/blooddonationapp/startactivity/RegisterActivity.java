@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 public class RegisterActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,34 +56,34 @@ public class RegisterActivity extends AppCompatActivity {
                 final String confirmPassword = confirmPasswordInput.getText().toString();
 
                 //exceptions
-                if(email.isEmpty())
+                if (email.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your email address", Toast.LENGTH_SHORT).show();
-                else if(username.isEmpty())
+                else if (username.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your username", Toast.LENGTH_SHORT).show();
-                else if(username.contains(" "))
+                else if (username.contains(" "))
                     Toast.makeText(RegisterActivity.this, "Do not use space in username", Toast.LENGTH_SHORT).show();
-                else if(password.isEmpty())
+                else if (password.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your password", Toast.LENGTH_SHORT).show();
-                else if(confirmPassword.isEmpty())
+                else if (confirmPassword.isEmpty())
                     Toast.makeText(RegisterActivity.this, "Please enter your password again", Toast.LENGTH_SHORT).show();
-                else if(!(password.equals(confirmPassword)))
+                else if (!(password.equals(confirmPassword)))
                     Toast.makeText(RegisterActivity.this, "Entered passwords are not matching", Toast.LENGTH_SHORT).show();
-                else if(!(password.length() >= 8))
+                else if (!(password.length() >= 8))
                     Toast.makeText(RegisterActivity.this, "Make sure the password length is >= 8", Toast.LENGTH_SHORT).show();
-                else if(!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
+                else if (!(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
                     Toast.makeText(RegisterActivity.this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
 
-                //write data to database
-                else{
+                    //write data to database
+                else {
 
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             //check for duplicate email address
-                            if(snapshot.hasChild(username))
+                            if (snapshot.hasChild(username))
                                 Toast.makeText(RegisterActivity.this, "This username has been taken", Toast.LENGTH_SHORT).show();
-                            else{
+                            else {
 //                                // Generate a random UUID (Universally Unique Identifier)
 
 //                                UUID uuid = UUID.randomUUID();
@@ -97,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
 //                                databaseReference.child("users").child(username).child("isAdmin").setValue(false);
 
 
-
                                 Intent intent = new Intent(RegisterActivity.this, PersonalDetailsActivity.class);
                                 intent.putExtra("Username", username);
                                 intent.putExtra("Password", password);
@@ -105,7 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 intent.putExtra("isAdmin", false);
                                 startActivity(intent);
                             }
-
 
 
                         }
@@ -132,8 +129,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
 }
