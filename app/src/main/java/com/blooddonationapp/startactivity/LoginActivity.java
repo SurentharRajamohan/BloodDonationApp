@@ -80,63 +80,67 @@ public class LoginActivity extends AppCompatActivity implements ForgotPasswordDi
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            //check if this username exist
-                            if (snapshot.hasChild(username)) {
-                                //username present
-                                //check if password is right
-                                final String databasePassword = snapshot.child(username).child("Password").getValue(String.class);
-                                final boolean isAdmin = (boolean) snapshot.child(username).child("isAdmin").getValue();
-                                final String bloodGroup = snapshot.child(username).child("bloodGroup").getValue(String.class);
-                                final String userID = snapshot.child(username).child("userID").getValue(String.class);
-                                final int points = snapshot.child(username).child("points").getValue(Integer.class);
-                                final String firstName = snapshot.child(username).child("firstName").getValue(String.class);
-                                final String lastName = snapshot.child(username).child("lastName").getValue(String.class);
-                                final String address = snapshot.child(username).child("address").getValue(String.class);
+                            try {
+                                //check if this username exist
+                                if (snapshot.hasChild(username)) {
+                                    //username present
+                                    //check if password is right
+                                    final String databasePassword = snapshot.child(username).child("Password").getValue(String.class);
+                                    final boolean isAdmin = (boolean) snapshot.child(username).child("isAdmin").getValue();
+                                    final String bloodGroup = snapshot.child(username).child("bloodGroup").getValue(String.class);
+                                    final String userID = snapshot.child(username).child("userID").getValue(String.class);
+                                    final int points = snapshot.child(username).child("points").getValue(Integer.class);
+                                    final String firstName = snapshot.child(username).child("firstName").getValue(String.class);
+                                    final String lastName = snapshot.child(username).child("lastName").getValue(String.class);
+                                    final String address = snapshot.child(username).child("address").getValue(String.class);
 
-                                final double latitude = snapshot.child(username).child("LatLng").child("latitude").getValue(double.class);
-                                final double longitude = snapshot.child(username).child("LatLng").child("longitude").getValue(double.class);
+                                    final double latitude = snapshot.child(username).child("LatLng").child("latitude").getValue(double.class);
+                                    final double longitude = snapshot.child(username).child("LatLng").child("longitude").getValue(double.class);
 
-                                final String country = snapshot.child(username).child("country").getValue(String.class);
-                                final String email = snapshot.child(username).child("Email").getValue(String.class);
-                                final String gender = snapshot.child(username).child("gender").getValue(String.class);
-                                final String dateOfBirth = snapshot.child(username).child("dateOfBirth").getValue(String.class);
-                                final String phoneNumber = snapshot.child(username).child("phoneNumber").getValue(String.class);
-
-
-                                if (databasePassword.equals(password)) {
-                                    Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-
-                                    //saving data in SharedPreferences
-                                    editor.putString("username", username);
-                                    editor.putBoolean("isAdmin", isAdmin);
-                                    editor.putString("bloodGroup", bloodGroup);
-                                    editor.putString("userID", userID);
-                                    editor.putString("firstName", firstName);
-                                    editor.putString("lastName", lastName);
-                                    editor.putString("phoneNumber", phoneNumber);
-                                    editor.putString("address", address);
-                                    editor.putString("latitude", String.valueOf(latitude));
-                                    editor.putString("longitude", String.valueOf(longitude));
-
-                                    editor.putString("country", country);
-                                    editor.putString("email", email);
-                                    editor.putString("gender", gender);
-                                    editor.putString("dateOfBirth", dateOfBirth);
-                                    editor.putInt("points", points);
-                                    editor.commit();
+                                    final String country = snapshot.child(username).child("country").getValue(String.class);
+                                    final String email = snapshot.child(username).child("Email").getValue(String.class);
+                                    final String gender = snapshot.child(username).child("gender").getValue(String.class);
+                                    final String dateOfBirth = snapshot.child(username).child("dateOfBirth").getValue(String.class);
+                                    final String phoneNumber = snapshot.child(username).child("phoneNumber").getValue(String.class);
 
 
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("username", username);
-                                    intent.putExtra("isAdmin", isAdmin);
-                                    startActivity(intent);
-                                    finish();
+                                    if (databasePassword.equals(password)) {
+                                        Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
 
+                                        //saving data in SharedPreferences
+                                        editor.putString("username", username);
+                                        editor.putBoolean("isAdmin", isAdmin);
+                                        editor.putString("bloodGroup", bloodGroup);
+                                        editor.putString("userID", userID);
+                                        editor.putString("firstName", firstName);
+                                        editor.putString("lastName", lastName);
+                                        editor.putString("phoneNumber", phoneNumber);
+                                        editor.putString("address", address);
+                                        editor.putString("latitude", String.valueOf(latitude));
+                                        editor.putString("longitude", String.valueOf(longitude));
+
+                                        editor.putString("country", country);
+                                        editor.putString("email", email);
+                                        editor.putString("gender", gender);
+                                        editor.putString("dateOfBirth", dateOfBirth);
+                                        editor.putInt("points", points);
+                                        editor.commit();
+
+
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("username", username);
+                                        intent.putExtra("isAdmin", isAdmin);
+                                        startActivity(intent);
+                                        finish();
+
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                                    }
                                 } else {
-                                    Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Wrong username", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Wrong username", Toast.LENGTH_SHORT).show();
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
                             }
 
 
