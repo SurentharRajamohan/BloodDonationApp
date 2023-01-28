@@ -52,6 +52,7 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
     private String key;
     private String name;
     private boolean isAdmin;
+    private String donor;
 
     public RequestPendingFragment() {
         // Required empty public constructor
@@ -167,7 +168,11 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
                             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userCredentials", 0);
                             String user = sharedPreferences.getString("username", "");
                             copyFirebaseData(user);
-                            deleteFirebaseData(key);
+
+
+//                            copyFirebaseData(user,donor);
+//                            deleteFirebaseData(donor,key);
+
 
                             adapter.notifyDataSetChanged();
 
@@ -189,6 +194,41 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
         }
     };
 
+    public void copyFirebaseData(String Admin, String DonorName) {
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        databaseReference = firebaseDatabase.getReference("request").child(Admin).child("pending");
+        Query selectedQuery = databaseReference.orderByChild("donor").equalTo(DonorName);
+        final DatabaseReference toDonor = firebaseDatabase.getReference("request").child(DonorName).child("completed");
+
+        selectedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot complete : dataSnapshot.getChildren()) {
+                    String completeKey = complete.getKey();
+                    String date = complete.child("date").getValue(String.class);
+                    String name = complete.child("name").getValue(String.class);
+                    String time = complete.child("time").getValue(String.class);
+                    String donor = complete.child("donor").getValue(String.class);
+                    toDonor.child(completeKey).child("date").setValue(date);
+                    toDonor.child(completeKey).child("name").setValue(name);
+                    toDonor.child(completeKey).child("time").setValue(time);
+                    toDonor.child(completeKey).child("status").setValue("Donation Completed");
+                    toDonor.child(completeKey).child("donor").setValue(donor);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
     public void copyFirebaseData(String user) {
 
 
@@ -206,11 +246,16 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
                     String completeKey = complete.getKey();
                     String date = complete.child("date").getValue(String.class);
                     name = complete.child("name").getValue(String.class);
+                    donor = complete.child("donor").getValue(String.class);
                     String time = complete.child("time").getValue(String.class);
                     toCompleted.child(completeKey).child("date").setValue(date);
                     toCompleted.child(completeKey).child("name").setValue(name);
                     toCompleted.child(completeKey).child("time").setValue(time);
                     toCompleted.child(completeKey).child("status").setValue("Donation Completed");
+
+                    copyFirebaseData(user, donor);
+                    deleteFirebaseData(user,completeKey);
+                    deleteFirebaseData(donor,completeKey);
 
 
                 }
@@ -223,18 +268,20 @@ public class RequestPendingFragment extends Fragment implements RecyclerViewInte
         });
     }
 
-    public void deleteFirebaseData(String key) {
+    public void deleteFirebaseData(String user, String key) {
 
+<<<<<<< Updated upstream
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
         String user = sharedPreferences.getString("username", "");
+=======
+>>>>>>> Stashed changes
 
-        Query selectedQuery = databaseReference.orderByChild("status").equalTo("Successful");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
         databaseReference = firebaseDatabase.getReference("request").child(user).child("pending").child(key);
 
 
-        selectedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

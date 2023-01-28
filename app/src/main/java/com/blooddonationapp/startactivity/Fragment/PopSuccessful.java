@@ -45,7 +45,7 @@ public class PopSuccessful extends Activity {
         String user = sharedPreferences.getString("username", "");
 
 
-        copyFirebaseData(user, DonorName);
+//        copyFirebaseData(user, DonorName);
         goToHome();
 
 

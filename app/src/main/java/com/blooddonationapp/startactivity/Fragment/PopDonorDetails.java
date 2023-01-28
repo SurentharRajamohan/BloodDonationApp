@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -76,7 +77,23 @@ public class PopDonorDetails extends Activity {
                 //write data to database
 //                      Bundle bundle = getIntent().getExtras();
 //                      DonorName = bundle.getString("DonorName");
+<<<<<<< Updated upstream
                 user = sharedPreferences.getString("username", "");
+=======
+                        user = sharedPreferences.getString("username", "");
+
+                        addNewRequest(DonorName,user);
+
+
+
+                         Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
+                         Bundle bundle2 = new Bundle();
+                        bundle2.putString("DonorName", DonorName);
+
+                        intent.putExtras(bundle2);
+                         startActivity(intent);
+
+>>>>>>> Stashed changes
 
                 addNewRequest(DonorName, user);
 
@@ -124,6 +141,10 @@ public class PopDonorDetails extends Activity {
                 databaseReference.child(key).child("status").setValue(newRequest.getStatus());
                 databaseReference.child(key).child("donor").setValue(newRequest.getDonor());
 
+                copyFirebaseData(user, DonorName);
+
+
+
 
             }
 
@@ -135,6 +156,52 @@ public class PopDonorDetails extends Activity {
         });
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+    }
+
+    public void copyFirebaseData(String Admin, String DonorName) {
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        databaseReference = firebaseDatabase.getReference("request").child(Admin).child("pending");
+        Query selectedQuery = databaseReference.orderByChild("donor").equalTo(DonorName);
+        final DatabaseReference toDonor = firebaseDatabase.getReference("request").child(DonorName).child("pending");
+
+        selectedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot complete : dataSnapshot.getChildren()) {
+                    String completeKey = complete.getKey();
+                    String date = complete.child("date").getValue(String.class);
+                    String name = complete.child("name").getValue(String.class);
+                    String time = complete.child("time").getValue(String.class);
+                    String status = complete.child("status").getValue(String.class);
+                    String donor = complete.child("donor").getValue(String.class);
+                    toDonor.child(completeKey).child("date").setValue(date);
+                    toDonor.child(completeKey).child("name").setValue(name);
+                    toDonor.child(completeKey).child("time").setValue(time);
+                    toDonor.child(completeKey).child("status").setValue(status);
+                    toDonor.child(completeKey).child("donor").setValue(donor);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+>>>>>>> Stashed changes
     }
 
 
