@@ -77,33 +77,19 @@ public class PopDonorDetails extends Activity {
                 //write data to database
 //                      Bundle bundle = getIntent().getExtras();
 //                      DonorName = bundle.getString("DonorName");
-<<<<<<< Updated upstream
-                user = sharedPreferences.getString("username", "");
-=======
+
                         user = sharedPreferences.getString("username", "");
 
                         addNewRequest(DonorName,user);
 
 
 
-                         Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
-                         Bundle bundle2 = new Bundle();
+                        Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
+                        Bundle bundle2 = new Bundle();
                         bundle2.putString("DonorName", DonorName);
 
                         intent.putExtras(bundle2);
-                         startActivity(intent);
-
->>>>>>> Stashed changes
-
-                addNewRequest(DonorName, user);
-
-
-                Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
-                Bundle bundle2 = new Bundle();
-                bundle2.putString("DonorName", DonorName);
-
-                intent.putExtras(bundle2);
-                startActivity(intent);
+                        startActivity(intent);
 
 
             }
@@ -156,8 +142,7 @@ public class PopDonorDetails extends Activity {
         });
 
 
-<<<<<<< Updated upstream
-=======
+
 
 
 
@@ -201,7 +186,7 @@ public class PopDonorDetails extends Activity {
 
             }
         });
->>>>>>> Stashed changes
+
     }
 
 

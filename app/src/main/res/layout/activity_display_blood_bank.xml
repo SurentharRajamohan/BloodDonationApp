@@ -24,11 +24,7 @@
         android:id="@+id/DisplayBloodBank_TV_LocationTitle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:layout_marginStart="36dp"
-=======
-        android:layout_marginStart="60dp"
->>>>>>> Stashed changes
+
         android:layout_marginTop="20dp"
         android:text="@string/locationHint"
         app:layout_constraintStart_toEndOf="@+id/Locationtxt"
@@ -38,11 +34,6 @@
         android:id="@+id/DisplayBloodBank_TV_NameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:layout_marginStart="56dp"
-=======
-        android:layout_marginStart="76dp"
->>>>>>> Stashed changes
         android:layout_marginTop="24dp"
         android:text="@string/nameText"
         app:layout_constraintStart_toEndOf="@+id/Phonetxt"

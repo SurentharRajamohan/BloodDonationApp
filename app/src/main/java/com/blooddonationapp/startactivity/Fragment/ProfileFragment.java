@@ -101,9 +101,7 @@ public class ProfileFragment extends Fragment {
         String userid = sharedPref.getString("userID", "No ID");
         int points = sharedPref.getInt("points", 0);
 
-        if (isAdmin) {
-            editProfileBtn.setVisibility(View.GONE);
-        }
+
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +118,11 @@ public class ProfileFragment extends Fragment {
         userID = view.findViewById(R.id.fragmentProfile_textView_bloodDonorID);
         title = view.findViewById(R.id.fragmentProfile_textView_bloodDonorLabel);
         pointsDisplay = view.findViewById(R.id.fragmentProfile_textView_points);
+
+        if (isAdmin) {
+            editProfileBtn.setVisibility(View.GONE);
+            pointsDisplay.setVisibility(View.GONE);
+        }
 
 
         username.setText(userName);
