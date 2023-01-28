@@ -21,7 +21,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_page_asset" />
+        app:srcCompat="@drawable/login_page_asset"
+        android:contentDescription="@string/login_image"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
             android:maxLines="1"
             android:minHeight="48dp"
             android:paddingStart="20dp"
-            android:paddingEnd="0dp" />
+            android:paddingEnd="0dp"
+            android:autofillHints=""/>
 
         <EditText
             android:id="@+id/LoginPage_ET_password"
@@ -62,7 +64,8 @@
             android:maxLines="1"
             android:minHeight="48dp"
             android:paddingStart="20dp"
-            android:paddingEnd="0dp" />
+            android:paddingEnd="0dp"
+            android:autofillHints=""/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,7 +85,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="left"
                 android:textColor="@color/red"
-                android:text="Forgot Password?" />
+                android:text="@string/forgot_pass" />
 
 
         </LinearLayout>
@@ -109,7 +112,7 @@
                 android:id="@+id/LoginPage_TV_noAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account?" />
+                android:text="@string/account" />
 
             <TextView
 
@@ -117,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Register Now"
+                android:text="@string/register_text"
                 android:textStyle="bold" />
 
 

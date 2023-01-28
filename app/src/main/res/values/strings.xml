@@ -4,14 +4,83 @@
     <string name="usernameHint">Username</string>
     <string name="passwordHint">Password</string>
     <string name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="Logout">You have been logged out</string>
+    <string name="signIn">Sign in</string>
+    <string name="distance">Distance</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+
     <string name="confirm_password">Confirm Password</string>
     <string name="addressHint">Address</string>
     <string name="phoneNumberHint">Phone Number</string>
     <string name="regionCountryHint">Region/Country</string>
     <string name="dateHint">DD/MM/YY</string>
+    <string name="bloodBankNameHint">Blood Bank Name</string>
+    <string name="bloodBankAddressHint">Blood Bank Address</string>
+    <string name="nameText">Name</string>
     <string name="firstNameHint">First Name</string>
     <string name="lastNameHint">Last Name</string>
+    <string name="eventName">Event Name</string>
+    <string name="currentTime">Current Time: </string>
+    <string name="currentDate">Current Date: </string>
+    <string name="locationHint">Location</string>
+    <string name="timeHint">Time</string>
+    <string name="bloodBankStock">Blood Bank Stock</string>
+    <string name="confirmation">You will get confirmation call after placing the order</string>
+    <string name="reminder2">Your order will be delivered within 30 minutes to 2 hours depending on time and location</string>
+    <string name="tick">tick icon</string>
+    <string name="otpText">Type the OTP code</string>
+    <string name="otpReminder">(Do check the spam folder too)</string>
+    <string name="bloodDonor">Blood Donor</string>
+    <string name="points">Points</string>
+    <string name="forgotPasswordHint">Type your username</string>
+    <string name="newPasswordHint">New Password</string>
+
+<!--    Questionnaire-->
+    <string name="Questionnaire">Questionnaire</string>
+    <string name="questionnaireDesc">Fill up the following questionnaire and become a donor</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="question1">Do you have diabetes?</string>
+    <string name="question2">Have you ever had problem with your heart or lungs?</string>
+    <string name="question3">In the last 28 days have you had Covid-19?</string>
+    <string name="question4">Have you ever been tested positive for HIV/AIDS?</string>
+    <string name="question5">Have you ever had cancer?</string>
+    <string name="question6">Any vaccinations injected in the past 3 months?</string>
+    <string name="agreement">By clicking, you agree to our terms and conditions</string>
+
+
+
+    <!--    Blood Type String-->
+    <string name="A">A</string>
+    <string name="B">B</string>
+    <string name="O">O</string>
+    <string name="aPlus">A+</string>
+    <string name="bPlus">B+</string>
+    <string name="oPlus">0+</string>
+    <string name="abPlus">AB+</string>
+    <string name="aMinus">A-</string>
+    <string name="bMinus">B-</string>
+    <string name="oMinus">O-</string>
+    <string name="abMinus">AB-</string>
+
+
+<!--    Button Text-->
+    <string name="submitButton">SUBMIT</string>
+    <string name="register">Register</string>
+    <string name="continueButton">Continue</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="signUpButton">Sign Up</string>
+    <string name="donor">Become a donor</string>
+    <string name="goHome">Go Back Home</string>
+    <string name="space"> </string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="deleteProfile">Delete Profile</string>
+    <string name="logoutButton">Logout</string>
+    <string name="sendRequestButton">Send Request</string>
+    <string name="requestSuccessful">Request Successful</string>
+
 
     <!--Spinner Resource-->
     <array name="gender">
@@ -64,5 +133,17 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_add_event">AddEventActivity</string>
+
+<!--    Strings used for login page-->
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="account">Don\'t have an account?</string>
+    <string name="register_text">Register Now</string>
+
+<!--    image content description-->
+    <string name="login_image">vector image</string>
+    <string name="uploadImage">Upload Image</string>
+    <string name="bottomArrow">Bottom Arrow</string>
+    <string name="donorCard">Donor Card</string>
+    <string name="user">User Picture</string>
 
 </resources>

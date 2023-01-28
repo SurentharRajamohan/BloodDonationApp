@@ -46,13 +46,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="First Name"
+                android:hint="@string/firstNameHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="textPersonName"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/EditProfile_editText_lastName"
@@ -62,13 +64,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="Last Name"
+                android:hint="@string/lastNameHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="textPersonName"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,13 +94,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="Address"
+                android:hint="@string/addressHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="textPostalAddress"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,13 +123,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="Phone Number"
+                android:hint="@string/phoneNumberHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="phone"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,13 +152,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="Email address"
+                android:hint="@string/emailAddressHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="textEmailAddress"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -185,8 +195,10 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:fontFamily="sans-serif"
-                android:hint="dd/mm/yyyy"
-                android:padding="15dp" />
+                android:hint="@string/dateHint"
+                android:padding="15dp"
+                android:inputType="date"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,13 +219,15 @@
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
                 android:fontFamily="sans-serif"
-                android:hint="Country"
+                android:hint="@string/regionCountryHint"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 tools:layout_editor_absoluteX="135dp"
-                tools:layout_editor_absoluteY="34dp" />
+                tools:layout_editor_absoluteY="34dp"
+                android:inputType="text"
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <LinearLayout
@@ -272,7 +286,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_shape"
                 android:fontFamily="sans-serif-medium"
-                android:text="Submit" />
+                android:text="@string/submitButton" />
         </LinearLayout>
 
 

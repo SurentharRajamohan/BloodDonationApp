@@ -25,13 +25,13 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
-            android:text="GO BACK HOME" />
+            android:text="@string/goHome" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" " />
+            android:text="@string/space" />
 
         <Button
             android:id="@+id/fragmentDeveloperTools_button_submitData"
@@ -40,7 +40,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
-            android:text="Submit data" />
+            android:text="@string/submitButton" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,8 +60,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/edit_text_shape"
-            android:drawableRight="@drawable/location_pin"
-            android:hint="Blood Bank Name"
+            android:drawableEnd="@drawable/location_pin"
+            android:hint="@string/bloodBankNameHint"
             android:maxLines="1"
             android:minHeight="48dp"
             android:padding="10dp"
@@ -69,7 +69,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.25"
+            android:importantForAutofill="no"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/fragmentDeveloperTools_editText_bloodBankAddress"
@@ -79,11 +81,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/edit_text_shape"
-            android:hint="Blood Bank Address"
+            android:hint="@string/bloodBankAddressHint"
             android:minWidth="800dp"
             android:minHeight="30dp"
             android:padding="10dp"
-            android:paddingLeft="50dp" />
+
+            android:importantForAutofill="no"
+            android:inputType="textPostalAddress"/>
 
 
         <Spinner
@@ -108,7 +112,7 @@
                 android:id="@+id/fragmentDeveloperTools_textView_currentTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Time:"
+                android:text="@string/currentTime"
                 android:textStyle="bold" />
 
             <TextClock
@@ -128,7 +132,7 @@
                 android:id="@+id/fragmentDeveloperTools_textView_currentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Date:"
+                android:text="@string/currentDate"
                 android:textStyle="bold" />
 
             <TextView
