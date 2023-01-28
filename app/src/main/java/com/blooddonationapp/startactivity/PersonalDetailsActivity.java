@@ -358,7 +358,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
-
+            Toast.makeText(context, "This address is invalid", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
         }
 

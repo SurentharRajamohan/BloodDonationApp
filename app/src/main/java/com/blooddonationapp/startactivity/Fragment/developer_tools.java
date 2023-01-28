@@ -172,6 +172,16 @@ public class developer_tools extends Fragment {
                 String currentDate = date;
                 String wantedBlood = bloodTypeSpinner.getSelectedItem().toString();
                 String state = malaysianStateSpinner.getSelectedItem().toString();
+
+               if(bloodBankName.isEmpty())
+                   Toast.makeText(getActivity(), "Please enter the blood bank's name", Toast.LENGTH_SHORT).show();
+                else if(bloodBankAddress.isEmpty())
+                    Toast.makeText(getActivity(), "Please enter the admin's email address", Toast.LENGTH_SHORT).show();
+                else if(wantedBlood.isEmpty())
+                    Toast.makeText(getActivity(), "Please select the blood type wanted", Toast.LENGTH_SHORT).show();
+                else if(state.isEmpty())
+                    Toast.makeText(getActivity(), "Please select the state name", Toast.LENGTH_SHORT).show();
+                else{
                 bloodBank bloodBankObject = new bloodBank(bloodBankName, bloodBankAddress, bloodBankLongitude,
                         bloodBankLatitude, currentDate, currentTime, wantedBlood, state);
                 dao.add(bloodBankObject).addOnSuccessListener(suc -> {
@@ -179,7 +189,7 @@ public class developer_tools extends Fragment {
                 });
 
                 Notification notification = new Notification(currentDate, bloodBankName + " requires an emergency donor!", "Low on " + wantedBlood + " blood");
-                loadUser(notification);
+                loadUser(notification);}
             }
         });
         return view;
