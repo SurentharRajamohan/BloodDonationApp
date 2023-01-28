@@ -18,9 +18,8 @@ public class NewPasswordDialogBox extends AppCompatDialogFragment {
     private NewPasswordDialogBoxListener newPasswordDialogListener;
 
 
-
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -33,7 +32,7 @@ public class NewPasswordDialogBox extends AppCompatDialogFragment {
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String newPassword =  password.getText().toString();
+                        String newPassword = password.getText().toString();
                         newPasswordDialogListener.setNewPassword(newPassword);
                     }
                 });
@@ -53,12 +52,9 @@ public class NewPasswordDialogBox extends AppCompatDialogFragment {
         }
     }
 
-    public interface NewPasswordDialogBoxListener{
+    public interface NewPasswordDialogBoxListener {
         void setNewPassword(String newPassword);
     }
-
-
-
 
 
 }

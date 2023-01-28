@@ -45,14 +45,14 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
         databaseReference = firebaseDatabase.getReference("bloodBank");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter(this,list,this);
+        adapter = new MyAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     bloodBank bb = dataSnapshot.getValue(bloodBank.class);
                     Double tempLat = Double.parseDouble(bb.getLatitude());
                     Double tempLng = Double.parseDouble(bb.getLongitude());
@@ -90,7 +90,7 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
         search();
     }
 
-    private void search(){
+    private void search() {
         searchView = findViewById(R.id.SearchActivity_SV_searchBB);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -141,23 +141,20 @@ public class SearchActivity extends AppCompatActivity implements RecyclerViewInt
 
     }
 
-    private double getDistance(Double donorlat,Double donorlng, Double lat, Double lng){
+    private double getDistance(Double donorlat, Double donorlng, Double lat, Double lng) {
 
-        Location startPoint=new Location("donorLocation");
+        Location startPoint = new Location("donorLocation");
         startPoint.setLatitude(donorlat);
         startPoint.setLongitude(donorlng);
 
 
-        Location endPoint=new Location("locationA");
+        Location endPoint = new Location("locationA");
         endPoint.setLatitude(lat);
         endPoint.setLongitude(lng);
 
-        double distance=startPoint.distanceTo(endPoint);
+        double distance = startPoint.distanceTo(endPoint);
 
         return distance;
-
-
-
 
 
     }

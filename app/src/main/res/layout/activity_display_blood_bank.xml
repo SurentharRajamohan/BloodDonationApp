@@ -24,15 +24,9 @@
         android:id="@+id/DisplayBloodBank_TV_LocationTitle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:text="Location"
-=======
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:text="@string/locationHint"
->>>>>>> Stashed changes
         app:layout_constraintStart_toEndOf="@+id/Locationtxt"
         app:layout_constraintTop_toBottomOf="@+id/DisplayBloodBank_ImageView_bloodBankImage" />
 
@@ -40,15 +34,9 @@
         android:id="@+id/DisplayBloodBank_TV_NameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="24dp"
-        android:text="Name"
-=======
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="24dp"
         android:text="@string/nameText"
->>>>>>> Stashed changes
         app:layout_constraintStart_toEndOf="@+id/Phonetxt"
         app:layout_constraintTop_toBottomOf="@+id/DisplayBloodBank_TV_LocationTitle" />
 
@@ -98,194 +86,97 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Phonetxt" />
 
-    <ImageView
-        android:id="@+id/Apluss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="374dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/homepage_custom_border"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tickIcon1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bloodbankstocktxt"
-        app:srcCompat="@drawable/blood_progress"
-        android:contentDescription="@string/aPlus"/>
+        app:layout_constraintTop_toBottomOf="@+id/Bloodbankstocktxt">
 
-    <ImageView
-        android:id="@+id/Bpluss"
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_abMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_abminus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_abPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_abplus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_aMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_aminus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_aplusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_aplus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_bMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_bminus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_bPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_bplus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_oMinusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_ominus" />
+
+        <ImageView
+            android:id="@+id/fragmentDisplayBloodBank_image_oPlusBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blood_empty_oplus" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragmentHome_button_refreshStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toEndOf="@+id/Apluss"
-        app:layout_constraintTop_toBottomOf="@+id/Bloodbankstocktxt"
-        app:srcCompat="@drawable/bloodprogress"
-        android:contentDescription="@string/bPlus"/>
-
-    <ImageView
-        android:id="@+id/Opluss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toEndOf="@+id/Bpluss"
-        app:layout_constraintTop_toBottomOf="@+id/Bloodbankstocktxt"
-        app:srcCompat="@drawable/blood_progress"
-        android:contentDescription="@string/oPlus"/>
-
-    <ImageView
-        android:id="@+id/ABpluss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toEndOf="@+id/Opluss"
-        app:layout_constraintTop_toBottomOf="@+id/Bloodbankstocktxt"
-        app:srcCompat="@drawable/bloodprogress"
-        android:contentDescription="@string/abPlus"/>
-
-    <ImageView
-        android:id="@+id/Bminus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/Aminus"
-        app:layout_constraintTop_toBottomOf="@+id/Bpluss"
-        app:srcCompat="@drawable/bloodprogress"
-        android:contentDescription="@string/bMinus"/>
-
-    <ImageView
-        android:id="@+id/Ominus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/Bminus"
-        app:layout_constraintTop_toBottomOf="@+id/Opluss"
-        app:srcCompat="@drawable/blood_progress"
-        android:contentDescription="@string/oMinus"/>
-
-    <ImageView
-        android:id="@+id/ABminus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/Ominus"
-        app:layout_constraintTop_toBottomOf="@+id/ABpluss"
-        app:srcCompat="@drawable/blood_progress"
-        android:contentDescription="@string/abMinus"/>
-
-    <ImageView
-        android:id="@+id/Aminus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Apluss"
-        app:srcCompat="@drawable/blood_progress"
-        android:contentDescription="@string/aMinus"/>
-
-    <TextView
-        android:id="@+id/Aplusstxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:text="@string/aPlus"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/Aminus"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Apluss"
-        app:layout_constraintVertical_bias="0.515" />
-
-    <TextView
-        android:id="@+id/Bplusstxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="@string/bPlus"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/Bminus"
-        app:layout_constraintStart_toEndOf="@+id/Aplusstxt"
-        app:layout_constraintTop_toBottomOf="@+id/Bpluss"
-        app:layout_constraintVertical_bias="0.484" />
-
-    <TextView
-        android:id="@+id/Oplusstxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/oPlus"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/Ominus"
-        app:layout_constraintStart_toEndOf="@+id/Bplusstxt"
-        app:layout_constraintTop_toBottomOf="@+id/Opluss"
-        app:layout_constraintVertical_bias="0.484" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
-        android:text="@string/abPlus"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/Oplusstxt"
-        app:layout_constraintTop_toBottomOf="@+id/ABpluss" />
-
-    <TextView
-        android:id="@+id/Aminustxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/aMinus"
-        android:textColor="#000000"
+        android:text="Refresh Stock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aminus" />
-
-    <TextView
-        android:id="@+id/Bminustxt"
-        android:layout_width="15dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/bMinus"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/Aminustxt"
-        app:layout_constraintTop_toBottomOf="@+id/Bminus" />
-
-    <TextView
-        android:id="@+id/OMinustxt"
-        android:layout_width="19dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/oMinus"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/Bminustxt"
-        app:layout_constraintTop_toBottomOf="@+id/Ominus" />
-
-    <TextView
-        android:id="@+id/ABminustxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/abMinus"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/OMinustxt"
-        app:layout_constraintTop_toBottomOf="@+id/ABminus" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/reminder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/confirmation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/OMinustxt" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/reminder2"
@@ -302,11 +193,11 @@
         android:id="@+id/tickIcon1"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="4dp"
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toStartOf="@+id/reminder1"
-        app:layout_constraintTop_toBottomOf="@+id/Aminustxt"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:srcCompat="@drawable/tick" />
 
     <ImageView

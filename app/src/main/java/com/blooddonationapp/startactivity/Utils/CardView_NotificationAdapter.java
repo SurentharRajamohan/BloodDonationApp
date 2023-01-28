@@ -14,14 +14,15 @@ import com.blooddonationapp.startactivity.UserData.Request;
 
 import java.util.ArrayList;
 
-public class CardView_NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CardView_NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     ArrayList<Notification> list = new ArrayList<>();
 
-    public CardView_NotificationAdapter(Context ctx){
+    public CardView_NotificationAdapter(Context ctx) {
         this.context = ctx;
     }
-    public void setItems(ArrayList<Notification> notifications){
+
+    public void setItems(ArrayList<Notification> notifications) {
         list.addAll(notifications);
     }
 
@@ -39,7 +40,6 @@ public class CardView_NotificationAdapter extends RecyclerView.Adapter<RecyclerV
         vh.title.setText(notification.getTitle());
         vh.date.setText(notification.getDate());
         vh.description.setText(notification.getDescription());
-
 
 
     }

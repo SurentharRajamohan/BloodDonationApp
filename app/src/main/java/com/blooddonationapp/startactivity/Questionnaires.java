@@ -41,9 +41,9 @@ public class Questionnaires extends AppCompatActivity {
         TNC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TNC.isChecked()){
+                if (TNC.isChecked()) {
                     BTNbecomeADonor.setBackgroundResource(R.drawable.button_shape);
-                }else{
+                } else {
 
                     BTNbecomeADonor.setBackgroundResource(R.drawable.unavailable_button_shape);
                 }
@@ -53,15 +53,15 @@ public class Questionnaires extends AppCompatActivity {
         BTNbecomeADonor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(TNC.isChecked())){
+                if (!(TNC.isChecked())) {
                     Toast.makeText(Questionnaires.this, "Make sure you agree to the Terms and conditions before proceeding", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     //exceptions
-                    if(radioGroup1_diabetes.getCheckedRadioButtonId() == -1 || radioGroup2_heart.getCheckedRadioButtonId() == -1
-                        || radioGroup3_covid.getCheckedRadioButtonId() == -1 || radioGroup4_AIDS.getCheckedRadioButtonId() == -1
-                        || radioGroup5_cancer.getCheckedRadioButtonId() == -1 || radioGroup6_vaccine.getCheckedRadioButtonId() == -1){
+                    if (radioGroup1_diabetes.getCheckedRadioButtonId() == -1 || radioGroup2_heart.getCheckedRadioButtonId() == -1
+                            || radioGroup3_covid.getCheckedRadioButtonId() == -1 || radioGroup4_AIDS.getCheckedRadioButtonId() == -1
+                            || radioGroup5_cancer.getCheckedRadioButtonId() == -1 || radioGroup6_vaccine.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(Questionnaires.this, "Please answer all the questions", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         RadioButton question1 = findViewById(radioGroup1_diabetes.getCheckedRadioButtonId());
                         RadioButton question2 = findViewById(radioGroup2_heart.getCheckedRadioButtonId());
                         RadioButton question3 = findViewById(radioGroup3_covid.getCheckedRadioButtonId());

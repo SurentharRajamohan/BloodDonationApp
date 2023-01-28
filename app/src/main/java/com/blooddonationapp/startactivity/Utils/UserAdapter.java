@@ -40,17 +40,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
-    public void filterList(ArrayList<User> filterList){
+    public void filterList(ArrayList<User> filterList) {
         list = filterList;
         notifyDataSetChanged();
     }
 
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.user_layout,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.user_layout, parent, false);
         return new MyViewHolder(v, recyclerViewInterface);
     }
 
@@ -91,7 +90,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         });
 
 
-
 //        holder.distance.setText((int) getDistance(user,bbLatitude,bbLongitude));
 //        holder.address.setText(bloodBank.getAddress());
     }
@@ -102,8 +100,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     }
 
 
-    public static class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView name,bloodtype, distance;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView name, bloodtype, distance;
         ImageView donorImage;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
@@ -117,9 +115,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(recyclerViewInterface !=null){
+                    if (recyclerViewInterface != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if (position != RecyclerView.NO_POSITION)
                             recyclerViewInterface.onItemClick(position);
 
                     }
@@ -127,8 +125,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             });
         }
     }
-
-
 
 
 }

@@ -61,7 +61,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     Button submitButton;
     Spinner bloodGroupInput, genderInput;
     EditText dateOfBirthInput, firstNameInput, lastNameInput, addressInput, phoneNumberInput, regionCountryInput;
-//    EditText emailAddressInput;
+    //    EditText emailAddressInput;
     //datePicker instance
     private DatePickerDialog datePickerDialog;
 
@@ -203,7 +203,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         final String password = intent.getExtras().getString("Password");
         final String isAdmin = intent.getExtras().getString("isAdmin");
 
-    //Pattern for phone number
+        //Pattern for phone number
         Pattern phoneNumberPattern = Pattern.compile("(011[0-9]{8}|015[0-9]{8}|01[0-9]{8}|0[0-9]{9})");
 
         //exceptions
@@ -229,7 +229,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             Toast.makeText(PersonalDetailsActivity.this, "Please enter your blood group", Toast.LENGTH_SHORT).show();
         else if (filePath == null)
             Toast.makeText(PersonalDetailsActivity.this, "Please upload your picture", Toast.LENGTH_SHORT).show();
-        else if(!(phoneNumberPattern.matcher(phoneNumber).matches()))
+        else if (!(phoneNumberPattern.matcher(phoneNumber).matches()))
             Toast.makeText(PersonalDetailsActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
         else {
 
@@ -248,7 +248,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                     databaseReference.child("users").child(username).child("lastName").setValue(lastName);
                     databaseReference.child("users").child(username).child("dateOfBirth").setValue(dateOfBirth);
 
-                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(),address));
+                    databaseReference.child("users").child(username).child("LatLng").setValue(getLocationFromAddress(getApplicationContext(), address));
                     databaseReference.child("users").child(username).child("address").setValue(address);
 
                     databaseReference.child("users").child(username).child("phoneNumber").setValue(phoneNumber);
@@ -355,7 +355,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             }
 
             Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
 

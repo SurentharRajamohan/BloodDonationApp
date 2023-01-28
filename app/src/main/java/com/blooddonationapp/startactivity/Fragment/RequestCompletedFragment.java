@@ -89,7 +89,7 @@ public class RequestCompletedFragment extends Fragment implements RecyclerViewIn
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        adapter = new CardView_RequestAdapter(getContext(),this);
+        adapter = new CardView_RequestAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
 
         loadData("completed");
@@ -100,12 +100,11 @@ public class RequestCompletedFragment extends Fragment implements RecyclerViewIn
     public void loadData(String path) {
 
 
-       SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials",0);
-       String user = sharedPreferences.getString("username", "");
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userCredentials", 0);
+        String user = sharedPreferences.getString("username", "");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("request").child(user).child(path);
-
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -113,24 +112,18 @@ public class RequestCompletedFragment extends Fragment implements RecyclerViewIn
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Request> tempRequest = new ArrayList<>();
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Request completed = dataSnapshot.getValue(Request.class);
                     tempRequest.add(completed);
-
 
 
                 }
                 adapter.setItems(tempRequest);
                 adapter.notifyDataSetChanged();
                 //add points for donor
-                points = tempRequest.size()*10;
+                points = tempRequest.size() * 10;
 //                setPoints(user,points);
                 setPoints(user, points);
-
-
-
-
-
 
 
             }
@@ -143,7 +136,7 @@ public class RequestCompletedFragment extends Fragment implements RecyclerViewIn
 
     }
 
-    public void setPoints(String userKey, int point){
+    public void setPoints(String userKey, int point) {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://blood-donation-applicati-79711-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("users").child(userKey).child("points");

@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,18 +52,15 @@ public class PopDonorDetails extends Activity {
 
         setContentView(R.layout.popdonordetailswindow);
 
-        DisplayMetrics dn= new DisplayMetrics();
+        DisplayMetrics dn = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dn);
 
-        int width=dn.widthPixels;
-        int height=dn.heightPixels;
+        int width = dn.widthPixels;
+        int height = dn.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.6));
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
 
-        Button btn= findViewById(R.id.requestbutton);
-
-
-
+        Button btn = findViewById(R.id.requestbutton);
 
 
         sharedPreferences = getSharedPreferences("userCredentials", 0);
@@ -73,32 +71,27 @@ public class PopDonorDetails extends Activity {
         DonorName = donor.getFirstName();
 
         btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //write data to database
+            @Override
+            public void onClick(View view) {
+                //write data to database
 //                      Bundle bundle = getIntent().getExtras();
 //                      DonorName = bundle.getString("DonorName");
-                        user = sharedPreferences.getString("username", "");
+                user = sharedPreferences.getString("username", "");
 
-                        addNewRequest(DonorName,user);
-
-
-                         Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
-                         Bundle bundle2 = new Bundle();
-                        bundle2.putString("DonorName", DonorName);
-
-                        intent.putExtras(bundle2);
-                         startActivity(intent);
+                addNewRequest(DonorName, user);
 
 
+                Intent intent = new Intent(PopDonorDetails.this, PopSuccessful.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("DonorName", DonorName);
+
+                intent.putExtras(bundle2);
+                startActivity(intent);
 
 
-
-
-
-                }
-            });
-        }
+            }
+        });
+    }
 
 
     private String getCurrentDate() {
@@ -119,8 +112,7 @@ public class PopDonorDetails extends Activity {
         String key = databaseReference.push().getKey();
 
 
-
-        newRequest = new Request(hospital, getCurrentDate(),currentTime, "Request Pending",donor);
+        newRequest = new Request(hospital, getCurrentDate(), currentTime, "Request Pending", donor);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -136,7 +128,6 @@ public class PopDonorDetails extends Activity {
             }
 
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -144,12 +135,7 @@ public class PopDonorDetails extends Activity {
         });
 
 
-
-
     }
-
-
-
 
 
 }

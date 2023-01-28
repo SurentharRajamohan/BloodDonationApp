@@ -36,18 +36,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
-    public void filterList(ArrayList<bloodBank> filterList){
+    public void filterList(ArrayList<bloodBank> filterList) {
         list = filterList;
         notifyDataSetChanged();
     }
 
 
-
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_layout,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_layout, parent, false);
         return new MyViewHolder(v, recyclerViewInterface);
     }
 
@@ -56,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         bloodBank bloodBank = list.get(position);
         holder.name.setText(bloodBank.getName());
         holder.address.setText(bloodBank.getAddress());
-        holder.distance.setText(new DecimalFormat("##.##" + " km").format(bloodBank.getDistance()/1000));
+        holder.distance.setText(new DecimalFormat("##.##" + " km").format(bloodBank.getDistance() / 1000));
         FirebaseStorage mStorage = FirebaseStorage.getInstance("gs://blood-donation-applicati-79711.appspot.com/");
         StorageReference ref = mStorage.getReference();
         StorageReference storageRef
@@ -93,8 +91,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
-    public static class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView name, address,distance;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView name, address, distance;
         ImageView bloodBankImage;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
@@ -108,11 +106,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(recyclerViewInterface !=null){
+                    if (recyclerViewInterface != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if (position != RecyclerView.NO_POSITION)
                             recyclerViewInterface.onItemClick(position);
-
 
 
                     }

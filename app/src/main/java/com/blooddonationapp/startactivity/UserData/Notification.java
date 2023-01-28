@@ -5,15 +5,14 @@ public class Notification {
     String date, title, description;
 
 
-
-    public Notification(){}
+    public Notification() {
+    }
 
     public Notification(String date, String title, String description) {
         this.date = date;
         this.title = title;
         this.description = description;
     }
-
 
 
     public String getDate() {

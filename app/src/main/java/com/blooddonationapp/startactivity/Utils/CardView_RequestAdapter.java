@@ -14,18 +14,19 @@ import com.blooddonationapp.startactivity.UserData.Request;
 
 import java.util.ArrayList;
 
-public class CardView_RequestAdapter extends RecyclerView.Adapter<CardView_RequestAdapter.requestViewHolder>{
+public class CardView_RequestAdapter extends RecyclerView.Adapter<CardView_RequestAdapter.requestViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
 
 
     private Context context;
     ArrayList<Request> list = new ArrayList<>();
 
-    public CardView_RequestAdapter(Context ctx, RecyclerViewInterface recyclerViewInterface){
+    public CardView_RequestAdapter(Context ctx, RecyclerViewInterface recyclerViewInterface) {
         this.context = ctx;
         this.recyclerViewInterface = recyclerViewInterface;
     }
-    public void setItems(ArrayList<Request> requests){
+
+    public void setItems(ArrayList<Request> requests) {
         list.addAll(requests);
     }
 
@@ -33,7 +34,7 @@ public class CardView_RequestAdapter extends RecyclerView.Adapter<CardView_Reque
     @Override
     public requestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.request_cardlayout, parent, false);
-        return new requestViewHolder(view,recyclerViewInterface);
+        return new requestViewHolder(view, recyclerViewInterface);
     }
 
     @Override
@@ -48,19 +49,16 @@ public class CardView_RequestAdapter extends RecyclerView.Adapter<CardView_Reque
     }
 
 
-
-
     @Override
     public int getItemCount() {
 
         return list.size();
     }
 
-    public static class requestViewHolder extends RecyclerView.ViewHolder{
+    public static class requestViewHolder extends RecyclerView.ViewHolder {
 
 
-
-        public TextView name,date,time, status;
+        public TextView name, date, time, status;
 
         public requestViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -72,9 +70,9 @@ public class CardView_RequestAdapter extends RecyclerView.Adapter<CardView_Reque
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(recyclerViewInterface !=null){
+                    if (recyclerViewInterface != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if (position != RecyclerView.NO_POSITION)
                             recyclerViewInterface.onItemClick(position);
 
                     }
