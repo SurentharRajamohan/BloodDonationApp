@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+        app:shapeAppearanceOverlay="@style/RoundedSquare"
+        android:contentDescription="@string/bloodBankImage"/>
 
     <TextView
         android:id="@+id/DisplayBloodBank_TV_LocationTitle"
@@ -104,56 +105,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_abminus" />
+            android:src="@drawable/blood_empty_abminus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_abPlusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_abplus" />
+            android:src="@drawable/blood_empty_abplus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_aMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_aminus" />
+            android:src="@drawable/blood_empty_aminus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_aplusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_aplus" />
+            android:src="@drawable/blood_empty_aplus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_bMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_bminus" />
+            android:src="@drawable/blood_empty_bminus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_bPlusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_bplus" />
+            android:src="@drawable/blood_empty_bplus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_oMinusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_ominus" />
+            android:src="@drawable/blood_empty_ominus"
+            android:contentDescription="@string/bloodImage"/>
 
         <ImageView
             android:id="@+id/fragmentDisplayBloodBank_image_oPlusBlood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/blood_empty_oplus" />
+            android:src="@drawable/blood_empty_oplus"
+            android:contentDescription="@string/bloodImage"/>
     </LinearLayout>
 
     <Button
@@ -161,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Refresh Stock"
+        android:text="@string/refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
