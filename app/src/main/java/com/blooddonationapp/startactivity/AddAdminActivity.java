@@ -147,7 +147,7 @@ public class AddAdminActivity extends AppCompatActivity {
                                 databaseReference.child("users").child(username).child("points").setValue(0);
 
                                 Toast.makeText(AddAdminActivity.this, "Successfully added admin user", Toast.LENGTH_SHORT).show();
-                                finish();
+
                             }
 
                         }
