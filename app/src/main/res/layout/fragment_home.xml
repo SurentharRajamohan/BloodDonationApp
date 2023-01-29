@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toTopOf="@+id/fragmentHome_textView_bloodNeeded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:iconifiedByDefault="false"/>
 
     <TextView
         android:id="@+id/fragmentHome_textView_bloodNeeded"

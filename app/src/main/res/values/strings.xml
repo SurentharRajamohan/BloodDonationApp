@@ -80,6 +80,7 @@
     <string name="logoutButton">Logout</string>
     <string name="sendRequestButton">Send Request</string>
     <string name="requestSuccessful">Request Successful</string>
+    <string name="refresh">Refresh Stock</string>
 
 
     <!--Spinner Resource-->
@@ -145,5 +146,7 @@
     <string name="bottomArrow">Bottom Arrow</string>
     <string name="donorCard">Donor Card</string>
     <string name="user">User Picture</string>
+    <string name="bloodBankImage">Blood Bank/Hospital Image</string>
+    <string name="bloodImage">Blood Type Image</string>
 
 </resources>
